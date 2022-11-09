@@ -1,30 +1,18 @@
-# CTAMACE Prediction Tool
-`CTAMACE` is a web application which can be used to predict major cardiovascular 
-events (MACE) two years following 
-coronary multidetector computed tomography (MDCT) using combined anatomical coronary findings in MDCT and clinical features
-
-**CTA:** Computed Tomography Angiography  
+# PRIMACE Prediction Tool
+`PRIMACE` is a web application which can be used to predict major cardiovascular 
+events (MACE) in first year following Primary Percutaneous Coronary Intervention (PPCI)
+**PPCI:** Primary Percutaneous Coronary Intervention  
 **MACE:** Major Adverse Cardiovascular Events
 
 ## Background
-We published a related article with title of  "Comparison of 
-Conventional vs. Machine Lerning scoring for 
-prediction of Major Cardiovascular Event
- Using Coronary Multidetector Computed Tomography" in `Frontiers in Cardiovascular Medicine`.  We trained seven machine learning (ML) models on patients MDCT dataset to predict MACE at two years following of MDCT. In contrary to previous studies, it utilized many anatomical and clinical features for prediction.  
- All ML models had better or at least the same prediction in comparison to conventional scoring systems.  
- Both linear and non-linear algorithms were utilized to detect diverse type of relations between observations.  
- ML models were as follows:  
- 1. Random Forest
- 2. Extreme Gradient Boosting (xgboost)
+We published a related article with title of "  
+ML models were as follows:  
+ 1. Survival Random Forest
+ 2. Survival Extreme Gradient Boosting (xgboost)
  3. Gradient Boosting Method (GBM)
- 4. Generalized Linear Model as Logistic Regression with Ridge Penalty
- 5. Feed Forward Neural Network
- 2. Stacked Ensembled Generalized Linear Model (Logistic Regression)
- 3. Stacked Ensembled Naive-Bayes
 
-
-### The link to online `CTAMACE`:
-**[CTAMACE Prediction Tool](https://behnam-hedayat.shinyapps.io/ctamace)**
+### The link to online `PRIMACE`:
+**[PRIMACE Prediction Tool](https://behnam-hedayat.shinyapps.io/primace)**
 
 ## Instructions
 
