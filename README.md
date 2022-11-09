@@ -5,11 +5,10 @@ events (MACE) in first year following Primary Percutaneous Coronary Intervention
 **MACE:** Major Adverse Cardiovascular Events
 
 ## Background
-We published a related article with title of "  
+We published a related article with title of "Effects of opium use on one-year major adverse cardiovascular events (MACE) in the patients with ST-segment elevation MI undergoing primary PCI: a propensity score matched - machine learning based study" in BMC Cardiovascular Journal.  
 ML models were as follows:  
  1. Survival Random Forest
  2. Survival Extreme Gradient Boosting (xgboost)
- 3. Gradient Boosting Method (GBM)
 
 ### The link to online `PRIMACE`:
 **[PRIMACE Prediction Tool](https://behnam-hedayat.shinyapps.io/primace)**
