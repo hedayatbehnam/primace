@@ -9,19 +9,17 @@ sidebar <- dashboardSidebar(
     menuItem("Authors", tabName = "authors", icon = icon("pencil-alt")),
     menuItem("Abstract", tabName = "abstract", icon = icon("file")),
     menuItem("Prediction Tool", tabName = "prediction", icon = icon("wrench"),
-             badgeLabel = "API", badgeColor = "purple"),
+             badgeLabel = "API", badgeColor = "green"),
     menuItem("Contact", tabName = "contact", icon = icon("phone")),
     menuItem("About", tabName = "about", icon = icon("info"))
   )
 )
-
 body <- dashboardBody(
-  shinybusy::add_busy_spinner(spin = "fading-circle", position = "bottom-right",
-                              margins = c("60%", "42%"), width = "60px",
-                              height = "60px"),
+  shinybusy::add_busy_spinner(spin = "half-circle", position = "bottom-right",
+                              margins = c("60%", "42%"), width = "70px",
+                              height = "70px"),
   style_ref(tags, "style"),
   tags$script(HTML("$('body').addClass('fixed');")),
-  
   tabItems(
     tabItem(tabName = "home", 
             fluidRow(column(12,box(width=12, status = "primary", solidHeader = F,
@@ -29,7 +27,6 @@ body <- dashboardBody(
                                                    in the patients with ", br(),"ST-segment elevation MI undergoing primary PCI", br()," 
                                                    a propensity score matched - machine learning based study", 
                                                    class="home-title"))))),
-            
             fluidRow(width=12, solidHeader = F,
                 column(12, align="center",tags$div(img(src='logothc.png', 
                        align = "center", width=200),br(),
@@ -90,7 +87,6 @@ body <- dashboardBody(
     tabItem(tabName = "abstract", 
             fluidRow(box(width=12, status = "primary",
                   div(p(span("Abstract", style="font-weight:bold; font-size:24px;")), hr(),
-            
                   p(strong("Background:")),"Considerable number of people still 
                   use opium worldwide and many believe in opium’s health benefits. 
                   However, several studies proved the detrimental effects of 
@@ -99,7 +95,6 @@ body <- dashboardBody(
                   effects of opium use on one-year major adverse cardiovascular 
                   events (MACE) in the patients with ST-elevation MI (STEMI) who 
                   underwent primary PCI.", hr(),
-
                   p(strong("Materials and methods:")),"We performed a propensity 
                   score matching of 2:1 (controls: opium users) that yielded 518 
                   opium users and 1036 controls. Then, we performed conventional 
@@ -111,7 +106,6 @@ body <- dashboardBody(
                   and XGboost for survival analysis. Variable importance (VIMP), 
                   tree minimal depth, and variable hunting were used to identify 
                   the importance of opium among other variables.", hr(),
-
                   p(strong("Results:")),"Opium users experienced more one-year 
                   MACE than their counterparts, although it did not reach 
                   statistical significance (Opium: 72/518 (13.9%), Control: 
@@ -122,7 +116,6 @@ body <- dashboardBody(
                   XGboost revealed opium use as the 12th important variable. 
                   Partial dependence plot demonstrated that opium users had 
                   more one-year MACE compared to non-opium-users.", hr(),
-
                   p(strong("Conclusion:")), "Opium had no protective effects on 
                   one-year MACE after primary PCI on patients with STEMI. 
                   Machine learning and one-year MACE analysis revealed some 
@@ -149,7 +142,6 @@ body <- dashboardBody(
                             cardiovascular event (MACE) with using coronary MDCT 
                             anatomical features combined with clinical features.
                             ", class="predict-text"), 
-                            
                             p("You can upload your custom file from file input 
                             box bellow. At the moment Allowed format is *.rds, 
                             *.csv, *.sav and *.xlsx formats.", class="predict-text"),
@@ -157,7 +149,6 @@ body <- dashboardBody(
                             of features, your dataset features names should be 
                             transformed to the names provided in 'Variables Names' 
                             box bellow to enable prediction.", class="predict-text"),
-                  
                 )), br(),
                 conditionalPanel(condition = "output.varnameComplete",
                        fluidRow(box(title=strong("Variables Names"),
@@ -184,27 +175,27 @@ body <- dashboardBody(
                           some times for uploading file to be completed.
                           If you do not have a file to upload, you can download 
                            sample new test set available in git repository of 
-                           ctamace app in git@github.com:hedayatbehnam/ctamace.git", 
+                           primace app in git@github.com:hedayatbehnam/primace.git", 
                           class="predict-text"),
                          "If you do not upload a file, a default sample test set with
                          known target vriable would be used instead for analysis",
                          hr(),
-                         
                          fileInput("loadFile", label = "Please Upload Your Data:",
                                    width="300px"),
-                         selectInput("models", "Please Select a Model", 
-                                     choices = c("RF", "Ensemble GLM", 
-                                                 "Ensemble NB", 
-                                                 "GBM", "GLM LR Ridge", "FNN", 
-                                                 "Xgboost"), 
-                                     selected = "RF", width = '200px'),
-                      
-                         p(strong("Click predict... button bellow to initiate 
-                                  prediction")),
                          
-                         actionButton("predict_btn", label = "Predict...", 
-                                      width = "100px"))),
-
+                         column(6,selectInput("models", "Please Select a Model", 
+                                choices = c("Survival Random Forest", 
+                                          "Survival Xgboost"), 
+                                selected = "Survival Random Forest", width = '200px'),
+                                p(strong("Click predict... button bellow to initiate 
+                                  prediction")),
+                                
+                                actionButton("predict_btn", label = "Predict...", 
+                                             width = "100px")),
+                         column(6, selectInput("time_select", "Please Select a Prediction Time",
+                                               choices = c("3rd Month", "6th Month", 
+                                                           "9th Month", "12th Month"),
+                                               selected = "12th Month")))),
                 # fluidRow(uiOutput("performanceState")),
                 conditionalPanel(condition = "output.perfMetrics == 'complete'",
                     fluidRow(box(id="perfmet", title=strong("Performance Metrics"),  
@@ -215,23 +206,23 @@ body <- dashboardBody(
                              dataTableOutput('performance'))),
                 ),
                 conditionalPanel(condition = "output.perfMetrics == 'noTarget'",
-                                 fluidRow(box(title=strong("Plot"),
-                                              id="predictPlot",width=12,
+                                 fluidRow(box(title=strong("Performance Metrics"),
+                                              width=12,
                                               status="primary", collapsible = T,
                                               collapsed = F,
                                               "Because your data file does not contains target variable called 
                                                Total_MACE, no performance assessment was conducted."))
                 ),
                 conditionalPanel(condition = "output.perfMetrics == 'empty'",
-                                 fluidRow(box(title=strong("Plot"),
-                                              id="predictPlot",width=12,
+                                 fluidRow(box(title=strong("Performance Metrics"),
+                                              width=12,
                                               status="primary", collapsible = T,
                                               collapsed = F,
                                               "Please upload a data file..."))
                 ),
                 conditionalPanel(condition = "output.perfMetrics == 'nonValid'",
-                                 fluidRow(box(title=strong("Plot"),
-                                              id="predictPlot",width=12,
+                                 fluidRow(box(title=strong("Performance Metrics"),
+                                              width=12,
                                               status="primary", collapsible = T,
                                               collapsed = F,
                                               p("Uploaded file shoud be in 
@@ -239,8 +230,8 @@ body <- dashboardBody(
                                                 class="alarm")))
                 ),
                 conditionalPanel(condition = "output.perfMetrics == 'mismatch'",
-                                 fluidRow(box(title=strong("Plot"),
-                                              id="predictPlot",width=12,
+                                 fluidRow(box(title=strong("Performance Metrics"),
+                                              width=12,
                                               status="primary", collapsible = T,
                                               collapsed = F,
                                               p("At least one variable in uploaded dataset is 
@@ -265,7 +256,6 @@ body <- dashboardBody(
                              original training set.",
                              "You can define which metrics should be used for 
                              threshold assignment.", class="predict-text"))),
-                
                 fluidRow(box(title = strong("Metrics"), 
                              "Please Select a Metric for Classification Threshold",
                              width=12, status = "primary",
@@ -279,7 +269,6 @@ body <- dashboardBody(
                                                      "TPR"), selected = "F1 score", 
                                                      width = '200px')),
                 ),
-
                 conditionalPanel(condition = "output.predMetrics == 'complete'",
                 fluidRow(box(title=strong("Table"),  
                             id="predictTable",width=12,
@@ -288,14 +277,14 @@ body <- dashboardBody(
                             dataTableOutput("predict_tbl")))
                 ),
                 conditionalPanel(condition = "output.predMetrics == 'empty'",
-                                 fluidRow(box(title=strong("Table"),
+                                 fluidRow(box(title=strong("Predictions"),
                                               id="predictTable",width=12,
                                               status="primary", collapsible = T,
                                               collapsed = F,
                                               "Please upload a data file..."))
                 ),
                 conditionalPanel(condition = "output.predMetrics == 'nonValid'",
-                                 fluidRow(box(title=strong("Table"),
+                                 fluidRow(box(title=strong("Predictions"),
                                               id="predictTable",width=12,
                                               status="primary", collapsible = T,
                                               collapsed = F,
@@ -304,7 +293,7 @@ body <- dashboardBody(
                                                 class="alarm")))
                 ),
                 conditionalPanel(condition = "output.predMetrics == 'mismatch'",
-                                 fluidRow(box(title=strong("Plot"),
+                                 fluidRow(box(title=strong("Predictions"),
                                               id="predictPlot",width=12,
                                               status="primary", collapsible = T,
                                               collapsed = F,
@@ -318,8 +307,8 @@ body <- dashboardBody(
                              status="primary", collapsible = T, collapsed = F,
                              "If your dataset contains target variable named
                              Total_MACE, ROC curve would be provided.",
-                             class="predict-text")),
-                
+                             class="predict-text")
+                ),
                 conditionalPanel(condition = "output.perfMetrics == 'complete'",
                 fluidRow(box(title=strong("Plot"),  
                             id="predictPlot",width=12,
@@ -344,7 +333,6 @@ body <- dashboardBody(
                                               collapsed = F,
                                               "Please upload a data file..."))
                 ),
-                
                 conditionalPanel(condition = "output.perfMetrics == 'nonValid'",
                                  fluidRow(box(title=strong("Plot"),
                                               id="predictPlot",width=12,
@@ -384,10 +372,9 @@ body <- dashboardBody(
     ))
   )
 )
-  
 dashboardPage(
-  skin = "purple",
-  dashboardHeader(title = "CTAMACE"),
+  skin = "blue",
+  dashboardHeader(title = "PRIMACE"),
   sidebar,
   body
 )
