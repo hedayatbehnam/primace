@@ -20,7 +20,7 @@ upload_data <- function(input){
     } else if (tolower(ext) == "xlsx") {
       dataset <- read_excel(loadedFile$datapath)
     } 
-    if (!any((names(dataset) %in% varnames[,'Variable']))){
+    if (!any((names(dataset) %in% varnames[,'varnames']))){
       return("mismatch")
     }
     if (!is.null(loadedFile)){
@@ -30,7 +30,7 @@ upload_data <- function(input){
         noTarget <- TRUE
         dataset$Time_to_MACE <- 1
         dataset$First_MACE_bin <- 1
-        return(list(survData = dataset, target = noTarget))
       }
+      return(list(survData = dataset, target = noTarget))
     }
 }

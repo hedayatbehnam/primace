@@ -6,11 +6,18 @@ library(readxl)
 library(tools)
 library(pROC)
 library(ggplot2)
+library(dplyr)
+library(mlr3proba)
+library(caret)
 source('modules/load_model.R', local = T)
 source('modules/loading_function.R', local=T)
 source('modules/reactiveVal_output.R', local=T)
 source('modules/upload_file.R', local= T)
 source('modules/predict_scores.R', local= T)
+source('modules/survROC.R', local= T)
+source('modules/final_predict.R', local= T)
+source('modules/best_point.R', local= T)
+source('modules/max_perf_calc.R', local= T)
 
 server <- function(input, output, session) {
   rv <- reactiveValues()
@@ -53,22 +60,22 @@ server <- function(input, output, session) {
       }
     } else {
       reactiveVal_output(rv, 'predMetrics', 'complete', output)
-      vars$predTbl <- predict_scores(data=vars$data, model=vars$model)
+      vars$predTbl <- predict_scores(data=vars$data$survData, model=vars$model)
       vars$surv_roc <- survROC(Stime=vars$predTbl$time, 
                                status=vars$predTbl$status,
-                               predict.time=vars$time)
+                               marker=vars$predTbl$crank,
+                               predict.time=vars$time,
+                               span=0.08)
       vars$bestPoints <- best_point(c = vars$surv_roc$cut.values,
-                                    se = vars$surv_roc$TP,
+                                    se = vars$surv_roc$TPR,
                                     sp = vars$surv_roc$Specificity)
       vars$final_predict <- final_predict(predict_table = vars$predTbl, 
                                           surv_roc = vars$surv_roc, 
-                                          best_points = vars$bestPoints)
+                                          best_scores = vars$bestPoints)
       
       if (!vars$data$target){
         vars$performance_result <- max_perf_calc(predict_table = vars$final_predict)
         loadingFunc(message = "initializing ROC plot...")
-        vars$pred <- as.data.frame(vars$predict_metrics)
-        vars$df <- as.data.frame(vars$data$h2oData)
         reactiveVal_output(rv, 'perfMetrics', 'complete', output)
       } else {
         reactiveVal_output(rv, 'perfMetrics', 'noTarget', output)
@@ -76,10 +83,10 @@ server <- function(input, output, session) {
     }
   })
   output$predict_tbl <- renderDataTable({
-    as.data.frame(vars$predict_metrics)
+    vars$final_predict %>% dplyr::select(-status)
   })
   output$performance <- renderDataTable({
-    vars$max_scores
+    vars$performance_result
   })
   output$predict_plot <- renderPlot({
       ggroc(roc(vars$df$Total_MACE, vars$pred$Yes,
