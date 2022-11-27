@@ -1,4 +1,11 @@
-options(shiny.maxRequestSize=30*1024^2) 
+options(shiny.maxRequestSize=30*1024^2)
+# devtools::install_github(repo = "mlr-org/mlr3proba")
+# devtools::install_github("alan-turing-institute/distr6")
+# devtools::install_github("xoopR/param6")
+# devtools::instals::instals::install_github("xoopR/set6")
+# devtools::install_github("RaphaelS1/survivalmodels")
+# install.packages("randomForestSRC")
+# install.packages("pracma")
 library(shiny)
 library(shinydashboard)
 library(foreign)
@@ -7,17 +14,22 @@ library(tools)
 library(pROC)
 library(ggplot2)
 library(dplyr)
+library(randomForestSRC)
+library(pracma)
+library(xgboost)
+library(mlr3learners); library(mlr3extralearners);
 library(mlr3proba)
 library(caret)
-source('R/modules/load_model.R', local = T)
-source('R/modules/loading_function.R', local=T)
-source('R/modules/reactiveVal_output.R', local=T)
-source('R/modules/upload_file.R', local= T)
-source('R/modules/predict_scores.R', local= T)
-source('R/modules/survROC.R', local= T)
-source('R/modules/final_predict.R', local= T)
-source('R/modules/best_point.R', local= T)
-source('R/modules/max_perf_calc.R', local= T)
+source('modules/load_model.R', local = T)
+source('modules/loading_function.R', local=T)
+source('modules/reactiveVal_output.R', local=T)
+source('modules/upload_file.R', local= T)
+source('modules/predict_scores.R', local= T)
+source('modules/survROC.R', local= T)
+source('modules/final_predict.R', local= T)
+source('modules/best_point.R', local= T)
+source('modules/max_perf_calc.R', local= T)
+
 
 server <- function(input, output, session) {
   rv <- reactiveValues()
@@ -28,7 +40,7 @@ server <- function(input, output, session) {
     rv$varnameComplete <- TRUE
     output$tableVarNames <- renderDataTable({ 
       loadingFunc(message = "Initializing variables loading...")
-      varnames <<- readRDS("R/www/varnames.RDS")
+      varnames <<- readRDS("www/varnames.RDS")
       as.data.frame(varnames)
     }, options = list(pageLength=10, scrollX=TRUE) 
     )
@@ -72,7 +84,6 @@ server <- function(input, output, session) {
       vars$final_predict <- final_predict(predict_table = vars$predTbl, 
                                           surv_roc = vars$surv_roc, 
                                           best_scores = vars$bestPoints)
-      
       if (!vars$data$target){
         vars$performance_result <- max_perf_calc(predict_table = vars$final_predict)
         loadingFunc(message = "initializing ROC plot...")

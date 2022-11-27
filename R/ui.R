@@ -1,7 +1,7 @@
 library(shiny)
 library(shinydashboard)
 library(shinybusy)
-source("R/styles/styles.R", local = T)
+source("styles/styles.R", local = T)
 
 sidebar <- dashboardSidebar(
   sidebarMenu(
@@ -195,7 +195,7 @@ body <- dashboardBody(
                          column(6, selectInput("time_select", "Please Select a Prediction Time",
                                                choices = c("3rd Month", "6th Month", 
                                                            "9th Month", "12th Month"),
-                                               selected = "12th Month")))),
+                                               selected = "12th Month", width='200px')))),
                 # fluidRow(uiOutput("performanceState")),
                 conditionalPanel(condition = "output.perfMetrics == 'complete'",
                     fluidRow(box(id="perfmet", title=strong("Performance Metrics"),  
@@ -288,7 +288,7 @@ body <- dashboardBody(
                                               id="predictTable",width=12,
                                               status="primary", collapsible = T,
                                               collapsed = F,
-                                              p("Uploaded file shoud be in 
+                                              p("Uploaded file should be in 
                                                 .csv, .rds, .xlsx or .sav format",
                                                 class="alarm")))
                 ),
@@ -302,56 +302,56 @@ body <- dashboardBody(
                                                 class="alarm")))
                 )
             ),
-            tabPanel("Plots", 
-                fluidRow(box(title=strong("Performance Plots"), width=12,
-                             status="primary", collapsible = T, collapsed = F,
-                             "If your dataset contains target variable named
-                             Total_MACE, ROC curve would be provided.",
-                             class="predict-text")
-                ),
-                conditionalPanel(condition = "output.perfMetrics == 'complete'",
-                fluidRow(box(title=strong("Plot"),  
-                            id="predictPlot",width=12,
-                            height = 650,
-                            status="primary", collapsible = T, 
-                            collapsed = F,
-                            column(12, align="center", 
-                            plotOutput("predict_plot"))))
-                ),
-                conditionalPanel(condition = "output.perfMetrics == 'noTarget'",
-                                 fluidRow(box(title=strong("Plot"),
-                                              id="predictPlot",width=12,
-                                              status="primary", collapsible = T,
-                                              collapsed = F,
-                                              "Because your data file does not contains target variable called 
-                                               Total_MACE, no performance assessment was conducted."))
-                ),
-                conditionalPanel(condition = "output.perfMetrics == 'empty'",
-                                 fluidRow(box(title=strong("Plot"),
-                                              id="predictPlot",width=12,
-                                              status="primary", collapsible = T,
-                                              collapsed = F,
-                                              "Please upload a data file..."))
-                ),
-                conditionalPanel(condition = "output.perfMetrics == 'nonValid'",
-                                 fluidRow(box(title=strong("Plot"),
-                                              id="predictPlot",width=12,
-                                              status="primary", collapsible = T,
-                                              collapsed = F,
-                                              p("Uploaded file shoud be in 
-                                                .csv, .rds, .xlsx or .sav format",
-                                                class="alarm")))
-                ),
-                conditionalPanel(condition = "output.perfMetrics == 'mismatch'",
-                                 fluidRow(box(title=strong("Plot"),
-                                              id="predictPlot",width=12,
-                                              status="primary", collapsible = T,
-                                              collapsed = F,
-                                              p("At least one variable in uploaded dataset is 
-                                              not in original training dataset", 
-                                                class="alarm")))
-                )
-            ),
+            # tabPanel("Plots", 
+            #     fluidRow(box(title=strong("Performance Plots"), width=12,
+            #                  status="primary", collapsible = T, collapsed = F,
+            #                  "If your dataset contains target variable named
+            #                  Total_MACE, ROC curve would be provided.",
+            #                  class="predict-text")
+            #     ),
+            #     conditionalPanel(condition = "output.perfMetrics == 'complete'",
+            #     fluidRow(box(title=strong("Plot"),  
+            #                 id="predictPlot",width=12,
+            #                 height = 650,
+            #                 status="primary", collapsible = T, 
+            #                 collapsed = F,
+            #                 column(12, align="center", 
+            #                 plotOutput("predict_plot"))))
+            #     ),
+            #     conditionalPanel(condition = "output.perfMetrics == 'noTarget'",
+            #                      fluidRow(box(title=strong("Plot"),
+            #                                   id="predictPlot",width=12,
+            #                                   status="primary", collapsible = T,
+            #                                   collapsed = F,
+            #                                   "Because your data file does not contains target variable called 
+            #                                    Total_MACE, no performance assessment was conducted."))
+            #     ),
+            #     conditionalPanel(condition = "output.perfMetrics == 'empty'",
+            #                      fluidRow(box(title=strong("Plot"),
+            #                                   id="predictPlot",width=12,
+            #                                   status="primary", collapsible = T,
+            #                                   collapsed = F,
+            #                                   "Please upload a data file..."))
+            #     ),
+            #     conditionalPanel(condition = "output.perfMetrics == 'nonValid'",
+            #                      fluidRow(box(title=strong("Plot"),
+            #                                   id="predictPlot",width=12,
+            #                                   status="primary", collapsible = T,
+            #                                   collapsed = F,
+            #                                   p("Uploaded file shoud be in 
+            #                                     .csv, .rds, .xlsx or .sav format",
+            #                                     class="alarm")))
+            #     ),
+            #     conditionalPanel(condition = "output.perfMetrics == 'mismatch'",
+            #                      fluidRow(box(title=strong("Plot"),
+            #                                   id="predictPlot",width=12,
+            #                                   status="primary", collapsible = T,
+            #                                   collapsed = F,
+            #                                   p("At least one variable in uploaded dataset is 
+            #                                   not in original training dataset", 
+            #                                     class="alarm")))
+            #     )
+            # ),
         ),
     ),
     tabItem(tabName = "contact",
