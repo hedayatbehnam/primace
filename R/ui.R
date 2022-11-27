@@ -35,8 +35,8 @@ body <- dashboardBody(
                        class="thc-logo-subtext")))),
            
             fluidRow(column(6,box(width=12 , background = "light-blue",
-                              tags$div("Using Two Machine Learning Models
-                              to Predict Outcome in file format of .RDS, 
+                              tags$div("Using Surviva Random Forest Machine Learning Model
+                              to Predict Outcom with provided data in file format of .RDS, 
                               .csv, .sav, .xlsx ",class="home-box-title"))),
                      
                      column(6,box(width=12, background = "teal",
@@ -72,7 +72,7 @@ body <- dashboardBody(
                         Tehran, Iran",br(),
                     "5. Cardiovascular Disease Research Institute,
                         Tehran Heart Center, 
-                        Tehran University of Medical Sciences, Tehran, Iran.",
+                        Tehran University of Medical Sciences, Tehran, Iran.",br(),
                     "6. Department of Psychiatry, 
                         University of Minnesota, Minneapolis, MN, USA",
                     br(),hr(),
@@ -136,11 +136,10 @@ body <- dashboardBody(
                 fluidRow(box(title=p(span("Prediction Tool", style="font-weight:bold; 
                          font-size:24px;")), 
                          width=12,status="primary", collapsible = T, collapsed = F,
-                            p("Here a prediction tool is provided based on seven 
-                            machine learning models trained on patients which 
-                            underwent elective coronary MDCT, to predict major 
-                            cardiovascular event (MACE) with using coronary MDCT 
-                            anatomical features combined with clinical features.
+                            p("Here a prediction tool is provided based on survival 
+                            random forest trained on patients which 
+                            underwent primary percutaneous coronary intervention(PCI), 
+                            to predict major adverse cardiovascular event (MACE).
                             ", class="predict-text"), 
                             p("You can upload your custom file from file input 
                             box bellow. At the moment Allowed format is *.rds, 
@@ -244,16 +243,16 @@ body <- dashboardBody(
                              status="primary", collapsible = T, collapsed = F,
                              p("Here, Prediction table with probability of 
                              'No' event and 'Yes' event are provided. 
-                             Final prediction of Total_MACE is provided in first
+                             Final prediction of First_MACE_bin is provided in first
                              column.
                              If your data file contains target variable named 
-                             Total_MACE, the cutoff for discriminating MACE-No vs
-                             MACE-Yes is calculated by maximum F1 score in training set 
-                             by default.
+                             First_MACE_bin, the cutoff for discriminating MACE-No vs
+                             MACE-Yes is calculated by Youden's index and closest topleft 
+                             method in training set by default.
                              If your data file does not contain target variable, 
                              The cutoff for defining MACE vs No-MACE is calcluated
-                             by our study cutoff maximum F1 score of each model in 
-                             original training set.",
+                             by our study cutoff Youden's index and closest topleft 
+                             value of each model in original training set.",
                              "You can define which metrics should be used for 
                              threshold assignment.", class="predict-text"))),
                 fluidRow(box(title = strong("Metrics"), 
@@ -261,12 +260,11 @@ body <- dashboardBody(
                              width=12, status = "primary",
                              collapsible = T, collapsed = F, 
                              selectInput("metrics_input", label = " ",
-                                         choices = c("F1 score", "F2 score", "f0point5",
-                                                     "Accuracy","Precision",
-                                                     "recall", "Specificity",
-                                                     "Absoulute_mcc",
+                                         choices = c("Youden's index", "Closest Top Left",
+                                                     "F1 score", "Accuracy",
+                                                     "Precision", "recall", "Specificity",
                                                      "TNR", "FNR", "FPR",
-                                                     "TPR"), selected = "F1 score", 
+                                                     "TPR"), selected = "Youden's index", 
                                                      width = '200px')),
                 ),
                 conditionalPanel(condition = "output.predMetrics == 'complete'",
