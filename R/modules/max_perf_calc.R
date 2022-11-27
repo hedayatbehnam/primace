@@ -1,5 +1,4 @@
 max_perf_calc <- function(predict_table){
-  print(predict_table)
   conf_matrix_youden <- confusionMatrix(data=as.factor(predict_table$status), 
                         reference = as.factor(predict_table$youden),
                         mode="everything", positive="TRUE")

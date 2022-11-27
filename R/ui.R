@@ -1,7 +1,7 @@
 library(shiny)
 library(shinydashboard)
 library(shinybusy)
-source("styles/styles.R", local = T)
+source("R/styles/styles.R", local = T)
 
 sidebar <- dashboardSidebar(
   sidebarMenu(
@@ -372,7 +372,7 @@ body <- dashboardBody(
     ))
   )
 )
-dashboardPage(
+ui <- dashboardPage(
   skin = "blue",
   dashboardHeader(title = "PRIMACE"),
   sidebar,

@@ -1,3 +1,6 @@
 # Runner file
 library(shiny)
-runApp(appDir = './R/')
+source('R/server.R')
+source('R/ui.R')
+# runApp(appDir = './R/')
+shinyApp(ui = ui, server = server)
