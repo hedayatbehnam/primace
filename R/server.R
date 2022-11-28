@@ -13,7 +13,7 @@ source('modules/load_model.R', local = T);source('modules/loading_function.R', l
 source('modules/reactiveVal_output.R', local=T);source('modules/upload_file.R', local= T);
 source('modules/predict_scores.R', local= T);source('modules/survROC.R', local= T);
 source('modules/final_predict.R', local= T);source('modules/best_point.R', local= T);
-source('modules/max_perf_calc.R', local= T)
+source('modules/max_perf_calc.R', local= T);source('modules/manual_prediction.R')
 
 server <- function(input, output, session) {
   rv <- reactiveValues()
@@ -92,4 +92,12 @@ server <- function(input, output, session) {
                      linetype = 2,col='black',
                      lwd=0.05)
   }, width="auto", height = 500, res = 96)
+  observeEvent(input$man_predict_btn, {
+    vars$man_df <- manual_prediction(input)
+    vars$man_predict <- predict_scores(data=vars$man_df, model=load_model(input))
+  })
+  output$manual_predict_tbl <- renderDataTable({
+    tryCatch(vars$man_predict %>% mutate_if(is.numeric, round, 3) %>% 
+               dplyr::select(crank), error=function(e) print("No data available"))
+  }, options = list(scrollX=TRUE, dom='t'))
 }
