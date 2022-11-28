@@ -5,9 +5,9 @@ account: behnam-hedayat
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7685694
-bundleId: 6559444
+bundleId: 6559764
 url: https://behnam-hedayat.shinyapps.io/primace/
-when: 1669564379.89161
-lastSyncTime: 1669564379.89165
+when: 1669575259.81348
+lastSyncTime: 1669575259.81352
 asMultiple: FALSE
 asStatic: FALSE

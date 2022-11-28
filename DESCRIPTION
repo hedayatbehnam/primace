@@ -1,10 +1,10 @@
 Package: ctamace
-Title: What the Package Does (One Line, Title Case)
+Title: Prediction Tool for One year MACE following Primary PCI
 Version: 0.0.0.9000
 Authors@R: 
     person("Behnam", "Hedayat", , "bhedayat.thc@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1549-021X"))
-Description: Prediting MACE using anatomical findings in MDCT and clinical features.
+Description: Prediting possibility of first year major adverse cardiovascular events (MACE) following primary percutaneous coronary intervention (PPCI)
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
