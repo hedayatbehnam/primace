@@ -16,8 +16,7 @@ sidebar <- dashboardSidebar(
 )
 body <- dashboardBody(
   shinybusy::add_busy_spinner(spin = "half-circle", position = "bottom-right",
-                              margins = c("60%", "42%"), width = "70px",
-                              height = "70px"),
+                              margins = c("60%", "42%"), width = "70px", height = "70px"),
   style_ref(tags, "style"),
   tags$script(HTML("$('body').addClass('fixed');")),
   tabItems(
@@ -163,7 +162,7 @@ body <- dashboardBody(
                                     may take a while..."))
                 ),
             ),
-            tabPanel("Prediction",
+            tabPanel("Data Prediction",
                 fluidRow(box(title=strong("Upload File"),width=12, 
                          status = "primary",
                          collapsible = T, collapsed = F,
@@ -237,70 +236,8 @@ body <- dashboardBody(
                                                 class="alarm")))
                 )
             ),
-            tabPanel("Table",
-                fluidRow(box(title=strong("Prediction Ouput Table"), width=12, 
-                             status="primary", collapsible = T, collapsed = F,
-                             p("Here, Prediction table with probability of 
-                             'No' event and 'Yes' event are provided. 
-                             Final prediction of First_MACE_bin is provided in first
-                             column.
-                             If your data file contains target variable named 
-                             First_MACE_bin, the cutoff for discriminating MACE-No vs
-                             MACE-Yes is calculated by Youden's index and closest topleft 
-                             method in training set by default.
-                             If your data file does not contain target variable, 
-                             The cutoff for defining MACE vs No-MACE is calcluated
-                             by our study cutoff Youden's index and closest topleft 
-                             value of each model in original training set.",
-                             "You can define which metrics should be used for 
-                             threshold assignment.", class="predict-text"))),
-                fluidRow(box(title = strong("Metrics"), 
-                             "Please Select a Metric for Classification Threshold",
-                             width=12, status = "primary",
-                             collapsible = T, collapsed = F, 
-                             selectInput("metrics_input", label = " ",
-                                         choices = c("Youden's index", "Closest Top Left",
-                                                     "F1 score", "Accuracy",
-                                                     "Precision", "recall", "Specificity",
-                                                     "TNR", "FNR", "FPR",
-                                                     "TPR"), selected = "Youden's index", 
-                                                     width = '200px')),
-                ),
-                conditionalPanel(condition = "output.predMetrics == 'complete'",
-                fluidRow(box(title=strong("Table"),  
-                            id="predictTable",width=12,
-                            status="primary", collapsible = T, 
-                            collapsed = F,
-                            dataTableOutput("predict_tbl")))
-                ),
-                conditionalPanel(condition = "output.predMetrics == 'empty'",
-                                 fluidRow(box(title=strong("Predictions"),
-                                              id="predictTable",width=12,
-                                              status="primary", collapsible = T,
-                                              collapsed = F,
-                                              "Please upload a data file..."))
-                ),
-                conditionalPanel(condition = "output.predMetrics == 'nonValid'",
-                                 fluidRow(box(title=strong("Predictions"),
-                                              id="predictTable",width=12,
-                                              status="primary", collapsible = T,
-                                              collapsed = F,
-                                              p("Uploaded file should be in 
-                                                .csv, .rds, .xlsx or .sav format",
-                                                class="alarm")))
-                ),
-                conditionalPanel(condition = "output.predMetrics == 'mismatch'",
-                                 fluidRow(box(title=strong("Predictions"),
-                                              id="predictPlot",width=12,
-                                              status="primary", collapsible = T,
-                                              collapsed = F,
-                                              p("At least one variable in uploaded dataset is 
-                                              not in original training dataset", 
-                                                class="alarm")))
-                )
-            ),
             tabPanel("Manual Prediction",
-                     fluidRow(box(title=strong("Denovo"), width=12,
+                     fluidRow(box(title=strong("Manual Prediction"), width=12,
                                   status="primary", collapsible = T, collapsed = F,
                                   "You can enter features of a patient manually to predict his/her
                                   first year MACE", br(),br(), 
@@ -370,6 +307,68 @@ body <- dashboardBody(
                                                   value = 100, min = 0, max = 1000,
                                                   step = 1, width = "200px"))
                               ))),
+            tabPanel("Predicted Table",
+                     fluidRow(box(title=strong("Prediction Ouput Table"), width=12, 
+                                  status="primary", collapsible = T, collapsed = F,
+                                  p("Here, Prediction table with probability of 
+                             'No' event and 'Yes' event are provided. 
+                             Final prediction of First_MACE_bin is provided in first
+                             column.
+                             If your data file contains target variable named 
+                             First_MACE_bin, the cutoff for discriminating MACE-No vs
+                             MACE-Yes is calculated by Youden's index and closest topleft 
+                             method in training set by default.
+                             If your data file does not contain target variable, 
+                             The cutoff for defining MACE vs No-MACE is calcluated
+                             by our study cutoff Youden's index and closest topleft 
+                             value of each model in original training set.",
+                                    "You can define which metrics should be used for 
+                             threshold assignment.", class="predict-text"))),
+                     fluidRow(box(title = strong("Metrics"), 
+                                  "Please Select a Metric for Classification Threshold",
+                                  width=12, status = "primary",
+                                  collapsible = T, collapsed = F, 
+                                  selectInput("metrics_input", label = " ",
+                                              choices = c("Youden's index", "Closest Top Left",
+                                                          "F1 score", "Accuracy",
+                                                          "Precision", "recall", "Specificity",
+                                                          "TNR", "FNR", "FPR",
+                                                          "TPR"), selected = "Youden's index", 
+                                              width = '200px')),
+                     ),
+                     conditionalPanel(condition = "output.predMetrics == 'complete'",
+                                      fluidRow(box(title=strong("Table"),  
+                                                   id="predictTable",width=12,
+                                                   status="primary", collapsible = T, 
+                                                   collapsed = F,
+                                                   dataTableOutput("predict_tbl")))
+                     ),
+                     conditionalPanel(condition = "output.predMetrics == 'empty'",
+                                      fluidRow(box(title=strong("Predictions"),
+                                                   id="predictTable",width=12,
+                                                   status="primary", collapsible = T,
+                                                   collapsed = F,
+                                                   "Please upload a data file..."))
+                     ),
+                     conditionalPanel(condition = "output.predMetrics == 'nonValid'",
+                                      fluidRow(box(title=strong("Predictions"),
+                                                   id="predictTable",width=12,
+                                                   status="primary", collapsible = T,
+                                                   collapsed = F,
+                                                   p("Uploaded file should be in 
+                                                .csv, .rds, .xlsx or .sav format",
+                                                     class="alarm")))
+                     ),
+                     conditionalPanel(condition = "output.predMetrics == 'mismatch'",
+                                      fluidRow(box(title=strong("Predictions"),
+                                                   id="predictPlot",width=12,
+                                                   status="primary", collapsible = T,
+                                                   collapsed = F,
+                                                   p("At least one variable in uploaded dataset is 
+                                              not in original training dataset", 
+                                                     class="alarm")))
+                     )
+            ),
             # tabPanel("Plots", 
             #     fluidRow(box(title=strong("Performance Plots"), width=12,
             #                  status="primary", collapsible = T, collapsed = F,
