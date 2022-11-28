@@ -30,7 +30,6 @@ source('modules/final_predict.R', local= T)
 source('modules/best_point.R', local= T)
 source('modules/max_perf_calc.R', local= T)
 
-
 server <- function(input, output, session) {
   rv <- reactiveValues()
   rv$varnameComplete <- rv$perfMetrics <- rv$predMetrics <- FALSE
