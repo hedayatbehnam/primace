@@ -148,19 +148,19 @@ body <- dashboardBody(
                             transformed to the names provided in 'Variables Names' 
                             box bellow to enable prediction.", class="predict-text"),
                 )), br(),
-                conditionalPanel(condition = "output.varnameComplete",
+                # conditionalPanel(condition = "output.varnameComplete",
                        fluidRow(box(title=strong("Variables Names"),
                                     id="varnames",width=12,
                                     status="primary", collapsible = T, collapsed = F,
                                     dataTableOutput("tableVarNames")))
-                ),
-                conditionalPanel(condition = "!output.varnameComplete",
-                       fluidRow(box(title=strong("Variables Names"),
-                                    id="varnames",width=12,
-                                    status="primary", collapsible = T, collapsed = F,
-                                    "Loading variables, It
-                                    may take a while..."))
-                ),
+                # ),
+                # conditionalPanel(condition = "!output.varnameComplete",
+                #        fluidRow(box(title=strong("Variables Names"),
+                #                     id="varnames",width=12,
+                #                     status="primary", collapsible = T, collapsed = F,
+                #                     "Loading variables, It
+                #                     may take a while..."))
+                # ),
             ),
             tabPanel("Data Prediction",
                 fluidRow(box(title=strong("Upload File"),width=12, 

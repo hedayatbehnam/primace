@@ -20,19 +20,11 @@ server <- function(input, output, session) {
   rv$varnameComplete <- rv$perfMetrics <- rv$predMetrics <- FALSE
   reactiveVal_output(rv, 'perfMetrics', 'empty', output)
   reactiveVal_output(rv, 'predMetrics', 'empty', output)
-  observe({
-    rv$varnameComplete <- TRUE
-    output$tableVarNames <- renderDataTable({ 
-      loadingFunc(message = "Initializing variables loading...")
-      varnames <<- readRDS("www/varnames.RDS")
-      as.data.frame(varnames)
-    }, options = list(pageLength=10, scrollX=TRUE) 
-    )
-    output$varnameComplete <- reactive({
-      return(rv$varnameComplete)
-    })
-    outputOptions(output, 'varnameComplete', suspendWhenHidden=FALSE)
-  })
+  output$tableVarNames <- renderDataTable({ 
+    varnames <<- readRDS("www/varnames.RDS")
+    as.data.frame(varnames)
+  }, options = list(pageLength=10, scrollX=TRUE) 
+  )
   vars <- reactiveValues()
   observeEvent(input$predict_btn,{
     vars$model <- load_model(input)
@@ -97,7 +89,8 @@ server <- function(input, output, session) {
     vars$man_predict <- predict_scores(data=vars$man_df, model=load_model(input))
   })
   output$manual_predict_tbl <- renderDataTable({
-    tryCatch(vars$man_predict %>% mutate_if(is.numeric, round, 3) %>% 
-               dplyr::select(crank), error=function(e) print("No data available"))
+    if(!is.null(vars$man_predict)){
+    vars$man_predict %>% mutate_if(is.numeric, round, 3) %>% 
+               dplyr::select(crank)}
   }, options = list(scrollX=TRUE, dom='t'))
 }

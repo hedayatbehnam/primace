@@ -1,3 +1,3 @@
 # Runner file
 library(shiny)
-runApp(appDir = './R/')
+shiny::runApp(appDir = './R/', host = "0.0.0.0", port = 3000)
