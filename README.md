@@ -28,7 +28,7 @@ If you do not upload a dataset, by default, a new test test with know target var
 In `Upload File` section, you can select among seven models we trained in our study. After selecting a model, push the `Predict...` button to initiates prediction on the dataset. It would take a little time to complete prediction process.
 
 ### Dataset with known target variable
-If your dataset has a column named `Total_MACE` as target variable, the app would peforms prediction and then assesses its prediction performance by different performance measures.
+If your dataset does not have a column names `First_MACE_bin` as target event variable and `Time_to_MACE` as time of event or censor, the app would peforms prediction and then assesses its prediction performance by different performance measures.
 
 
 ### Dataset with unknown target variable
