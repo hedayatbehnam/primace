@@ -1,6 +1,6 @@
 # PRIMACE Prediction Tool
 `PRIMACE` is a web application which can be used to predict major cardiovascular 
-events (MACE) in first year following Primary Percutaneous Coronary Intervention (PPCI)
+events (MACE) in first year following Primary Percutaneous Coronary Intervention (PPCI)  
 **PPCI:** Primary Percutaneous Coronary Intervention  
 **MACE:** Major Adverse Cardiovascular Events
 
@@ -17,7 +17,7 @@ ML models were as follows:
 
 ### Preparing your dataset
 Because preprocessing and training steps were conducted on our dataset, to use the saved models, you should rename your dataset variable to those similar to our study dataset.  
-The acceptable variables names are provided in `Prediction Tool` tab under `Variables Name` box.It is a collapsed box which you can extend by clicking on `+` on the right side of box header.
+The acceptable variables names are provided in `Prediction Tool` tab under `Variables Name` box.
 
 ### Uploading dataset
 After renaming variables, you can upload your dataset to the api in `Upload File` box. Acceptable file formats are .rds, .csv, .sav and .xlsx. 
@@ -33,4 +33,7 @@ If your dataset has a column named `Total_MACE` as target variable, the app woul
 
 ### Dataset with unknown target variable
 If your dataset does not have a column names `Total_MACE` as target variable, the app would just performs prediction, then a table of prediction of observations is provided. It would be applicable for prediction of patients at the time of MDCT.
+
+### Using Prediction of Your Patient
+In `Manual Prediction` tab of `Prediction Tool` submenu, you can input your patient's features, then click `Manual Prediction` button to see the result of app prediction.
 

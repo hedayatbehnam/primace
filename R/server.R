@@ -1,9 +1,6 @@
 options(shiny.maxRequestSize=30*1024^2)
-
-
 # Installing non-CRAN dependencies -----------------------------------------
 ## This part is run for the first time during building process of shinyapps.
-
 # devtools::install_github(repo = "mlr-org/mlr3proba")
 # devtools::install_github("alan-turing-institute/distr6")
 # devtools::install_github("xoopR/param6")
@@ -11,39 +8,17 @@ options(shiny.maxRequestSize=30*1024^2)
 # devtools::install_github("RaphaelS1/survivalmodels")
 # install.packages("randomForestSRC")
 # install.packages("pracma")
-
-
-
 # Uploading packages  -----------------------------------------------------
-library(shiny)
-library(shinydashboard)
-library(foreign)
-library(readxl)
-library(tools)
-library(pROC)
-library(ggplot2)
-library(dplyr)
-library(randomForestSRC)
-library(pracma)
-library(xgboost)
-library(mlr3learners)
-library(mlr3extralearners)
-library(mlr3proba)
-library(caret)
-
-
+library(shiny); library(shinydashboard); library(foreign); library(readxl)
+library(tools); library(pROC); library(ggplot2); library(dplyr); library(randomForestSRC)
+library(pracma); library(xgboost); library(mlr3learners); library(mlr3extralearners)
+library(mlr3proba); library(caret)
 # Import custom modules ---------------------------------------------------
-source('modules/load_model.R', local = T)
-source('modules/loading_function.R', local=T)
-source('modules/reactiveVal_output.R', local=T)
-source('modules/upload_file.R', local= T)
-source('modules/predict_scores.R', local= T)
-source('modules/survROC.R', local= T)
-source('modules/final_predict.R', local= T)
-source('modules/best_point.R', local= T)
-source('modules/max_perf_calc.R', local= T)
-source('modules/manual_prediction.R')
-
+source('modules/load_model.R', local = T); source('modules/loading_function.R', local=T)
+source('modules/reactiveVal_output.R', local=T); source('modules/upload_file.R', local= T)
+source('modules/predict_scores.R', local= T); source('modules/survROC.R', local= T)
+source('modules/final_predict.R', local= T); source('modules/best_point.R', local= T)
+source('modules/max_perf_calc.R', local= T); source('modules/manual_prediction.R')
 
 server <- function(input, output, session) {
   rv <- reactiveValues()
