@@ -32,7 +32,7 @@ If your dataset has a column named `Total_MACE` as target variable, the app woul
 
 
 ### Dataset with unknown target variable
-If your dataset does not have a column names `Total_MACE` as target variable, the app would just performs prediction, then a table of prediction of observations is provided. It would be applicable for prediction of patients at the time of MDCT.
+If your dataset does not have a column names `First_MACE_bin` as target event variable and `Time to MACE` as event or censor time, the app would just performs prediction, then a table of prediction of observations is provided. It would be applicable for prediction of patients at the time of MDCT.
 
 ### Using Prediction of Your Patient
 In `Manual Prediction` tab of `Prediction Tool` submenu, you can input your patient's features, then click `Manual Prediction` button to see the result of app prediction.
