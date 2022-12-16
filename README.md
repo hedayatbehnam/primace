@@ -28,11 +28,11 @@ If you do not upload a dataset, by default, a new test test with know target var
 In `Upload File` section, you can select among seven models we trained in our study. After selecting a model, push the `Predict...` button to initiates prediction on the dataset. It would take a little time to complete prediction process.
 
 ### Dataset with known target variable
-If your dataset does not have a column names `First_MACE_bin` as target event variable and `Time_to_MACE` as time of event or censor, the app would peforms prediction and then assesses its prediction performance by different performance measures.
+If your dataset have a columns named `First_MACE_bin` as target event variable and `Time_to_MACE` as time of event or censor, the app would peforms prediction and then assesses its prediction performance by different performance measures.
 
 
 ### Dataset with unknown target variable
-If your dataset does not have a column names `First_MACE_bin` as target event variable and `Time_to_MACE` as time of event or censor, the app would just performs prediction, then a table of prediction of observations is provided. It would be applicable for prediction of patients at the time of MDCT.
+If your dataset does not have columsn named `First_MACE_bin` as target event variable and `Time_to_MACE` as time of event or censor, the app would just performs prediction, then a table of prediction of observations is provided. It would be applicable for prediction of patients at the time of MDCT.
 
 ### Using Prediction of Your Patient
 In `Manual Prediction` tab of `Prediction Tool` submenu, you can input your patient's features, then click `Manual Prediction` button to see the result of app prediction.
