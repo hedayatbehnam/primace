@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Behnam", "Hedayat", , "bhedayat.thc@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1549-021X"))
-Description: Prediting possibility of first year major adverse cardiovascular events (MACE) following primary percutaneous coronary intervention (PPCI)
+Description: Prediting possibility of first year major adverse cardiovascular events (MACE) following primary percutaneous coronary intervention (PPCI).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -28,4 +28,8 @@ Imports:
     foreign (>= 0.8-81),
     dplyr (>= 1.0.7),
     caret (>= 6.0-89),
-    xgboost (>= 1.4.1.1)
+    xgboost (>= 1.4.1.1),
+    data.table (>= 1.14.6)
+Depends: 
+    R (>= 3.5.0)
+LazyData: true
