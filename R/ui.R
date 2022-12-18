@@ -1,3 +1,4 @@
+#' @include styles.R
 #' sidebar of main user interface
 sidebar <- dashboardSidebar(
   sidebarMenu(

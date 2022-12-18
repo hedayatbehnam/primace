@@ -11,7 +11,6 @@ load_dependencies <- function(){
                    "pROC",
                    "ggplot2")
     invisible(lapply(libraries, library, character.only = TRUE))
-    source('init_h2o.R')
     modulesPath <- 'modules/'
     modules <- c('load_data.R', 'loading_function.R',
                  'upload_file.R', 'check_performance.R', 'reactiveVal_output.R')

@@ -1,3 +1,4 @@
+.gitignore
 ^renv$
 ^renv\.lock$
 ^.*\.Rproj$
@@ -5,3 +6,5 @@
 rsconnect*
 LICENSE.md
 Dockerfile
+^README\.md
+app.R
