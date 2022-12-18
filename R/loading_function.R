@@ -1,3 +1,7 @@
+#' showing progressbar during loading a function
+#' @param message message to display in progressbar
+#' @importFrom shiny withProgress setProgress
+#' @export
 loadingFunc <- function(message='Loading ...') { 
   # Creating progress (bottom right of screen)
   withProgress(min=1, max=15, expr={

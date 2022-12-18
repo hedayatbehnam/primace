@@ -1,6 +1,6 @@
+#' Loading packages and sources
+#' Not Run in shiny cloud.
 load_dependencies <- function(){
-    # Loading packages and sources
-    # Not Run in shiny cloud.
     libraries <- c("shiny", 
                    "shinydashboard", 
                    "foreign", 

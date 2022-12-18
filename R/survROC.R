@@ -1,3 +1,15 @@
+#' survivalROC modified function to return specificity as well
+#' @param Stime event or censor times
+#' @param status status at event or censor time
+#' @param marker crank scores
+#' @param predict.time time to predict
+#' @param entry entry of survial time
+#' @param cut.values predefined cutoff of crank scores
+#' @param method method to make analysis, either NNE or KM
+#' @param lambda defining lambda value
+#' @param span defining span value for NNE method
+#' @param window defining window
+#' @export
 survROC <- function (Stime, status, marker, entry = NULL, predict.time, 
           cut.values = NULL, method = "NNE", lambda = NULL, span = NULL, 
           window = "symmetric") 

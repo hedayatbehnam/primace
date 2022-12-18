@@ -1,3 +1,7 @@
+#' style of html
+#' @param tags tags for general use for various element
+#' @param htmlParam which html parameters to referes styles to
+#' @export
 style_ref <- function(tags, htmlParam) {
     tags[[htmlParam]]('
       .content-wrapper, .right-side {

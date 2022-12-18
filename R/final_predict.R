@@ -1,4 +1,10 @@
-final_predict <- function(predict_table, surv_roc, best_scores){
+#' Prediction of each observation according to best points found by youden and closest topleft method
+#' @param predict_table predicted table of crank scores of observations
+#' @param best_scores result of survROC function 
+#' @import dplyr
+#' @export
+final_predict <- function(predict_table, best_scores){
+  status <- crank <- youden <- closest.topleft <- NULL
   predict_table %>% mutate(status_time = case_when(
     time < time & status == TRUE ~ TRUE,
     TRUE ~ FALSE)) %>% group_by(status) %>% summarize(mean = mean(crank), n=n()) -> status_crank

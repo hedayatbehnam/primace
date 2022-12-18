@@ -1,8 +1,4 @@
-library(shiny)
-library(shinydashboard)
-library(shinybusy)
-source("styles/styles.R")
-
+#' sidebar of main user interface
 sidebar <- dashboardSidebar(
   sidebarMenu(
     menuItem("Home", tabName = "home", icon = icon("home")),
@@ -14,6 +10,7 @@ sidebar <- dashboardSidebar(
     menuItem("About", tabName = "about", icon = icon("info"))
   )
 )
+#' body part of main user interface
 body <- dashboardBody(
   shinybusy::add_busy_spinner(spin = "half-circle", position = "bottom-right",
                               margins = c("60%", "42%"), width = "70px", height = "70px"),
@@ -87,7 +84,7 @@ body <- dashboardBody(
             fluidRow(box(width=12, status = "primary",
                   div(p(span("Abstract", style="font-weight:bold; font-size:24px;")), hr(),
                   p(strong("Background:")),"Considerable number of people still 
-                  use opium worldwide and many believe in opium’s health benefits. 
+                  use opium worldwide and many believe in opium's health benefits. 
                   However, several studies proved the detrimental effects of 
                   opium on the body, especially the cardiovascular system. 
                   Herein, we aimed to provide the first evidence regarding the 
@@ -127,7 +124,7 @@ body <- dashboardBody(
                   regarding the evidence for non-beneficial or detrimental effects 
                   of opium on various diseases, including the outcomes of primary 
                   PCI, to dissuade many users from relying on false beliefs about 
-                  opium’s benefits to continue its consumption.", class="abstract-text"))
+                  opium's benefits to continue its consumption.", class="abstract-text"))
     )),
     tabItem(tabName = "prediction",
         tabsetPanel(type="tabs", id = "predictTabs",
@@ -463,6 +460,7 @@ body <- dashboardBody(
     ))
   )
 )
+
 ui <- dashboardPage(
   skin = "blue",
   dashboardHeader(title = "PRIMACE"),

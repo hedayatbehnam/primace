@@ -1,6 +1,12 @@
-## function to upload data files by user
+#' function to upload data files by user
+#' @param input input set if Shiny
+#' @importFrom shiny req
+#' @importFrom utils read.csv
+#' @importFrom foreign read.spss
+#' @importFrom readxl read_excel
+#' @export
 upload_data <- function(input){
-    dataset <- NULL
+    varnames <- dataset <- NULL
     noTarget <- FALSE
     loadedFile <- input$loadFile  # read uploaded file in fileInput section
     if (is.null(loadedFile$datapath)){

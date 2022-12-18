@@ -1,4 +1,4 @@
-Package: ctamace
+Package: primace
 Title: Prediction Tool for One year MACE following Primary PCI
 Version: 0.0.0.9000
 Authors@R: 
@@ -12,3 +12,20 @@ RoxygenNote: 7.1.2
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Imports: 
+    shinydashboard (>= 0.7.2),
+    shiny (>= 1.7.1),
+    shinybusy (>= 0.3.1),
+    readxl (>= 1.3.1),
+    randomForestSRC (>= 3.1.1),
+    pROC (>= 1.18.0),
+    pracma (>= 2.4.2),
+    mlr3proba (>= 0.4.13),
+    mlr3extralearners (>= 0.5.49-9000),
+    mlr3learners (>= 0.5.4),
+    mlr3 (>= 0.14.1),
+    ggplot2 (>= 3.3.5),
+    foreign (>= 0.8-81),
+    dplyr (>= 1.0.7),
+    caret (>= 6.0-89),
+    xgboost (>= 1.4.1.1)
