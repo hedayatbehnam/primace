@@ -1,5 +1,4 @@
 .gitignore
-^renv$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 rsconnect*
