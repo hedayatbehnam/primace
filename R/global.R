@@ -1,20 +1,23 @@
-#' @title package loading
-#' loading essential libraries
-#' put in Rprofile to be executed at startup
-globalVariables(c("varnames", "<<-"))
-library(shiny)
-library(shinydashboard)
-library(foreign)
-library(readxl)
-library(tools)
-library(pROC)
-library(ggplot2)
-library(dplyr)
-library(randomForestSRC)
-library(pracma)
-library(xgboost)
-library(mlr3learners)
-library(mlr3extralearners)
-library(mlr3proba)
-library(caret)
-library(utils)
+#' @title Packages loader
+#' @description  Loading packages and sources
+#' @details Not Run in shiny cloud.
+#' @return None
+load_dependencies <- function(){
+  libraries <- c("shiny", 
+                 "shinydashboard", 
+                 "foreign", 
+                 "readxl",
+                 "dplyr", 
+                 "randomForestSRC", 
+                 "pracma",
+                 "pROC",
+                 "mlr3proba",
+                 "mlr3learners",
+                 "mlr3extralearners",
+                 "caret",
+                 "utils",
+                 "ggplot2")
+  invisible(lapply(libraries, library, character.only = TRUE))
+}
+
+load_dependencies()

@@ -1,5 +1,7 @@
-#' Loading trained models on original study
+#' @title Model Loader
+#' @description Loading trained models on original study
 #' @param input input of shinyserver
+#' @return loaded models in rds format
 #' @export
 load_model <- function(input){
     if (input$models == "Survival Random Forest"){

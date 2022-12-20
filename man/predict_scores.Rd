@@ -2,7 +2,7 @@
 % Please edit documentation in R/predict_scores.R
 \name{predict_scores}
 \alias{predict_scores}
-\title{Main predicting tool of data by saved pre-trained machine learning models}
+\title{Score Predictor.}
 \usage{
 predict_scores(data, model)
 }
@@ -10,6 +10,9 @@ predict_scores(data, model)
 \item{data}{provided dataset we want to predict}
 
 \item{model}{saved model to be used as prediction model}
+}
+\value{
+predited scores table as datatable.
 }
 \description{
 Main predicting tool of data by saved pre-trained machine learning models

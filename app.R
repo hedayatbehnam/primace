@@ -1,4 +1,6 @@
 library(shiny)
+library(devtools)
+library(rsconnect)
 modulesPath <- 'R/'
 modules <- c('reactiveVal_output.R', 'styles.R',
              'load_model.R', 'loading_function.R', 'reactiveVal_output.R',

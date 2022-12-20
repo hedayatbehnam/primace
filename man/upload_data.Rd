@@ -2,13 +2,19 @@
 % Please edit documentation in R/upload_file.R
 \name{upload_data}
 \alias{upload_data}
-\title{function to upload data files by user}
+\title{upload file.}
 \usage{
 upload_data(input)
 }
 \arguments{
 \item{input}{input set if Shiny}
 }
+\value{
+A list containing dataset named survData and whether target variable is available or not
+}
 \description{
-function to upload data files by user
+a function to upload different formats of data for prediction.
+}
+\details{
+User can import csv, xlsx, sav and rds format of data.
 }

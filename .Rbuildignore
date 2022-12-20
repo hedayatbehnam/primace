@@ -8,3 +8,4 @@ LICENSE.md
 Dockerfile
 ^README\.md
 app.R
+^\.github$

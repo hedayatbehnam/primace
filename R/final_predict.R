@@ -1,7 +1,9 @@
-#' Prediction of each observation according to best points found by youden and closest topleft method
+#' @title Final Prediction
+#' @description Prediction of each observation according to best points found by youden and closest topleft method.
+#' @importFrom dplyr mutate group_by summarize select
 #' @param predict_table predicted table of crank scores of observations
 #' @param best_scores result of survROC function 
-#' @import dplyr
+#' @return predicted table according to best cut-off points of youden index and closest top left point
 #' @export
 final_predict <- function(predict_table, best_scores){
   status <- crank <- youden <- closest.topleft <- NULL

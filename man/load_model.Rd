@@ -2,12 +2,15 @@
 % Please edit documentation in R/load_model.R
 \name{load_model}
 \alias{load_model}
-\title{Loading trained models on original study}
+\title{Model Loader}
 \usage{
 load_model(input)
 }
 \arguments{
 \item{input}{input of shinyserver}
+}
+\value{
+loaded models in rds format
 }
 \description{
 Loading trained models on original study

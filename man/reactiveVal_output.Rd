@@ -2,8 +2,7 @@
 % Please edit documentation in R/reactiveVal_output.R
 \name{reactiveVal_output}
 \alias{reactiveVal_output}
-\title{for each process one indicator of reactiveValue is created eg. perfMetrics with different
-values when is non proessessed or complete to change text in each section before and after process}
+\title{Process Indicator.}
 \usage{
 reactiveVal_output(name, value, content, output)
 }
@@ -16,7 +15,10 @@ reactiveVal_output(name, value, content, output)
 
 \item{output}{output set of Shiny}
 }
+\value{
+Modified reactive value to shiny output set.
+}
 \description{
-for each process one indicator of reactiveValue is created eg. perfMetrics with different
-values when is non proessessed or complete to change text in each section before and after process
+For each process one indicator of reactiveValue is created eg perfMetrics with different
+values when is non proessessed or complete to change text in each section before and after process.
 }

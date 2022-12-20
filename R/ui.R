@@ -1,4 +1,8 @@
 #' @include styles.R
+NULL
+#' @title User Interface
+#' @description Main user interface of primace app
+#' @details Using shinydashboard package to create a dashboard like tabbed UI
 #' sidebar of main user interface
 sidebar <- dashboardSidebar(
   sidebarMenu(

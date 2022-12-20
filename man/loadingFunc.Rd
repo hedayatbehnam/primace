@@ -2,7 +2,7 @@
 % Please edit documentation in R/loading_function.R
 \name{loadingFunc}
 \alias{loadingFunc}
-\title{showing progressbar during loading a function}
+\title{Progress Bar}
 \usage{
 loadingFunc(message = "Loading ...")
 }
@@ -10,5 +10,5 @@ loadingFunc(message = "Loading ...")
 \item{message}{message to display in progressbar}
 }
 \description{
-showing progressbar during loading a function
+Showing progressbar during loading a function.
 }

@@ -1,4 +1,6 @@
-#' survivalROC modified function to return specificity as well
+#' @title survROC.
+#' @description modified function of survivalROC package to return specificity as well.
+#' @details It is used for prediction of survival according to time of interest.
 #' @param Stime event or censor times
 #' @param status status at event or censor time
 #' @param marker crank scores
@@ -9,6 +11,9 @@
 #' @param lambda defining lambda value
 #' @param span defining span value for NNE method
 #' @param window defining window
+#' @return A list containing cut-off values, true positive rate, false positive rate, 
+#' specificity, prediction time, area under the curve at specified prediction time,
+#' cumulative survival.
 #' @export
 survROC <- function (Stime, status, marker, entry = NULL, predict.time, 
           cut.values = NULL, method = "NNE", lambda = NULL, span = NULL, 

@@ -2,28 +2,7 @@
 % Please edit documentation in R/server.R
 \name{server}
 \alias{server}
-\title{The Shiny App Server.
-options(shiny.maxRequestSize=30*1024^2)
-Installing non-CRAN dependencies -----------------------------------------
-This part is run for the first time during building process of shinyapps.
-devtools::install_github(repo = "mlr-org/mlr3proba")
-devtools::install_github("alan-turing-institute/distr6")
-devtools::install_github("xoopR/param6")
-devtools::install_github("xoopR/set6")
-devtools::install_github("RaphaelS1/survivalmodels")
-install.packages("randomForestSRC")
-install.packages("pracma")
-Uploading packages  -----------------------------------------------------
-library(shiny); library(shinydashboard); library(foreign); library(readxl)
-library(tools); library(pROC); library(ggplot2); library(dplyr); library(randomForestSRC)
-library(pracma); library(xgboost); library(mlr3learners); library(mlr3extralearners)
-library(mlr3proba); library(caret)
-Import custom modules ---------------------------------------------------
-source('R/modules/load_model.R', local = T); source('R/modules/loading_function.R', local=T)
-source('R/modules/reactiveVal_output.R', local=T); source('R/modules/upload_file.R', local= T)
-source('R/modules/predict_scores.R', local= T); source('R/modules/survROC.R', local= T)
-source('R/modules/final_predict.R', local= T); source('R/modules/best_point.R', local= T)
-source('R/modules/max_perf_calc.R', local= T); source('R/modules/manual_prediction.R')}
+\title{The Shiny App Server.}
 \usage{
 server(input, output, session)
 }
@@ -35,26 +14,10 @@ server(input, output, session)
 \item{session}{session set by Shiny.}
 }
 \description{
-The Shiny App Server.
-options(shiny.maxRequestSize=30*1024^2)
-Installing non-CRAN dependencies -----------------------------------------
-This part is run for the first time during building process of shinyapps.
-devtools::install_github(repo = "mlr-org/mlr3proba")
-devtools::install_github("alan-turing-institute/distr6")
-devtools::install_github("xoopR/param6")
-devtools::install_github("xoopR/set6")
-devtools::install_github("RaphaelS1/survivalmodels")
-install.packages("randomForestSRC")
-install.packages("pracma")
-Uploading packages  -----------------------------------------------------
-library(shiny); library(shinydashboard); library(foreign); library(readxl)
-library(tools); library(pROC); library(ggplot2); library(dplyr); library(randomForestSRC)
-library(pracma); library(xgboost); library(mlr3learners); library(mlr3extralearners)
-library(mlr3proba); library(caret)
-Import custom modules ---------------------------------------------------
-source('R/modules/load_model.R', local = T); source('R/modules/loading_function.R', local=T)
-source('R/modules/reactiveVal_output.R', local=T); source('R/modules/upload_file.R', local= T)
-source('R/modules/predict_scores.R', local= T); source('R/modules/survROC.R', local= T)
-source('R/modules/final_predict.R', local= T); source('R/modules/best_point.R', local= T)
-source('R/modules/max_perf_calc.R', local= T); source('R/modules/manual_prediction.R')
+An app to predict first year survival following primary percutaneous coronary intervention.
+}
+\details{
+This app can be used to predict and assess performance of user's provided datasets,
+based of containing target variables, it also provides manual prediction tool to predict a patient,
+according to its features selected online.
 }

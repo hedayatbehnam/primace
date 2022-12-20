@@ -2,7 +2,7 @@
 % Please edit documentation in R/survROC.R
 \name{survROC}
 \alias{survROC}
-\title{survivalROC modified function to return specificity as well}
+\title{survROC.}
 \usage{
 survROC(
   Stime,
@@ -38,6 +38,14 @@ survROC(
 
 \item{window}{defining window}
 }
+\value{
+A list containing cut-off values, true positive rate, false positive rate,
+specificity, prediction time, area under the curve at specified prediction time,
+cumulative survival.
+}
 \description{
-survivalROC modified function to return specificity as well
+modified function of survivalROC package to return specificity as well.
+}
+\details{
+It is used for prediction of survival according to time of interest.
 }

@@ -28,7 +28,6 @@ Imports:
     foreign (>= 0.8-81),
     dplyr (>= 1.0.7),
     caret (>= 6.0-89),
-    xgboost (>= 1.4.1.1),
     data.table (>= 1.14.6),
     devtools (>= 2.4.3),
     rsconnect (>= 0.8.25)
@@ -36,7 +35,6 @@ Depends:
     R (>= 3.5.0)
 LazyData: true
 Collate: 
-    'primace_init.R'
     'best_point.R'
     'final_predict.R'
     'global.R'
@@ -44,8 +42,8 @@ Collate:
     'loading_function.R'
     'manual_prediction.R'
     'max_perf_calc.R'
-    'packages.R'
     'predict_scores.R'
+    'primace_init.R'
     'reactiveVal_output.R'
     'server.R'
     'styles.R'
