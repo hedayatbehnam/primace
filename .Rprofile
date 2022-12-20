@@ -1,4 +1,5 @@
 source("renv/activate.R")
-renv::restore()
+library(devtools)
+library(rsconnect)
 options(shiny.maxRequestSize=30*1024^2)
 
