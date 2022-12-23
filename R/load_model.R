@@ -5,8 +5,8 @@
 #' @param xgb_model path to xgboost model
 #' @return loaded models in rds format
 #' @export
-load_model <- function(input, rf_model="models/rfsrc.learner_model.RDS", 
-                       xgb_model="models/xgboost.learner_model.RDS"){
+load_model <- function(input, rf_model="models/rfsrc.learner_mod.RDS", 
+                       xgb_model="models/xgboost.learner_mod.RDS"){
     if (input$models == "Survival Random Forest"){
       selected_model <- readRDS(rf_model)
     } else if (input$models == "Survival Xgboost"){
