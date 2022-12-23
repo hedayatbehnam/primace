@@ -1,6 +1,5 @@
 # PRIMACE Prediction Tool
-`PRIMACE` is a web application which can be used to predict major cardiovascular 
-events (MACE) in first year following Primary Percutaneous Coronary Intervention (PPCI)  
+`PRIMACE` is a shinyapps web application based on R language shiny package which can be used to predict major cardiovascular events (MACE) in first year following Primary Percutaneous Coronary Intervention (PPCI)  
 **PPCI:** Primary Percutaneous Coronary Intervention  
 **MACE:** Major Adverse Cardiovascular Events
 

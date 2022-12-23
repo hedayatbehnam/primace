@@ -36,8 +36,8 @@ body <- dashboardBody(
                        class="thc-logo-subtext")))),
            
             fluidRow(column(6,box(width=12 , background = "light-blue",
-                              tags$div("Using Surviva Random Forest Machine Learning Model
-                              to Predict Outcom with provided data in file format of .RDS, 
+                              tags$div("Using Survival Random Forest Machine Learning Model
+                              to Predict Outcome with provided data in file format of .RDS, 
                               .csv, .sav, .xlsx ",class="home-box-title"))),
                      
                      column(6,box(width=12, background = "teal",
