@@ -21,16 +21,12 @@ jobs:
         with:
           use-public-rspm: true
           
-      - name: libcurl installation inside R
-        run: |
-          system("sudo apt-get install libcurl4-openssl-dev")
-          install.packages("pak", type="source")
-          
-        shell: Rscript {0}
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
+      - uses: r-lib/actions/setup-renv@v2
         with:
-          extra-packages: any::rcmdcheck
-          needs: check
-
-      - uses: r-lib/actions/check-r-package@v2
+          profile: '"shiny"'
+          
+      - name: R CMD CHECK inside r
+        run : |
+            devtools::check()
+        shell : Rscript {0}
+        
