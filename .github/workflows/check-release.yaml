@@ -27,6 +27,6 @@ jobs:
           
       - name: R CMD CHECK inside r
         run : |
-            rcmdcheck::rcmdcheck(error_on="warnings")
+            rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
         
