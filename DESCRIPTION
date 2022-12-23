@@ -1,14 +1,53 @@
-Package: ctamace
+Package: primace
 Title: Prediction Tool for One year MACE following Primary PCI
 Version: 0.0.0.9000
 Authors@R: 
     person("Behnam", "Hedayat", , "bhedayat.thc@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1549-021X"))
-Description: Prediting possibility of first year major adverse cardiovascular events (MACE) following primary percutaneous coronary intervention (PPCI)
+Description: Prediting possibility of first year major adverse cardiovascular events (MACE) following primary percutaneous coronary intervention (PPCI).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+StagedInstall: no
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Imports: 
+    shinydashboard (>= 0.7.2),
+    shiny (>= 1.7.1),
+    shinybusy (>= 0.3.1),
+    readxl (>= 1.3.1),
+    randomForestSRC (>= 3.1.1),
+    pROC (>= 1.18.0),
+    pracma (>= 2.4.2),
+    mlr3proba (>= 0.4.13),
+    mlr3extralearners (>= 0.5.49-9000),
+    mlr3learners (>= 0.5.4),
+    mlr3 (>= 0.14.1),
+    ggplot2 (>= 3.3.5),
+    foreign (>= 0.8-81),
+    dplyr (>= 1.0.7),
+    caret (>= 6.0-89),
+    data.table (>= 1.14.6),
+    devtools (>= 2.4.3),
+    rsconnect (>= 0.8.25)
+Depends: 
+    R (>= 3.5.0)
+LazyData: true
+Collate: 
+    'best_point.R'
+    'final_predict.R'
+    'global.R'
+    'load_model.R'
+    'loading_function.R'
+    'manual_prediction.R'
+    'max_perf_calc.R'
+    'predict_scores.R'
+    'primace_init.R'
+    'reactiveVal_output.R'
+    'server.R'
+    'styles.R'
+    'survROC.R'
+    'ui.R'
+    'upload_file.R'

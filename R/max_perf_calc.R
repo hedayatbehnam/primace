@@ -1,3 +1,9 @@
+#' @title Performance Calculator
+#' @description creating confusion matrix to show best performance result.
+#' @importFrom caret confusionMatrix
+#' @param predict_table predicted table of outcomes of each observation
+#' @return table of confusion matrix as dataframe
+#' @export
 max_perf_calc <- function(predict_table){
   conf_matrix_youden <- confusionMatrix(data=as.factor(predict_table$status), 
                         reference = as.factor(predict_table$youden),

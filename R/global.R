@@ -1,25 +1,23 @@
-# library(shiny)
-# library(shinydashboard)
-# library(foreign)
-# library(readxl)
-# library(tools)
-# library(pROC)
-# library(ggplot2)
-# library(dplyr)
-# library(randomForestSRC)
-# library(pracma)
-# library(xgboost)
-# library(mlr3learners)
-# library(mlr3extralearners)
-# library(mlr3proba)
-# library(caret)
-# source('modules/load_model.R', local = T)
-# source('modules/loading_function.R', local=T)
-# source('modules/reactiveVal_output.R', local=T)
-# source('modules/upload_file.R', local= T)
-# source('modules/predict_scores.R', local= T)
-# source('modules/survROC.R', local= T)
-# source('modules/final_predict.R', local= T)
-# source('modules/best_point.R', local= T)
-# source('modules/max_perf_calc.R', local= T)
-# source('modules/manual_prediction.R')
+#' @title Packages loader
+#' @description  Loading packages and sources
+#' @details Not Run in shiny cloud.
+#' @return None
+load_dependencies <- function(){
+  libraries <- c("shiny", 
+                 "shinydashboard", 
+                 "foreign", 
+                 "readxl",
+                 "dplyr", 
+                 "randomForestSRC", 
+                 "pracma",
+                 "pROC",
+                 "mlr3proba",
+                 "mlr3learners",
+                 "mlr3extralearners",
+                 "caret",
+                 "utils",
+                 "ggplot2")
+  invisible(lapply(libraries, library, character.only = TRUE))
+}
+
+load_dependencies()

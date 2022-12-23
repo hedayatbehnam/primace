@@ -1,4 +1,11 @@
-^renv$
 ^renv\.lock$
+.gitignore
+^renv$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+rsconnect*
+LICENSE.md
+Dockerfile
+^README\.md
+app.R
+^\.github$

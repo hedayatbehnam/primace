@@ -1,26 +1,20 @@
-options(shiny.maxRequestSize=30*1024^2)
-# Installing non-CRAN dependencies -----------------------------------------
-## This part is run for the first time during building process of shinyapps.
-# devtools::install_github(repo = "mlr-org/mlr3proba")
-# devtools::install_github("alan-turing-institute/distr6")
-# devtools::install_github("xoopR/param6")
-# devtools::instals::instals::install_github("xoopR/set6")
-# devtools::install_github("RaphaelS1/survivalmodels")
-# install.packages("randomForestSRC")
-# install.packages("pracma")
-# Uploading packages  -----------------------------------------------------
-library(shiny); library(shinydashboard); library(foreign); library(readxl)
-library(tools); library(pROC); library(ggplot2); library(dplyr); library(randomForestSRC)
-library(pracma); library(xgboost); library(mlr3learners); library(mlr3extralearners)
-library(mlr3proba); library(caret)
-# Import custom modules ---------------------------------------------------
-source('modules/load_model.R', local = T); source('modules/loading_function.R', local=T)
-source('modules/reactiveVal_output.R', local=T); source('modules/upload_file.R', local= T)
-source('modules/predict_scores.R', local= T); source('modules/survROC.R', local= T)
-source('modules/final_predict.R', local= T); source('modules/best_point.R', local= T)
-source('modules/max_perf_calc.R', local= T); source('modules/manual_prediction.R')
-
+#' @title The Shiny App Server.
+#' @description An app to predict first year survival following primary percutaneous coronary intervention.
+#' @details This app can be used to predict and assess performance of user's provided datasets,
+#' based of containing target variables, it also provides manual prediction tool to predict a patient,
+#' according to its features selected online.
+#' @importFrom pROC ggroc roc
+#' @importFrom ggplot2 xlab ylab geom_segment aes
+#' @importFrom shiny reactiveValues renderDataTable observeEvent renderPlot
+#' @import shinydashboard
+#' @import shinybusy
+#' @import dplyr
+#' @param input input set by Shiny.
+#' @param output output set by Shiny.
+#' @param session session set by Shiny.
+#' @export
 server <- function(input, output, session) {
+  varnames <- status <- crank <- NULL
   rv <- reactiveValues()
   rv$varnameComplete <- rv$perfMetrics <- rv$predMetrics <- FALSE
   reactiveVal_output(rv, 'perfMetrics', 'empty', output)
@@ -63,7 +57,6 @@ server <- function(input, output, session) {
                                     se = vars$surv_roc$TPR,
                                     sp = vars$surv_roc$Specificity)
       vars$final_predict <- final_predict(predict_table = vars$predTbl, 
-                                          surv_roc = vars$surv_roc, 
                                           best_scores = vars$bestPoints)
       if (!vars$data$target){
         vars$performance_result <- max_perf_calc(predict_table = vars$final_predict)
