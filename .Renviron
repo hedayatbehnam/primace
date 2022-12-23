@@ -1,4 +1,3 @@
-GITHUB_PAT=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
 RENV_PATHS_LIBRARY=renv/library
 _R_CHECK_SYSTEM_CLOCK_=0 
 R_LIBS=renv/library
