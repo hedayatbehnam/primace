@@ -27,9 +27,6 @@ jobs:
           
       - name: R CMD CHECK inside r
         run : |
-            chk_details <- rcmdcheck::rcmdcheck()
-            chk_status <- rcmdcheck::check_details(check=chk_details)
-            print(chk_status$erros)
-            if (length(chk_status$warnings)!=0 | length(chk_status$erros)!=0) system("exit 1") else system("printf 'R CMD CHECK passed sucessfully'") 
+            rcmdcheck::rcmdcheck(error_on="warnings")
         shell : Rscript {0}
         
