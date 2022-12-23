@@ -32,7 +32,6 @@ Imports:
     data.table (>= 1.14.6),
     devtools (>= 2.4.3),
     rsconnect (>= 0.8.25),
-    xgboost (>= 1.4.1.1),
     readr (>= 2.0.2)
 Depends: 
     R (>= 3.5.0)
