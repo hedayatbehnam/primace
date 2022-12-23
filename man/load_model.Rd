@@ -6,8 +6,8 @@
 \usage{
 load_model(
   input,
-  rf_model = "models/rfsrc.learner_model.RDS",
-  xgb_model = "models/xgboost.learner_model.RDS"
+  rf_model = "models/rfsrc.learner_mod.RDS",
+  xgb_model = "models/xgboost.learner_mod.RDS"
 )
 }
 \arguments{
