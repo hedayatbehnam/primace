@@ -14,5 +14,5 @@ test_that("predict_score test", {
   learner <- mlr3extralearners::lrn("surv.rfsrc")
   learner$train(task, row_ids = train_set)
   expect_equal(class(predict_scores(data = fake_data[test_set,], model = learner)), c("data.table", "data.frame"))
-  rm(c(fake_data, task, train_set, test_set, learner))
+  rm(list=c("fake_data", "task", "train_set", "test_set", "learner"))
 })
