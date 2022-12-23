@@ -4,10 +4,18 @@
 \alias{load_model}
 \title{Model Loader}
 \usage{
-load_model(input)
+load_model(
+  input,
+  rf_model = "models/rfsrc.learner_model.RDS",
+  xgb_model = "models/xgboost.learner_model.RDS"
+)
 }
 \arguments{
 \item{input}{input of shinyserver}
+
+\item{rf_model}{path to survival random forest model}
+
+\item{xgb_model}{path to xgboost model}
 }
 \value{
 loaded models in rds format

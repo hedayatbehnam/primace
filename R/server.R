@@ -26,7 +26,9 @@ server <- function(input, output, session) {
   )
   vars <- reactiveValues()
   observeEvent(input$predict_btn,{
-    vars$model <- load_model(input)
+    vars$model <- load_model(input,
+                             rf_model="models/rfsrc.learner_mod.RDS",
+                             xgb_model="models/xgboost.learner_mod.RDS")
     vars$data <- upload_data(input)
     vars$time <- case_when(
       input$time_select == "3rd Month" ~ 91,
