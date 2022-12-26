@@ -9,7 +9,7 @@
 #' @return A list containing dataset named survData and whether target variable is available or not
 #' @export
 upload_data <- function(input){
-    varnames <- dataset <- NULL
+    dataset <- NULL
     noTarget <- FALSE
     loadedFile <- input$loadFile  # read uploaded file in fileInput section
     if (is.null(loadedFile$datapath)){
@@ -30,6 +30,8 @@ upload_data <- function(input){
       dataset <- read_excel(loadedFile$datapath)
     } 
     if (!any((names(dataset) %in% varnames[,'varnames']))){
+      print(names(dataset))
+      print(varnames[,'varnames'])
       return("mismatch")
     }
     if (!is.null(loadedFile)){

@@ -11,19 +11,23 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
   libcurl4-openssl-dev \
   libssl-dev 
 
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get clean
+
 
 COPY /R ./R
 COPY renv.lock ./renv.lock
 COPY app.R ./app.R
 COPY .Rprofile ./.Rprofile
+COPY .Renviron ./.Renviron
+COPY DESCRIPTION ./DESCRIPTION
+COPY NAMESPACE ./NAMESPACE
+COPY primace.Rproj ./primace.Rproj
+COPY .Rbuildignore ./Rbuildignore
+COPY renv ./renv
 
-RUN Rscript -e 'install.packages("renv")'
-RUN Rscript -e 'renv::consent(provided=T)'
+RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")'
+RUN Rscript -e 'library(renv)'
 RUN Rscript -e 'renv::restore()'
 
-EXPOSE 3000
+EXPOSE 3838
 
-CMD ["Rscript app.R"]
+CMD ["R", "-e", "shiny::runApp(host = '0.0.0.0', port = 3838)"]

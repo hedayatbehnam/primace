@@ -14,7 +14,7 @@
 #' @param session session set by Shiny.
 #' @export
 server <- function(input, output, session) {
-  varnames <- status <- crank <- NULL
+  status <- crank <- NULL
   rv <- reactiveValues()
   rv$varnameComplete <- rv$perfMetrics <- rv$predMetrics <- FALSE
   reactiveVal_output(rv, 'perfMetrics', 'empty', output)

@@ -3,6 +3,7 @@
 #' @details Not Run in shiny cloud.
 #' @return None
 load_dependencies <- function(){
+  globalVariables(c('varnames'))
   libraries <- c("shiny", 
                  "shinydashboard", 
                  "foreign", 
