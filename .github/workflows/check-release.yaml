@@ -70,12 +70,12 @@ jobs:
         run: |
           docker run -d -p 3838:3838 --rm ${{ env.TEST_TAG }}
           PRIMACE=$(curl --silent localhost:3838 | grep -o PRIMACE | wc -l)
-          if ! [[ $PRIMACE ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
+          if [[ $PRIMACE ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
       -
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: .i
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ env.LATEST_TAG }}       
