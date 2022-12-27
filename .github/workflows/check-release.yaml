@@ -36,7 +36,6 @@ jobs:
             rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
 
-      - name: 
 
   docker:
     runs-on: ubuntu-latest
