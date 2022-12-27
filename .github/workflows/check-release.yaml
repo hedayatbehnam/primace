@@ -93,7 +93,7 @@ jobs:
           LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
         run: |
           npm i -g @liara/cli@3
-          liara deploy --app="primace" --api-token="$LIARA_TOKEN" --image=bhedayat/test-primace:latest --detach 
+          liara deploy --port=3838 --app="primace" --api-token="$LIARA_TOKEN" --image=bhedayat/test-primace:latest --detach 
 
 
 
