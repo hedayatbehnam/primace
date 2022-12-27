@@ -75,7 +75,5 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: .i
-          platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ env.LATEST_TAG }}       
