@@ -36,7 +36,6 @@ jobs:
             rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
 
-
   docker:
     runs-on: ubuntu-latest
     env:
@@ -44,7 +43,7 @@ jobs:
       LATEST_TAG: bhedayat/test-primace:latest
     
     steps:
-       -
+      -
         name: Checkout
         uses: actions/checkout@v3
       -
