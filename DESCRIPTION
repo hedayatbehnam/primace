@@ -34,7 +34,7 @@ Imports:
     rsconnect (>= 0.8.25),
     readr (>= 2.0.2),
     writexl (>= 1.4.1),
-    haven
+    haven (>= 2.5.1)
 Depends: 
     R (>= 3.5.0)
 LazyData: true
