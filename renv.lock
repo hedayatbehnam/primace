@@ -475,6 +475,11 @@
       "Repository": "CRAN",
       "Hash": "ac5c6baf7822ce8732b343f14c072c4d"
     },
+    "haven": {
+      "Package": "haven",
+      "Version": "2.5.1",
+      "Source": "Repository"
+    },
     "highr": {
       "Package": "highr",
       "Version": "0.9",
@@ -1283,6 +1288,11 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "a376b424c4817cda4920bbbeb3364e85"
+    },
+    "writexl": {
+      "Package": "writexl",
+      "Version": "1.4.1",
+      "Source": "Repository"
     },
     "xfun": {
       "Package": "xfun",

@@ -43,34 +43,61 @@ server <- function(input, output, session) {
       } else if (vars$data == 'nonValid') {
         reactiveVal_output(rv, 'predMetrics', 'nonValid', output)
         reactiveVal_output(rv, 'perfMetrics', 'nonValid', output)
+        shinybusy::notify_failure("Uploaded file should be in 
+                                                .csv, .rds, .xlsx or .sav format",
+                                  position = "center-center",
+                                  shinybusy::config_notify(clickToClose=T,width = '400px', fontWeight="bold",
+                                                           fontSize = "16px", textColor = "white"))
       } else if (vars$data == 'mismatch'){
         reactiveVal_output(rv, 'predMetrics', 'mismatch', output)
         reactiveVal_output(rv, 'perfMetrics', 'mismatch', output)
+        shinybusy::notify_failure("At least one variable in uploaded dataset is 
+                                              not in original training dataset.",
+                                  position = "center-center",
+                                  shinybusy::config_notify(clickToClose=T,width = '400px', fontWeight="bold",
+                                                           fontSize = "16px", textColor = "white"))
       }
     } else {
       reactiveVal_output(rv, 'predMetrics', 'complete', output)
       vars$predTbl <- predict_scores(data=vars$data$survData, model=vars$model)
-      vars$surv_roc <- survROC(Stime=vars$predTbl$time, 
-                               status=vars$predTbl$status,
-                               marker=vars$predTbl$crank,
-                               predict.time=vars$time,
-                               span=0.08)
-      vars$bestPoints <- best_point(c = vars$surv_roc$cut.values,
-                                    se = vars$surv_roc$TPR,
-                                    sp = vars$surv_roc$Specificity)
-      vars$final_predict <- final_predict(predict_table = vars$predTbl, 
-                                          best_scores = vars$bestPoints)
       if (!vars$data$target){
-        vars$performance_result <- max_perf_calc(predict_table = vars$final_predict)
-        loadingFunc(message = "initializing ROC plot...")
-        reactiveVal_output(rv, 'perfMetrics', 'complete', output)
+        vars$surv_roc <- survROC(Stime=vars$predTbl$time, 
+                                 status=vars$predTbl$status,
+                                 marker=vars$predTbl$crank,
+                                 predict.time=vars$time,
+                                 span=0.08)
+        vars$bestPoints <- best_point(c = vars$surv_roc$cut.values,
+                                      se = vars$surv_roc$TPR,
+                                      sp = vars$surv_roc$Specificity)
+        vars$final_predict <- final_predict(predict_table = vars$predTbl, 
+                                            best_scores = vars$bestPoints,
+                                            target=T)
+        tryCatch({
+          vars$performance_result <- max_perf_calc(predict_table = vars$final_predict)
+          loadingFunc(message = "initializing ROC plot...")
+          reactiveVal_output(rv, 'perfMetrics', 'complete', output)
+        }, error=function(e){
+          shinybusy::notify_failure("Prediction columns has just one level, so confusin matrix is not provided.",
+                                    position = "center-center",
+                                    shinybusy::config_notify(clickToClose=T,width = '400px', fontWeight="bold",
+                                                             fontSize = "16px", textColor = "white"))
+          reactiveVal_output(rv, 'perfMetrics', 'noPerf', output)
+        })
       } else {
         reactiveVal_output(rv, 'perfMetrics', 'noTarget', output)
+        shinybusy::notify_failure("Because your data file does not contains target variable called 
+                                  Total_MACE, no performance assessment was conducted.",
+                                  position = "center-center",
+                                  shinybusy::config_notify(clickToClose=T,width = '400px', fontWeight="bold",
+                                                           fontSize = "16px", textColor = "white"))
+        bestScore <- list(youden=6, closest.tl=7)
+        vars$final_predict <- final_predict(predict_table = vars$predTbl, 
+                                            best_scores = bestScore, target=F)
       }
     }
   })
   output$predict_tbl <- renderDataTable({
-    vars$final_predict %>% dplyr::select(-status)
+    vars$final_predict %>% dplyr::select(-all_of(status))
   })
   output$performance <- renderDataTable({
     vars$performance_result

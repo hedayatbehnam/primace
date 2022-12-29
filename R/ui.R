@@ -212,6 +212,13 @@ body <- dashboardBody(
                                               "Because your data file does not contains target variable called 
                                                Total_MACE, no performance assessment was conducted."))
                 ),
+                conditionalPanel(condition = "output.perfMetrics == 'noPerf'",
+                                 fluidRow(box(title=strong("Performance Metrics"),
+                                              width=12,
+                                              status="primary", collapsible = T,
+                                              collapsed = F,
+                                              "Prediction columns has just one level, so confusin matrix is not provided."))
+                ),
                 conditionalPanel(condition = "output.perfMetrics == 'empty'",
                                  fluidRow(box(title=strong("Performance Metrics"),
                                               width=12,

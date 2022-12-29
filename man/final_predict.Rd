@@ -4,12 +4,14 @@
 \alias{final_predict}
 \title{Final Prediction}
 \usage{
-final_predict(predict_table, best_scores)
+final_predict(predict_table, best_scores, target)
 }
 \arguments{
 \item{predict_table}{predicted table of crank scores of observations}
 
 \item{best_scores}{result of survROC function}
+
+\item{target}{whether time and status variables are available}
 }
 \value{
 predicted table according to best cut-off points of youden index and closest top left point

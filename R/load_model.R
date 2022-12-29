@@ -14,5 +14,3 @@ load_model <- function(input, rf_model="models/rfsrc.learner_mod.RDS",
     }
     selected_model
 }
-## upload a sample test set by default when no file data uploaded
-studyTest <- readRDS("R/www/test_set.RDS")

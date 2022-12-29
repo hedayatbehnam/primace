@@ -1,5 +1,0 @@
-#!/usr/bin/bash
-
-docker run -d -p 3838:3838 --rm ${{ env.TEST_TAG }}
-PRIMACE=$(curl --silent localhost:3838 | grep -o PRIMACE | wc -l)
-if ! [[ $PRIMACE ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi

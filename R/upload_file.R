@@ -29,9 +29,10 @@ upload_data <- function(input){
     } else if (tolower(ext) == "xlsx") {
       dataset <- read_excel(loadedFile$datapath)
     } 
-    if (!any((names(dataset) %in% varnames[,'varnames']))){
-      print(names(dataset))
-      print(varnames[,'varnames'])
+    target_removed <- dataset
+    target_removed$Time_to_MACE <- target_removed$First_MACE_bin <- NULL
+    if (!setequal(names(target_removed), (varnames %>% dplyr::select(varnames) %>% filter(!varnames %in% c("Time_to_MACE", "First_MACE_bin")))[,1])){
+      rm(target_removed)
       return("mismatch")
     }
     if (!is.null(loadedFile)){
@@ -45,3 +46,5 @@ upload_data <- function(input){
       return(list(survData = dataset, target = noTarget))
     }
 }
+
+
