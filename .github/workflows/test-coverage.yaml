@@ -28,7 +28,8 @@ jobs:
 
       - name: test-coverage
         run : |
-          remotes::install.packages(c('covr', 'DT'))
-          devtools::test_coverage()
+          remotes::install_cran(c("covr", "DT"))
+          test_cov <- devtools::test_coverage()
+          print(test_cov)
         shell : Rscript {0}
 
