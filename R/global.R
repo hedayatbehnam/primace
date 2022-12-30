@@ -18,7 +18,7 @@ load_dependencies <- function(){
                  "caret",
                  "utils",
                  "ggplot2")
-  invisible(lapply(libraries, library, character.only = TRUE))
+  invisible(suppressMessages(lapply(libraries, library, character.only = TRUE)))
 }
 
 load_dependencies()

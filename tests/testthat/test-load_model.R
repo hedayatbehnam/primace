@@ -1,5 +1,4 @@
-library(mlr3extralearners)
-library(readr)
+libs <- c("mlr3extralearners", "xgboost", "readr"); suppressMessages(sapply(libs, library, character.only=T))
 test_that("load_model test", {
   path <- tempdir()
   tmp.rf_input <- list(models = "Survival Random Forest")

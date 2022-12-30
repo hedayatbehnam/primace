@@ -1,6 +1,5 @@
-library(shiny)
-library(devtools)
-library(rsconnect)
+libs <- c("shiny", "devtools", "rsconnect")
+suppressMessages(sapply(libs, library, character.only=T))
 modulesPath <- 'R/'
 modules <- c('reactiveVal_output.R', 'styles.R',
              'load_model.R', 'loading_function.R', 'reactiveVal_output.R',

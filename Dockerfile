@@ -11,8 +11,6 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
   libcurl4-openssl-dev \
   libssl-dev 
 
-
-
 COPY /R ./R
 COPY renv.lock ./renv.lock
 COPY app.R ./app.R

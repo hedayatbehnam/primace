@@ -113,7 +113,6 @@ server <- function(input, output, session) {
   }, width="auto", height = 500, res = 96)
   observeEvent(input$man_predict_btn, {
     vars$man_df <- manual_prediction(input)
-    print(vars$man_df)
     vars$man_predict <- predict_scores(data=vars$man_df, model=load_model(input))
   })
   output$manual_predict_tbl <- renderDataTable({

@@ -1,5 +1,5 @@
-library(mlr3extralearners); library(readr)
-test_that("predict_score test", {
+libs <- c("mlr3extralearners", "readr"); suppressMessages(sapply(libs, library, character.only=T))
+test_that("predict_scores test", {
   fake_data <- data.frame(Clopidogrel = integer(),Pain_to_Door = integer(),Ca.ch.A = integer(),
     Nitrate = integer(),HDL = integer(),LDL = integer(),TG = integer(),BMI = integer(),Cr = double(),
     Hb = double(),Statines = integer(),COPD = integer(),ASA = integer(),Betablocker = integer(),
@@ -14,5 +14,6 @@ test_that("predict_score test", {
   learner <- mlr3extralearners::lrn("surv.rfsrc")
   learner$train(task, row_ids = train_set)
   expect_equal(class(predict_scores(data = fake_data[test_set,], model = learner)), c("data.table", "data.frame"))
+  expect_named(predict_scores(data=fake_data[test_set,], model=learner), c("row_ids", "time", "status", "crank", "distr"))
   rm(list=c("fake_data", "task", "train_set", "test_set", "learner"))
 })

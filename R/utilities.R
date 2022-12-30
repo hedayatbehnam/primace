@@ -20,8 +20,8 @@ fake_data <- data.frame(Clopidogrel = integer(),Pain_to_Door = integer(),Ca.ch.A
                         Door_to_Device = integer(),Opium_bin = integer(),stringsAsFactors = F)
   fake_data <- as.data.frame(apply(fake_data, 2, function(x) sample(c(1,2),rows_num,replace = T)))
   if (type=="less"){
-    missed_var <- sample(names(fake_data), floor(runif(1)*10), replace=F)
-    fake_data %>% dplyr::select(-missed_var) -> fake_data
+    missed_var <- sample(names(fake_data), floor(runif(1)*10)+1, replace=F)
+    fake_data %>% dplyr::select(-all_of(missed_var)) -> fake_data
   } else if (type=="more"){
     fake_data$fake_var <- 1
   } else if (type=="mismatch"){
