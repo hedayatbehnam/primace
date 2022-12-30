@@ -365,7 +365,7 @@ body <- dashboardBody(
                                                      choiceValues = c(1,2,3,4), 
                                                      selected = 3,inline = T),
                                         radioButtons(inputId = "Gender", label = "Gender",
-                                                     choiceNames = c("No", "Yes"), choiceValues = c(1,2), 
+                                                     choiceNames = c("Female", "Male"), choiceValues = c(1,2), 
                                                      selected = 1,inline = T),
                                         radioButtons(inputId = "Cardiogenicshock", label = "Cardiogenic Shock",
                                                      choiceNames = c("No", "Yes"), choiceValues = c(1,2), 

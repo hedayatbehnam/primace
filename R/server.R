@@ -90,14 +90,14 @@ server <- function(input, output, session) {
                                   position = "center-center",
                                   shinybusy::config_notify(clickToClose=T,width = '400px', fontWeight="bold",
                                                            fontSize = "16px", textColor = "white"))
-        bestScore <- list(youden=6, closest.tl=7)
+        bestScore <- list(youden=8, closest.tl=8)
         vars$final_predict <- final_predict(predict_table = vars$predTbl, 
                                             best_scores = bestScore, target=F)
       }
     }
   })
   output$predict_tbl <- renderDataTable({
-    vars$final_predict %>% dplyr::select(-all_of(status))
+    vars$final_predict %>% dplyr::select(-all_of(status)) %>% mutate_if(is.numeric, round,3)
   })
   output$performance <- renderDataTable({
     vars$performance_result
@@ -113,11 +113,15 @@ server <- function(input, output, session) {
   }, width="auto", height = 500, res = 96)
   observeEvent(input$man_predict_btn, {
     vars$man_df <- manual_prediction(input)
+    print(vars$man_df)
     vars$man_predict <- predict_scores(data=vars$man_df, model=load_model(input))
   })
   output$manual_predict_tbl <- renderDataTable({
     if(!is.null(vars$man_predict)){
-    vars$man_predict %>% mutate_if(is.numeric, round, 3) %>% 
-               dplyr::select(crank)}
+      bestScore <- list(youden=8, closest.tl=8)
+      vars$final_predict <- final_predict(predict_table = vars$man_predict, 
+                                          best_scores = bestScore, target=F)
+      vars$final_predict %>% mutate_if(is.numeric, round, 3)
+    }
   }, options = list(scrollX=TRUE, dom='t'))
 }

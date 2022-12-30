@@ -3,6 +3,14 @@
     "Version": "4.0.4",
     "Repositories": [
       {
+        "Name": "raphaels1",
+        "URL": "https://raphaels1.r-universe.dev"
+      },
+      {
+        "Name": "mlrorg",
+        "URL": "https://mlr-org.r-universe.dev"
+      },
+      {
         "Name": "CRAN",
         "URL": "https://cloud.r-project.org"
       }

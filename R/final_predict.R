@@ -38,5 +38,4 @@ final_predict <- function(predict_table, best_scores, target){
             TRUE ~ NA_character_)) %>% dplyr::select(id, crank, youden, closest.topleft) -> predict_table
   }
   return (predict_table)
-  
 }
