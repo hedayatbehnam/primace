@@ -32,7 +32,9 @@ Imports:
     data.table (>= 1.14.6),
     devtools (>= 2.4.3),
     rsconnect (>= 0.8.25),
-    readr (>= 2.0.2)
+    readr (>= 2.0.2),
+    writexl,
+    haven
 Depends: 
     R (>= 3.5.0)
 LazyData: true
