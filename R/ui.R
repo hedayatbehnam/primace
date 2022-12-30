@@ -183,8 +183,7 @@ body <- dashboardBody(
                          fileInput("loadFile", label = "Please Upload Your Data:",
                                    width="300px"),
                          column(6,selectInput("models", "Please Select a Model", 
-                                choices = c("Survival Random Forest", 
-                                          "Survival Xgboost"), 
+                                choices = c("Survival Random Forest"), 
                                 selected = "Survival Random Forest", width = '200px'),
                                 p(strong("Click predict... button bellow to initiate 
                                   prediction")),
