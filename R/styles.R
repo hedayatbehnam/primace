@@ -5,16 +5,33 @@
 style_ref <- function(tags, htmlParam) {
     tags[[htmlParam]]('
       .content-wrapper, .right-side {
-                        background-color: white;
+         background-color: ghostwhite;
       }
-      .home-title {
-                font-weight:bold;
-                font-size : 26px;
-                text-align:center;
+      .title {
+        font-size : 26px;
+        font-weight:bold;
+        text-align:center;
+        background-color: white;
+        boder: none;
+        box-shadow: 0px 0px 20px 1px rgba(0,0,0,.2);
+        border-radius:5px;
+        align-items:center;
       }
       .home-box-title {
-                font-size : 20px;
-                text-align:center;
+        font-size : 20px;
+        text-align:center;
+        background-color: #e6e6f5;
+        boder: none;
+        box-shadow: 0px 0px 20px 1px rgba(0,0,0,.2);
+        border-radius:5px;
+        align-items:center;
+      }
+      .login-box {
+        float: right;
+        right:10px;
+        padding:0;
+        margin:0;
+        padding-top:15px;
       }
       .abstract-text {
         width:80%; 
@@ -42,18 +59,21 @@ style_ref <- function(tags, htmlParam) {
         font-size:16px;
         font-weight:bold;
       }
-      #loadmessage {
-         position: fixed;
-         top: 0px;
-         left: 0px;
-         width: 100%;
-         padding: 5px 0px 5px 0px;
-         text-align: center;
-         font-weight: bold;
-         font-size: 100%;
-         color: #000000;
-         background-color: #CCFF66;
-         z-index: 105;
+     .skin-purple .main-sidebar {
+        box-shadow: 1px 1px 1px 1px rgba(0,0,0,.8);
+     }
+     #loadmessage {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        padding: 5px 0px 5px 0px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 100%;
+        color: #000000;
+        background-color: #CCFF66;
+        z-index: 105;
       }
       @media only screen and (max-width:602px){
       .home-title {

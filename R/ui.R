@@ -23,11 +23,10 @@ body <- dashboardBody(
   tags$script(HTML("$('body').addClass('fixed');")),
   tabItems(
     tabItem(tabName = "home", 
-            fluidRow(column(12,box(width=12, status = "primary", solidHeader = F,
-                column(12, align="center",tags$div("Effects of opium use on one-year major adverse cardiovascular events (MACE) 
+            fluidRow(box(width=12,  status = "primary",solidHeader = F,
+                tags$div("Effects of opium use on one-year major adverse cardiovascular events (MACE) 
                                                    in the patients with ", br(),"ST-segment elevation MI undergoing primary PCI", br()," 
-                                                   a propensity score matched - machine learning based study", 
-                                                   class="home-title"))))),
+                                                   a propensity score matched - machine learning based study"),class="title")),
             fluidRow(width=12, solidHeader = F,
                 column(12, align="center",tags$div(img(src='logothc.png', 
                        align = "center", width=200),br(),
@@ -35,18 +34,17 @@ body <- dashboardBody(
                        p("Artificial Intelligence Division", 
                        class="thc-logo-subtext")))),
            
-            fluidRow(column(6,box(width=12 , background = "light-blue",
+            fluidRow(column(6,box(width=12 ,solidHeader = F, status = "primary",
                               tags$div("Using Survival Random Forest Machine Learning Model
                               to Predict Outcome with provided data in file format of .RDS, 
-                              .csv, .sav, .xlsx ",class="home-box-title"))),
+                              .csv, .sav, .xlsx "),class="home-box-title")),
                      
-                     column(6,box(width=12, background = "teal",
-                              column(12, align="center",tags$div("An Online 
+                     column(6,box(width=12,  solidHeader = F, status = "primary",
+                              tags$div("An Online 
                               Machine Learning Tool to Predict First 
                               Year Major Adverse Cardiovascular Events  
                               Following Primary Percutaneous
-                              Coronary Intervention", class="home-box-title"))
-                              ))
+                              Coronary Intervention"),class="home-box-title"))
     )),
     tabItem(tabName = "authors",
             fluidRow(box( width = 12, status = "primary",
@@ -472,9 +470,12 @@ body <- dashboardBody(
   )
 )
 
+CustomHeader <- dashboardHeader(title ="PRIMACE")
+# CustomHeader$children[[3]]$children <- list(
+#   div(class="login-box",icon("user"),"Login"))
 ui <- dashboardPage(
-  skin = "blue",
-  dashboardHeader(title = "PRIMACE"),
-  sidebar,
-  body
+  skin = "purple",
+  header = CustomHeader,
+  sidebar = sidebar,
+  body = body
 )
