@@ -23,9 +23,11 @@ jobs:
           files: |
             data/**
 
-      - name: condition to check file last modification
+      - name: condition to check file last modification success
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: echo "New dataset file has been added"
+        
+      - name: condition to checl file last modification fail
         if: steps.changed-files-specific.outputs.any_changed == 'false'
         run: exit 64
 
