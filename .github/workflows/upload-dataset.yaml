@@ -48,8 +48,8 @@ jobs:
 
       - name: Run Preprocessing.R
         run : |
-            R/preprocessing.R
-        shell : Rscript {0}
+           Rscript R/preprocessing.R
+
         
       - name: success
         run: echo "Done..."
