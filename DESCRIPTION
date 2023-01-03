@@ -47,6 +47,7 @@ Collate:
     'manual_prediction.R'
     'max_perf_calc.R'
     'predict_scores.R'
+    'preprocessing.R'
     'primace_init.R'
     'reactiveVal_output.R'
     'server.R'
