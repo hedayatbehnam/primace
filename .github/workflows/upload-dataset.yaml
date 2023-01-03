@@ -8,11 +8,8 @@ name: Check-New-Dataset
     
 jobs:
   check-new-dataset-presence:
-  
     runs-on: ubuntu-latest
-    
     name: check uploaded new dataset file 
-    
     steps:
       - uses: actions/checkout@v3
         with:
@@ -47,8 +44,6 @@ jobs:
       - uses: r-lib/actions/setup-renv@v2
 
       - name: Run Preprocessing.R
-          run : |
-              R/preprocessing.R
-          shell : Rscript {0}
+          run : Rscript R/preprocessing.R
           run: echo "Done"
   
