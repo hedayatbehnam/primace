@@ -50,5 +50,6 @@ jobs:
         run : |
             R/preprocessing.R
         shell : Rscript {0}
-        run: echo "Done"
-  
+        
+      - name: success
+        run: echo "Done..."
