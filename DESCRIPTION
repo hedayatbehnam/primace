@@ -34,7 +34,8 @@ Imports:
     rsconnect (>= 0.8.25),
     readr (>= 2.0.2),
     writexl,
-    haven
+    haven,
+    shinydashboardPlus
 Depends: 
     R (>= 3.5.0)
 LazyData: true
@@ -53,6 +54,8 @@ Collate:
     'server.R'
     'styles.R'
     'survROC.R'
+    'test_set.R'
     'ui.R'
     'upload_file.R'
     'utilities.R'
+    'varnames.R'

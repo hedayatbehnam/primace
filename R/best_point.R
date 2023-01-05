@@ -4,7 +4,6 @@
 #' @param se sensitivity
 #' @param sp specificity
 #' @return A list containing youden index and closest topleft points
-#' @export
 best_point <- function(c, se, sp){
   df <- data.frame(Cutoff = c,
                    Se = se,

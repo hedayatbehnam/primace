@@ -7,7 +7,6 @@
 #' @param content check content of output
 #' @param output output set of Shiny
 #' @return Modified reactive value to shiny output set.
-#' @export
 reactiveVal_output <- function(name, value, content, output){
     # Change the values of each reactiveVal indicator
     name[[value]] <- content

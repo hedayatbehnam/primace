@@ -5,7 +5,6 @@
 #' @param best_scores result of survROC function 
 #' @param target whether time and status variables are available
 #' @return predicted table according to best cut-off points of youden index and closest top left point
-#' @export
 final_predict <- function(predict_table, best_scores, target){
   if (target){
     status <- crank <- youden <- closest.topleft <- NULL

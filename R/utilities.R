@@ -10,7 +10,6 @@
 #' @param event whether event variable should be added, default is True
 #' @param time whether time variable should be added, default is True
 #' @return fake data as data frame
-#' @export
 data_generator <- function(type="standard", rows_num=12, event=T, time=T){
 fake_data <- data.frame(Clopidogrel = integer(),Pain_to_Door = integer(),Ca.ch.A = integer(),
                         Nitrate = integer(),HDL = integer(),LDL = integer(),TG = integer(),BMI = integer(),Cr = double(),

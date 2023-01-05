@@ -1,6 +1,5 @@
 libs <- c("writexl", "haven", "readr")
 suppressMessages(sapply(libs, library, character.only=T))
-
 data <- data_generator(type="standard")
 data_less <- data_generator(type="less")
 data_less

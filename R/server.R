@@ -12,7 +12,6 @@
 #' @param input input set by Shiny.
 #' @param output output set by Shiny.
 #' @param session session set by Shiny.
-#' @export
 server <- function(input, output, session) {
   status <- crank <- NULL
   rv <- reactiveValues()
@@ -20,8 +19,8 @@ server <- function(input, output, session) {
   reactiveVal_output(rv, 'perfMetrics', 'empty', output)
   reactiveVal_output(rv, 'predMetrics', 'empty', output)
   output$tableVarNames <- renderDataTable({ 
-    varnames <<- readRDS("www/varnames.RDS")
-    as.data.frame(varnames)
+    data(varnames)
+    varnames
   }, options = list(pageLength=10, scrollX=TRUE) 
   )
   vars <- reactiveValues()

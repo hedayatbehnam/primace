@@ -7,8 +7,8 @@
 #' @importFrom readxl read_excel
 #' @param input input set if Shiny
 #' @return A list containing dataset named survData and whether target variable is available or not
-#' @export
 upload_data <- function(input){
+    data(varnames)
     dataset <- NULL
     noTarget <- FALSE
     loadedFile <- input$loadFile  # read uploaded file in fileInput section

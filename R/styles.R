@@ -1,14 +1,13 @@
 #' style of html
 #' @param tags tags for general use for various element
 #' @param htmlParam which html parameters to referes styles to
-#' @export
 style_ref <- function(tags, htmlParam) {
     tags[[htmlParam]]('
       .content-wrapper, .right-side {
          background-color: ghostwhite;
       }
       .title {
-        font-size : 26px;
+        font-size : 22px;
         font-weight:bold;
         text-align:center;
         background-color: white;
@@ -16,6 +15,9 @@ style_ref <- function(tags, htmlParam) {
         box-shadow: 0px 0px 20px 1px rgba(0,0,0,.2);
         border-radius:5px;
         align-items:center;
+      }
+      #custom-box .box-header {
+        display: none;
       }
       .home-box-title {
         font-size : 20px;
@@ -26,6 +28,7 @@ style_ref <- function(tags, htmlParam) {
         border-radius:5px;
         align-items:center;
       }
+      
       .login-box {
         float: right;
         right:10px;
@@ -76,8 +79,11 @@ style_ref <- function(tags, htmlParam) {
         z-index: 105;
       }
       @media only screen and (max-width:602px){
-      .home-title {
-        font-size : 18px;
+      .title {
+        font-size: 16px;
+      }
+      .home-box-title {
+        font-size : 15px;
         width:100%;
         transform:translate(0,0);
       }
@@ -92,8 +98,11 @@ style_ref <- function(tags, htmlParam) {
       }
       }
       @media only screen and (max-width:980px){
-      .home-title {
-          font-size : 18px;
+      .title{
+        font-size:18px;
+      }
+      .home-box-title {
+          font-size : 17px;
           width:100%;
           transform:translate(0,0);
       }

@@ -14,7 +14,6 @@
 #' @return A list containing cut-off values, true positive rate, false positive rate, 
 #' specificity, prediction time, area under the curve at specified prediction time,
 #' cumulative survival.
-#' @export
 survROC <- function (Stime, status, marker, entry = NULL, predict.time, 
           cut.values = NULL, method = "NNE", lambda = NULL, span = NULL, 
           window = "symmetric") 

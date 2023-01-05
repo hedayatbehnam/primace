@@ -17,7 +17,8 @@ load_dependencies <- function(){
                  "mlr3extralearners",
                  "caret",
                  "utils",
-                 "ggplot2")
+                 "ggplot2",
+                 "shinydashboardPlus")
   invisible(suppressMessages(lapply(libraries, library, character.only = TRUE)))
 }
 

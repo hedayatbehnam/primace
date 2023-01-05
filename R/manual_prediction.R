@@ -2,7 +2,6 @@
 #' @description Prediction function for manually provided features
 #' @param input input set by Shiny
 #' @return a dataframe containing user provided features of a patient
-#' @export
 manual_prediction <- function(input){
   manual_features <- data.frame(
     Clopidogrel = input$Clopidogrel,
