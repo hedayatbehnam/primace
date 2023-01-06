@@ -12,16 +12,24 @@ jobs:
     name: check uploaded new dataset file 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+
     
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
-
+          
+      - uses: r-lib/actions/setup-renv@v2
+        with:
+          profile: '"shiny"'
+          
+      - name: R CMD CHECK inside r
+        run : |
+            rcmdcheck::rcmdcheck(error_on="warning")
+            
       - name: find last modified files in data directory
         id: changed-files-specific
         uses: tj-actions/changed-files@v35
@@ -33,10 +41,6 @@ jobs:
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
           echo "New dataset file has been added..."
-          Rscript -e 'renv::restore()'
-          Rscript -e 'install.packages("devtools")'
-          Rscript -e 'devtools::load_all(".")'
-          Rscript -e 'devtools::build(path="renv/library/R-4.0/x86_64-pc-linux-gnu")'
           Rscript -e 'primace::preprocessing()'
           echo "Preprocessing finished successfully..."
         
