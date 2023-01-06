@@ -45,7 +45,7 @@ body <- dashboardBody(
                               Coronary Intervention", class="home-box-title")),
                      )),
     tabItem(tabName = "authors",
-            fluidRow(box( width = 12, status = "primary",
+            fluidRow(box(width = 12, status = "primary",
               div(p(span("Authors and Affiliations", style="font-weight:bold; 
                     font-size:24px;")),hr(),
                     "Yaser Jenab"," MD", tags$sup("1"),br(),
@@ -79,7 +79,7 @@ body <- dashboardBody(
                           "Rasoul Akram Hospital, ", br(), 
                           "Iran University of Medical Sciences,", br(),
                           "Tehran, Iran.", 
-                    class="abstract-text"))
+                    class="abstract-text"),class="usual-box-title")
     )),
     tabItem(tabName = "abstract", 
             fluidRow(box(width=12, status = "primary",
@@ -125,7 +125,7 @@ body <- dashboardBody(
                   regarding the evidence for non-beneficial or detrimental effects 
                   of opium on various diseases, including the outcomes of primary 
                   PCI, to dissuade many users from relying on false beliefs about 
-                  opium's benefits to continue its consumption.", class="abstract-text"))
+                  opium's benefits to continue its consumption.", class="abstract-text"),class="usual-box-title")
     )),
     tabItem(tabName = "prediction",
         tabsetPanel(type="tabs", id = "predictTabs",
@@ -458,12 +458,12 @@ body <- dashboardBody(
                           dr.hedayatb@gmail.com", br(),
                           strong("Address: "), "Tehran Heart Center, 
                           Kargar St. Jalal al-Ahmad Cross, Tehran, Iran",br(),
-                          strong("Zip Code: "), "1411713138", class="abstract-text"))
+                          strong("Zip Code: "), "1411713138", class="abstract-text"),class="usual-box-title")
     )),
     tabItem(tabName = "about",
             fluidRow(box(width=12, status="primary",
             div(p(span("About", style="font-weight:bold; font-size:24px;")),
-                style="width:80%; margin-top:0px; font-size:16px;"))
+                style="width:80%; margin-top:0px; font-size:16px;"),class="usual-box-title")
     ))
   )
 )

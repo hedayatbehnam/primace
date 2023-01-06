@@ -4,7 +4,7 @@
 style_ref <- function(tags, htmlParam) {
     tags[[htmlParam]]('
       .content-wrapper, .right-side {
-         background-color: ghostwhite;
+         background-color: #f2f3f4;
       }
       .title {
         font-size : 22px;
@@ -28,7 +28,10 @@ style_ref <- function(tags, htmlParam) {
         border-radius:5px;
         align-items:center;
       }
-      
+      .usual-box-title {
+        box-shadow: 0px 0px 20px 1px rgba(0,0,0,.2);
+        border-radius:5px;
+      }
       .login-box {
         float: right;
         right:10px;

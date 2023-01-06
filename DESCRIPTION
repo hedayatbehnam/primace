@@ -35,11 +35,13 @@ Imports:
     readr (>= 2.0.2),
     writexl,
     haven,
-    shinydashboardPlus
+    forcats (>= 0.5.2),
+    shinydashboardPlus (>= 2.0.3)
 Depends: 
     R (>= 3.5.0)
 LazyData: true
 Collate: 
+    'utilities.R'
     'best_point.R'
     'final_predict.R'
     'global.R'
@@ -51,11 +53,9 @@ Collate:
     'preprocessing.R'
     'primace_init.R'
     'reactiveVal_output.R'
-    'server.R'
     'styles.R'
     'survROC.R'
-    'test_set.R'
-    'ui.R'
     'upload_file.R'
-    'utilities.R'
-    'varnames.R'
+    'data.R'
+    'ui.R'
+    'server.R'
