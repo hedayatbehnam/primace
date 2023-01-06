@@ -33,7 +33,6 @@ jobs:
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
           echo "New dataset file has been added..."
-          rm 'dataset.RDS.*'
           Rscript -e "primace::preprocessing()"
           echo "Preprocessing finished successfully..."
         
