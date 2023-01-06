@@ -26,6 +26,11 @@ jobs:
         with:
           profile: '"shiny"'
           
+      - name: install texlive
+        run : |
+            sudo apt-get install texlive
+            sudo apt-get install texlive-fonts-extra
+          
       - name: R CMD CHECK inside r
         run : |
             rcmdcheck::rcmdcheck(error_on="warning")
