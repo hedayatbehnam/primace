@@ -23,4 +23,5 @@ preprocessing <- function(){
   test_set <- setdiff(seq_len(task$nrow), train_set)
   inner.rsmp <- rsmp("cv", folds = 10)
   outer.rsmp <- rsmp("cv", folds = 3)
+  print(task)
 }
