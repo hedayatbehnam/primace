@@ -10,7 +10,8 @@ jobs:
   check-new-dataset-presence:
     runs-on: ubuntu-latest
     name: check uploaded new dataset file 
-    GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     
     steps:
       - uses: actions/checkout@v3
@@ -40,5 +41,4 @@ jobs:
         if: steps.changed-files-specific.outputs.any_changed == 'false'
         run: |
           echo "No new dataset file has been added..."
-
 
