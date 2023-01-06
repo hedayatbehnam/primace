@@ -48,6 +48,7 @@ jobs:
         run : |
           devtools::load_all(".")
           devtools::build()
+          library(primace)
         shell : Rscript {0}
           
       - name: condition to checl file last modification fail
