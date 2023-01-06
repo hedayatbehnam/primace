@@ -35,7 +35,7 @@ jobs:
           echo "New dataset file has been added..."
           Rscript -e 'install.packages("devtools")'
           Rscript -e 'devtools::load_all(".")
-          R CMD INSTALL --no-multiarch --with-keep.source primace
+          Rscript -e 'devtools::build(path="/media/behnam/AD9E-6696/Documents/Statistics-THC/primace/renv/library/R-4.0/x86_64-pc-linux-gnu")
           Rscript -e "primace::preprocessing()"
           echo "Preprocessing finished successfully..."
         
