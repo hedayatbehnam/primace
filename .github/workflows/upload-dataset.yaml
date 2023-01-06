@@ -10,6 +10,7 @@ jobs:
   check-new-dataset-presence:
     runs-on: ubuntu-latest
     name: check uploaded new dataset file 
+    GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     
     steps:
       - uses: actions/checkout@v3
@@ -21,35 +22,22 @@ jobs:
         uses: tj-actions/changed-files@v35
         with:
           files: |
-            R/data/**
+            R/datasets/**
 
       - name: condition to check file last modification success
         if: steps.changed-files-specific.outputs.any_changed == 'true'
-        run: echo "New dataset file has been added"
+                
+        uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+        
+        run: |
+          echo "New dataset file has been added..."
+          Rscript R/preprocessing.R
+          echo "Preprocessing finished successfully..."
+        
         
       - name: condition to checl file last modification fail
         if: steps.changed-files-specific.outputs.any_changed == 'false'
-        run: exit 64
-
-  upload-Dataset:
-    runs-on: ubuntu-latest
-    needs: check-new-dataset-presence
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
-    steps:
-      - uses: actions/checkout@v3
-    
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
-    
-      - uses: r-lib/actions/setup-renv@v2
-
-      - name: Run Preprocessing.R
-        run : |
-           Rscript R/preprocessing.R
-
-        
-      - name: success
-        run: echo "Done..."
+        run: |
+          echo "No new dataset file has been added..."
