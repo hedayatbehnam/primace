@@ -27,7 +27,7 @@ jobs:
         uses: tj-actions/changed-files@v35
         with:
           files: |
-            R/datasets/**
+            R/datasets/dataset.RDS
 
       - name: condition to check file last modification success
         if: steps.changed-files-specific.outputs.any_changed == 'true'
