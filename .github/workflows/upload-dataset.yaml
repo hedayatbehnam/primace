@@ -33,7 +33,7 @@ jobs:
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
           echo "New dataset file has been added..."
-          Rscript R/preprocessing.R
+          Rscript "R/preprocessing.R"
           echo "Preprocessing finished successfully..."
         
       - name: condition to checl file last modification fail
