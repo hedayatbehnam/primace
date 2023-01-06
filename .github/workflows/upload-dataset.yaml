@@ -29,6 +29,7 @@ jobs:
       - name: R CMD CHECK inside r
         run : |
             rcmdcheck::rcmdcheck(error_on="warning")
+        shell : Rscript {0}
             
       - name: find last modified files in data directory
         id: changed-files-specific
