@@ -3,6 +3,7 @@
 #' @details when new dataset is available, this module automatically check its validity and 
 #' initiates preprocess as machine learning operationals.
 #' @importFrom foreign read.spss
+#' @importFrom utils fileSnapshot
 #' @param url url of new_dataset file in github located in R/data/new_dataset.RDS. directory
 #' @return uploaded new dataset
 preprocess_stage <- function(url="https://raw.github.com/hedayatbehnam/primace/main/R/data/dataset.csv"){

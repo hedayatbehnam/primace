@@ -8,7 +8,6 @@
 #' @param input input set if Shiny
 #' @return A list containing dataset named survData and whether target variable is available or not
 upload_data <- function(input){
-    data(varnames)
     dataset <- NULL
     noTarget <- FALSE
     loadedFile <- input$loadFile  # read uploaded file in fileInput section
@@ -31,10 +30,12 @@ upload_data <- function(input){
     } 
     target_removed <- dataset
     target_removed$Time_to_MACE <- target_removed$First_MACE_bin <- NULL
+    varnames <- primace::varnames
     if (!setequal(names(target_removed), (varnames %>% dplyr::select(varnames) %>% filter(!varnames %in% c("Time_to_MACE", "First_MACE_bin")))[,1])){
       rm(target_removed)
       return("mismatch")
     }
+    rm(varnames)
     if (!is.null(loadedFile)){
       if (!"Time_to_MACE" %in% names(dataset) | !"First_MACE_bin" %in% names(dataset)){   
         # creating a random non-used target variable for uploaded data file with no target variable

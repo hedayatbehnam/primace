@@ -2,6 +2,7 @@
 #' @description To generate fake data for testing
 #' @details by generating fake data with proper and improper variables, 
 #' we test uploding files and models functions.
+#' @importFrom stats runif
 #' @param type determines the type of fake data as "standard" for data which has same 
 #' class and number of variables, "more" which has more variable other than main data, 
 #' "less" which at least lacks one variable compared to standard form
