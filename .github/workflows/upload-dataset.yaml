@@ -9,7 +9,7 @@ name: Check-New-Dataset
 jobs:
   check-new-dataset-presence:
     runs-on: ubuntu-latest
-    name: check uploaded new dataset file 
+    name: Check Uploaded New Dataset File 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
@@ -25,24 +25,24 @@ jobs:
         with:
           profile: '"shiny"'
           
-      - name: install texlive
+      - name: Install texlive
         run : |
             sudo apt-get install texlive
             sudo apt-get install texlive-fonts-extra
           
-      - name: R CMD CHECK inside r
+      - name: R CMD CHECK
         run : |
             rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
             
-      - name: find last modified files in data directory
+      - name: Find Last Modified File in R/dataset directory
         id: changed-files-specific
         uses: tj-actions/changed-files@v35
         with:
           files: |
             R/datasets/dataset.RDS
 
-      - name: condition to check file last modification success
+      - name: Check File Last Modification - SUCCESS
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run : |
           devtools::load_all(".")
@@ -51,7 +51,7 @@ jobs:
           primace::preprocessing()
         shell : Rscript {0}
           
-      - name: condition to checl file last modification fail
+      - name: Check File Last Modification - FAILURE
         if: steps.changed-files-specific.outputs.any_changed == 'false'
         run: |
-          echo "No new dataset file has been added..."
+          echo -e "\033[1;31mNo new dataset file has been added..."

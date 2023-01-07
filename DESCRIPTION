@@ -36,7 +36,8 @@ Imports:
     writexl,
     haven,
     forcats (>= 0.5.2),
-    shinydashboardPlus (>= 2.0.3)
+    shinydashboardPlus (>= 2.0.3),
+    mlr3tuning
 Depends: 
     R (>= 3.5.0)
 LazyData: true

@@ -100,6 +100,13 @@
       "Repository": "CRAN",
       "Hash": "543776ae6848fde2f48ff3816d0628bc"
     },
+    "bbotk": {
+      "Package": "bbotk",
+      "Version": "0.7.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "7d04d128391d34150d9b290f6e14976f"
+    },
     "bit": {
       "Package": "bit",
       "Version": "4.0.4",
@@ -745,6 +752,13 @@
       "RemoteRef": "HEAD",
       "RemoteSha": "286321ecd974170cfa783912245d00d595263762",
       "Hash": "61833aef2a49f895ec8dbc2d7b241502"
+    },
+    "mlr3tuning": {
+      "Package": "mlr3tuning",
+      "Version": "0.17.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "9b712b51fabc35d2d737fba3567f1a9b"
     },
     "mlr3viz": {
       "Package": "mlr3viz",
