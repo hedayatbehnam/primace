@@ -10,9 +10,9 @@ preprocessing <- function(){
   missing_dataframe <- check_missings(df_modified) 
   dataset_low_miss <- complete_case(missing_dataframe[3])
   dataset_NCC_for_analysis <- as.data.frame(dataset_low_miss[3])
-  dataset_ncc_corr <- select(dataset_NCC_for_analysis, -c("Time_to_LastFU","Opiumdurationm","Opium",                                                  "OpiumTypeOfConsumption","First_MACE","My_file","Patient.Code2","Encounter.ID",
-                                                          "File247","SmokingPacky","Smokingquittimem",
-                                                          "GPIIBIIIA.inf.h" ,"Next_Plan", "TVR", "No",
+  dataset_ncc_corr <- select(dataset_NCC_for_analysis, -c("Time_to_LastFU","Opiumdurationm","Opium","OpiumTypeOfConsumption",
+                                                          "File247","SmokingPacky","Smokingquittimem","First_MACE","My_file",
+                                                          "GPIIBIIIA.inf.h" ,"Next_Plan", "TVR", "No","Patient.Code2","Encounter.ID",
                                                           "TLR", "CABG", "Mortality", "Death", "MI",
                                                           "Opium_bin_num", "TCH", "PCI_Result"))
   imp_miss_dataset <- missing_impute(dataset_ncc_corr)
