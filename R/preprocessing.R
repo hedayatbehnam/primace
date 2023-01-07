@@ -2,6 +2,7 @@
 #' @description module to perform preprocessing on dataset
 #' @importFrom foreign read.spss
 #' @importFrom stats median
+#' @importFrom mlr3tuning tnr trm
 #' @return uploaded preprocessed dataset
 #' @export
 preprocessing <- function(){

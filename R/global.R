@@ -5,7 +5,7 @@
 load_dependencies <- function(){
   libraries <- c("shiny","shinydashboard","foreign","readxl","dplyr","randomForestSRC", 
                  "pracma","pROC","mlr3proba","mlr3learners","mlr3extralearners","caret",
-                 "utils","ggplot2","shinydashboardPlus")
+                 "utils","ggplot2","shinydashboardPlus", "mlr3tuning")
   invisible(suppressMessages(lapply(libraries, library, character.only = TRUE)))
 }
 load_dependencies()
