@@ -1,0 +1,19 @@
+NodeJS-check:
+  runs-on: ubuntu-latest
+
+  steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: "16"
+    - name: nodejs check
+      env:
+        LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
+        LIARA_ENDPOINT: ${{ secrets.LIARA_ENDPINT }}
+        LIARA_BUCKET_NAME: ${{ secrets.LIARA_BUCKET_NAME }}
+        LIARA_ACCESS_KEY: ${{ secrets.LIARA_ACCESS_KEY }}
+        LIARA_SECRET_KEY: ${{ secrets.LIARA_SERCET.KEY }}
+
+      run: |
+        node node-js/check.js
+
