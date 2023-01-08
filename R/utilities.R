@@ -40,10 +40,10 @@ data_generator <- function(type="standard", rows_num=12, event=T, time=T){
 #' @return uploaded new dataset
 read_data <- function(url="https://raw.github.com/hedayatbehnam/primace/main/R/datasets/dataset.RDS"){
   tryCatch({
-    system(paste("wget", url), invisible = T)
-    tmpshot <- fileSnapshot(".")
-    file_name <- rownames(tmpshot$info[which.max(tmpshot$info$mtime),])
-    new_data <- readRDS(file_name)
+    system(paste("wget -O /tmp/tmp_dataset.RDS", url), invisible = T)
+    # tmpshot <- fileSnapshot("tmp/")
+    # file_name <- rownames(tmpshot$info[which.max(tmpshot$info$mtime),])
+    new_data <- readRDS("/tmp/tmp_dataset.RDS")
     return (new_data)
   }, error = function(e) cat("No new dataset has been uploaded."))
 }
