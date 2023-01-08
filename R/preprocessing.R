@@ -21,14 +21,14 @@ preprocessing <- function(){
   task <- TaskSurv$new(id = 'surv-task', backend =one_year_dataset, time = 'Time_to_MACE', event = 'First_MACE_bin')
   train_set <- sample(task$nrow, 0.8 * task$nrow)
   test_set <- setdiff(seq_len(task$nrow), train_set)
-  inner.rsmp <- rsmp("cv", folds = 5)
-  outer.rsmp <- rsmp("cv", folds = 3)
+  inner.rsmp <- rsmp("cv", folds = 2)
+  outer.rsmp <- rsmp("cv", folds = 2)
   measure <- msr("surv.cindex")
   tuner <- tnr("random_search")
-  terminator <- trm("evals", n_evals = 60)
+  terminator <- trm("evals", n_evals = 2)
   set.seed(1234)
   ncores <- as.integer(system("nproc --all", intern = T))
-  rfsrc.learner<- lrn("surv.rfsrc", ntree = 1000, block.size = 1, cores=ncores-1)
+  rfsrc.learner<- lrn("surv.rfsrc", ntree = 500, block.size = 1, cores=ncores)
   rfsrc.search_space <- ps(mtry = p_int(lower = 2, upper = 15),
                            nodesize = p_int(lower = 1, upper = 30),
                            nodedepth = p_int(lower = 1, upper = 15))
@@ -42,6 +42,18 @@ preprocessing <- function(){
   tuner$optimize(rfsrc.instance)
   rfsrc_opt <- rfsrc.instance$clone(deep = T)
   best.uhash <- rfsrc_opt$archive$data[which(rfsrc_opt$archive$data$surv.cindex == max(rfsrc_opt$archive$data$surv.cindex))]$uhash
-  best.learner <- rfsrc_opt$archive$learner[best.uhash]
+  best.learner <- rfsrc_opt$archive$learner(uhash=best.uhash)
   print(best.learner)
+  prev_model <- load_model(input=list(models="Survival Random Forest"),
+                           rf_model="R/models/rfsrc.learner_mod.RDS")
+  design <- benchmark_grid(
+    tasks = task,
+    learners = c(prev_model, best.learner),
+    resamplings = rsmp("cv", folds = 2)
+  )
+  bmr <- benchmark(design)
+  measure <- msr("surv.cindex")
+  tab <- bmr$aggregate(measure)
+  # autoplot(bmr)
+  print(tab)
 }
