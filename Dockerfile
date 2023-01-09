@@ -12,7 +12,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
   libssl-dev 
 
 RUN mkdir primace
-COPY . ,
+COPY . .
 # COPY /R ./R
 # COPY renv.lock ./renv.lock
 # COPY app.R ./app.R
