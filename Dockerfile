@@ -12,7 +12,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
   libssl-dev 
 
 RUN mkdir primace
-COPY . primace
+COPY . ,
 # COPY /R ./R
 # COPY renv.lock ./renv.lock
 # COPY app.R ./app.R
@@ -27,8 +27,9 @@ COPY . primace
 RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")' 
 RUN Rscript -e 'library(renv)' 
 RUN Rscript -e 'renv::restore()'
-RUN R CMD build primace
+RUN R CMD build .
 RUN mv primace_0.0.0.9000.tar.gz primace
+RUN Rscript -e 'library(shiny)'
 RUN R CMD INSTALL "primace/primace_0.0.0.9000.tar.gz"
 RUN Rscript -e 'library(primace)'
 
