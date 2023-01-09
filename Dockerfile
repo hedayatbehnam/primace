@@ -22,9 +22,9 @@ COPY primace.Rproj ./primace.Rproj
 COPY .Rbuildignore ./Rbuildignore
 COPY renv ./renv
 
-RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")' \
-    Rscript -e 'library(renv)' \
-    Rscript -e 'renv::restore()'
+RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")' 
+RUN Rscript -e 'library(renv)' 
+RUN Rscript -e 'renv::restore()'
 
 EXPOSE 3838
 

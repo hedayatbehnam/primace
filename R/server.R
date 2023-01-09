@@ -21,7 +21,7 @@ server <- function(input, output, session) {
   reactiveVal_output(rv, 'perfMetrics', 'empty', output)
   reactiveVal_output(rv, 'predMetrics', 'empty', output)
   output$tableVarNames <- renderDataTable({ 
-    primace::varnames
+    varnames
   }, options = list(pageLength=10, scrollX=TRUE) 
   )
   vars <- reactiveValues()
