@@ -7,7 +7,6 @@
 #' @importFrom ggplot2 xlab ylab geom_segment aes
 #' @importFrom shiny reactiveValues renderDataTable observeEvent renderPlot
 #' @importFrom utils globalVariables
-#' @import primace
 #' @import shinydashboard
 #' @import shinybusy
 #' @import dplyr
@@ -21,7 +20,7 @@ server <- function(input, output, session) {
   reactiveVal_output(rv, 'perfMetrics', 'empty', output)
   reactiveVal_output(rv, 'predMetrics', 'empty', output)
   output$tableVarNames <- renderDataTable({ 
-    varnames
+    primace::varnames
   }, options = list(pageLength=10, scrollX=TRUE) 
   )
   vars <- reactiveValues()

@@ -9,4 +9,5 @@ Dockerfile
 ^README\.md
 app.R
 ^\.github$
-
+^tmp$
+^node-js$
