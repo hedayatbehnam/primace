@@ -25,6 +25,7 @@ COPY renv ./renv
 RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")' 
 RUN Rscript -e 'library(renv)' 
 RUN Rscript -e 'renv::restore()'
+RUN ls -l
 RUN Rscript -e ./.
 
 EXPOSE 3838
