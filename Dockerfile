@@ -26,7 +26,9 @@ RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev
 RUN Rscript -e 'library(renv)' 
 RUN Rscript -e 'renv::restore()'
 RUN ls -l
-RUN Rscript -e 'print(installed.packages())'
+RUN Rscript -e 'devtools::build(".")'
+RUN Rscript -e 'devtools::install("primace_0.0.0.9000.tar.gz")'
+RUN Rscript -e 'library("primace")'
 
 EXPOSE 3838
 
