@@ -13,6 +13,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 
 RUN mkdir primace
 COPY . primace
+RUN rm -rf primace/renv
 # COPY /R ./R
 # COPY renv.lock ./renv.lock
 # COPY app.R ./app.R
