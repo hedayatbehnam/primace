@@ -26,7 +26,7 @@ RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev
 RUN Rscript -e 'library(renv)' 
 RUN Rscript -e 'renv::restore()'
 RUN ls -l
-RUN Rscript -e ./.
+RUN Rscript -e 'print(installed.packages())'
 
 EXPOSE 3838
 
