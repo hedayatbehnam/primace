@@ -13,7 +13,6 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 
 RUN mkdir primace
 COPY . primace
-RUN rm -rf primace/renv
 # COPY /R ./R
 # COPY renv.lock ./renv.lock
 # COPY app.R ./app.R
@@ -28,9 +27,9 @@ RUN rm -rf primace/renv
 RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")' 
 RUN Rscript -e 'library(renv)' 
 RUN Rscript -e 'renv::restore()'
-RUN ls -l
 RUN R CMD build primace
-RUN R CMD INSTALL "primace_0.0.0.9000.tar.gz"
+RUN mv primace_0.0.0.9000.tar.gz primace
+RUN R CMD INSTALL "primace/primace_0.0.0.9000.tar.gz"
 RUN Rscript -e 'library(primace)'
 
 EXPOSE 3838
