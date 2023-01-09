@@ -23,10 +23,10 @@ COPY .Rbuildignore ./Rbuildignore
 COPY renv ./renv
 
 RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")' \
-    Rscript -e 'library(renv)'
-    Rscript -e 'renv::restore()'
-    Rscript -e 'devtools::build()'
-    R CMD INSTALL ./primace_0.0.0.9000.tar.gz
+    Rscript -e 'library(renv)' \
+    Rscript -e 'renv::restore()' \
+    Rscript -e 'devtools::build()' \
+    R CMD INSTALL ./primace_0.0.0.9000.tar.gz \
     Rscript -e 'library(primace)'
 
 EXPOSE 3838
