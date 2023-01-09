@@ -54,6 +54,6 @@ preprocessing <- function(){
   bmr <- benchmark(design)
   measure <- msr("surv.cindex")
   tab <- bmr$aggregate(measure)
-  # autoplot(bmr)
+  # autoplot(bmr)pr
   print(tab)
 }

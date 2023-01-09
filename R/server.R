@@ -7,6 +7,7 @@
 #' @importFrom ggplot2 xlab ylab geom_segment aes
 #' @importFrom shiny reactiveValues renderDataTable observeEvent renderPlot
 #' @importFrom utils globalVariables
+#' @import primace
 #' @import shinydashboard
 #' @import shinybusy
 #' @import dplyr
