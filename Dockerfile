@@ -11,23 +11,26 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
   libcurl4-openssl-dev \
   libssl-dev 
 
-WORKDIR primace
-COPY R .
-COPY renv.lock .
-COPY app.R .
-COPY .Rprofile .
-COPY .Renviron .
-COPY DESCRIPTION .
-COPY NAMESPACE .
-COPY primace.Rproj .
-COPY .Rbuildignore .
-COPY renv . 
+RUN mkdir primace
+COPY . .
+# COPY /R ./R
+# COPY renv.lock ./renv.lock
+# COPY app.R ./app.R
+# COPY .Rprofile ./.Rprofile
+# COPY .Renviron ./.Renviron
+# COPY DESCRIPTION ./DESCRIPTION
+# COPY NAMESPACE ./NAMESPACE
+# COPY primace.Rproj ./primace.Rproj
+# COPY .Rbuildignore ./Rbuildignore
+# COPY renv ./renv
 
 RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")' 
 RUN Rscript -e 'library(renv)' 
 RUN Rscript -e 'renv::restore()'
-RUN R CMD build .
-RUN R CMD INSTALL "primace_0.0.0.9000.tar.gz"
+RUN R CMD build primace
+RUN mv primace_0.0.0.9000.tar.gz primace
+RUN Rscript -e 'library(shiny)'
+RUN R CMD INSTALL "primace/primace_0.0.0.9000.tar.gz"
 RUN Rscript -e 'library(primace)'
 
 EXPOSE 3838
