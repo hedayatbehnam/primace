@@ -63,21 +63,4 @@ jobs:
           push: true
           tags: ${{ env.LATEST_TAG }}       
 
-  CD-Liara:
-    runs-on: ubuntu-latest
-    needs: docker 
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "16"
-      - name: update-liara
-        env:
-          LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
-        run: |
-          npm i -g @liara/cli@3
-          liara deploy --port=3838 --app="primace" --api-token="$LIARA_TOKEN" --image=bhedayat/test-primace:latest --detach 
-
-
 
