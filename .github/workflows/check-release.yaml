@@ -64,7 +64,7 @@ jobs:
           
   CD-Liara:
     runs-on: ubuntu-latest
-    needs: docker 
+    needs: R-CMD-check 
 
     steps:
       - uses: actions/checkout@v3
