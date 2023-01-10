@@ -1,9 +1,9 @@
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/hedayatbehnam/primace/workflows/R-CMD-check/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
 
-[![check-release](https://github.com/hedayatbehnam/primace/workflows/check-release/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
+[![test-coverage](https://github.com/hedayatbehnam/primace/workflows/test-coverage/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
 
-[![update-dataset](https://github.com/hedayatbehnam/primace/workflows/update-dataset/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
+[![Check-New-Dataset](https://github.com/hedayatbehnam/primace/workflows/Check-New-Dataset/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
 <!-- badges: end -->
 
 # PRIMACE Prediction Tool
