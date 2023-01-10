@@ -31,7 +31,6 @@ body <- dashboardBody(
                        p("Tehran Heart Center", class="thc-logo-text"),
                        p("Artificial Intelligence Division", 
                        class="thc-logo-subtext")))),
-           
             fluidRow(column(width=5, offset=1,box(width =12, id='custom-box',solidHeader = F, status = "primary",
                               "Using Survival Random Forest Machine Learning Model
                               to Predict Outcome with provided data in file format of .RDS, 

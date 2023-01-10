@@ -14,6 +14,7 @@
 #' @param output output set by Shiny.
 #' @param session session set by Shiny.
 server <- function(input, output, session) {
+  library(primace)
   status <- crank <- NULL
   rv <- reactiveValues()
   rv$varnameComplete <- rv$perfMetrics <- rv$predMetrics <- FALSE

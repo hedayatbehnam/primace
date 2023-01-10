@@ -9,7 +9,7 @@ style_ref(tags, htmlParam)
 \arguments{
 \item{tags}{tags for general use for various element}
 
-\item{htmlParam}{which html parameters to referes styles to}
+\item{htmlParam}{which html parameters to refers styles to}
 }
 \description{
 style of html

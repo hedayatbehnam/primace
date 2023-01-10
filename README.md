@@ -1,3 +1,11 @@
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/hedayatbehnam/primace/workflows/R-CMD-check/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
+
+[![check-release](https://github.com/hedayatbehnam/primace/workflows/check-release/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
+
+[![update-dataset](https://github.com/hedayatbehnam/primace/workflows/update-dataset/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
+<!-- badges: end -->
+
 # PRIMACE Prediction Tool
 `PRIMACE` is a shinyapps web application based on R language shiny package which can be used to predict major cardiovascular events (MACE) in first year following Primary Percutaneous Coronary Intervention (PPCI)  
 **PPCI:** Primary Percutaneous Coronary Intervention  
@@ -36,7 +44,4 @@ If your dataset does not have columsn named `First_MACE_bin` as target event var
 ### Using Prediction of Your Patient
 In `Manual Prediction` tab of `Prediction Tool` submenu, you can input your patient's features, then click `Manual Prediction` button to see the result of app prediction.
 
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/hedayatbehnam/primace/workflows/R-CMD-check/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
-<!-- badges: end -->
 

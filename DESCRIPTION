@@ -42,8 +42,8 @@ Depends:
     R (>= 3.5.0)
 LazyData: true
 Collate: 
-    'utilities.R'
     'best_point.R'
+    'data.R'
     'final_predict.R'
     'global.R'
     'load_model.R'
@@ -52,11 +52,11 @@ Collate:
     'max_perf_calc.R'
     'predict_scores.R'
     'preprocessing.R'
+    'styles.R'
     'primace_init.R'
     'reactiveVal_output.R'
-    'styles.R'
-    'survROC.R'
-    'upload_file.R'
-    'data.R'
-    'ui.R'
     'server.R'
+    'survROC.R'
+    'ui.R'
+    'upload_file.R'
+    'utilities.R'
