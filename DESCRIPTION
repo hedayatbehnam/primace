@@ -60,3 +60,4 @@ Collate:
     'ui.R'
     'upload_file.R'
     'utilities.R'
+    'analytics.R'
