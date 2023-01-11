@@ -21,31 +21,26 @@ body <- dashboardBody(
   tags$script(HTML("$('body').addClass('fixed');")),
   tabItems(
     tabItem(tabName = "home",
-            fluidRow(column(width=10,offset = 1,box(id='custom-box',width=12,  status = "primary",solidHeader = F,
-                "Effects of opium use on one-year major adverse cardiovascular events (MACE) 
-                                                   in the patients with ", br(),"ST-segment elevation MI undergoing primary PCI", br()," 
-                                                   a propensity score matched - machine learning based study",class="title"))),
-            fluidRow(width=12, solidHeader = F,
-                column(12, align="center",tags$div(img(src='logothc.png', 
-                       align = "center", width=200),br(),
+            br(),
+            fluidRow(column(width=10, offset = 1,box(id='custom-box',width=12,  status = "primary", solidHeader = F,
+                "PRIMACE Is A Machine Learning Prediction Tool for First Year Survival Following Primary Percutaneous Intervention", br(),class="title"))), hr(),
+            fluidRow(solidHeader = F, column(width = 10, offset=1, align="center", box(id='custom-box', width=12, status = "primary", 
+                                            solidHeader = F,img(src='logothc.png',align = "center", width=200),br(),
                        p("Tehran Heart Center", class="thc-logo-text"),
-                       p("Artificial Intelligence Division", 
-                       class="thc-logo-subtext")))),
+                       p("Artificial Intelligence Division",
+                       class="thc-logo-subtext"), class='title'))), hr(),
             fluidRow(column(width=5, offset=1,box(width =12, id='custom-box',solidHeader = F, status = "primary",
                               "Using Survival Random Forest Machine Learning Model
                               to Predict Outcome with provided data in file format of .RDS, 
-                              .csv, .sav, .xlsx ",class="home-box-title")),
-                     
+                              .csv, .sav, .xlsx ",class="title")),
                      column(width = 5,box(width = 12,id = 'custom-box',solidHeader = F, status = "primary",
-                              "An Online 
-                              Machine Learning Tool to Predict First 
+                              "An Online Machine Learning Tool to Predict First 
                               Year Major Adverse Cardiovascular Events  
                               Following Primary Percutaneous
-                              Coronary Intervention", class="home-box-title")),
-                     )),
+                              Coronary Intervention", class="title")))),
     tabItem(tabName = "authors",
-            fluidRow(box(width = 12, status = "primary",
-              div(p(span("Authors and Affiliations", style="font-weight:bold; 
+            fluidRow(box(width = 12, id='custom-box',status = "primary",solidHeader = F,
+              p(span("Authors and Affiliations", style="font-weight:bold; 
                     font-size:24px;")),hr(),
                     "Yaser Jenab"," MD", tags$sup("1"),br(),
                     "Behnam Hedayat, MD", tags$sup("2"), br(),
@@ -77,12 +72,11 @@ body <- dashboardBody(
                           br(),
                           "Rasoul Akram Hospital, ", br(), 
                           "Iran University of Medical Sciences,", br(),
-                          "Tehran, Iran.", 
-                    class="abstract-text"),class="usual-box-title")
+                          "Tehran, Iran.", class="usual-box-title")
     )),
     tabItem(tabName = "abstract", 
-            fluidRow(box(width=12, status = "primary",
-                  div(p(span("Abstract", style="font-weight:bold; font-size:24px;")), hr(),
+            fluidRow(box(width=12, status = "primary", solidHeader = F, id='custom-box',
+                  p(span("Abstract", style="font-weight:bold; font-size:24px;")), hr(),
                   p(strong("Background:")),"Considerable number of people still 
                   use opium worldwide and many believe in opium's health benefits. 
                   However, several studies proved the detrimental effects of 
@@ -124,27 +118,24 @@ body <- dashboardBody(
                   regarding the evidence for non-beneficial or detrimental effects 
                   of opium on various diseases, including the outcomes of primary 
                   PCI, to dissuade many users from relying on false beliefs about 
-                  opium's benefits to continue its consumption.", class="abstract-text"),class="usual-box-title")
+                  opium's benefits to continue its consumption.",class="usual-box-title")
     )),
     tabItem(tabName = "prediction",
         tabsetPanel(type="tabs", id = "predictTabs",
             tabPanel("Introduction", 
-                fluidRow(box(title=p(span("Prediction Tool", style="font-weight:bold; 
-                         font-size:24px;")), 
+                fluidRow(box(title=strong("Prediction Tool"),solidHeader = F,
                          width=12,status="primary", collapsible = T, collapsed = F,
-                            p("Here a prediction tool is provided based on survival 
+                            "Here a prediction tool is provided based on survival 
                             random forest trained on patients which 
                             underwent primary percutaneous coronary intervention(PCI), 
-                            to predict major adverse cardiovascular event (MACE).
-                            ", class="predict-text"), 
-                            p("You can upload your custom file from file input 
+                            to predict major adverse cardiovascular event (MACE).",br(),
+                            "You can upload your custom file from file input 
                             box bellow. At the moment Allowed format is *.rds, 
-                            *.csv, *.sav and *.xlsx formats.", class="predict-text"),
-                            p("Because the models have been trained with specific names 
+                            *.csv, *.sav and *.xlsx formats.",br(),
+                            "Because the models have been trained with specific names 
                             of features, your dataset features names should be 
                             transformed to the names provided in 'Variables Names' 
-                            box bellow to enable prediction.", class="predict-text")
-                )), br(),
+                            box bellow to enable prediction.")), br(),
                 # conditionalPanel(condition = "output.varnameComplete",
                        fluidRow(box(title=strong("Variables Names"),
                                     id="varnames",width=12,
@@ -449,20 +440,20 @@ body <- dashboardBody(
         )
     ),
     tabItem(tabName = "contact",
-            fluidRow(box(width=12, status = "primary",
-                         div(p(span("Contact", style="font-weight:bold; 
+            fluidRow(box(width=12, status = "primary",solidHeader = F, id='custom-box',
+                         p(span("Contact", style="font-weight:bold; 
                                     font-size:24px;")), hr(),
                           strong("Phone: "), "+98-21-88029600", br(),
                           strong("Email: "),"email@thc.tums.ac.ir, 
                           dr.hedayatb@gmail.com", br(),
                           strong("Address: "), "Tehran Heart Center, 
                           Kargar St. Jalal al-Ahmad Cross, Tehran, Iran",br(),
-                          strong("Zip Code: "), "1411713138", class="abstract-text"),class="usual-box-title")
+                          strong("Zip Code: "), "1411713138",class="usual-box-title")
     )),
     tabItem(tabName = "about",
-            fluidRow(box(width=12, status="primary",
-            div(p(span("About", style="font-weight:bold; font-size:24px;")),
-                style="width:80%; margin-top:0px; font-size:16px;"),class="usual-box-title")
+            fluidRow(box(width=12, status="primary",solidHeader = F, id="custom-box",
+            p(span("About", style="font-weight:bold; font-size:24px;")),
+                 class="usual-box-title")
     ))
   )
 )

@@ -13,15 +13,6 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 
 WORKDIR primace
 COPY . .
-# COPY /R ./R
-# COPY renv.lock ./renv.lock
-# COPY app.R ./app.R
-# COPY .Rprofile ./.Rprofile
-# COPY .Renviron ./.Renviron
-# COPY DESCRIPTION ./DESCRIPTION
-# COPY NAMESPACE ./NAMESPACE
-# COPY primace.Rproj ./primace.Rproj
-# COPY .Rbuildignore ./Rbuildignore
 
 RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")' 
 RUN Rscript -e 'library(renv)' 
@@ -32,5 +23,4 @@ RUN R -e 'library(primace)'
 
 EXPOSE 3838
 
-#CMD ["R", "-e", "shiny::runApp(host = '0.0.0.0', port = 3838)"]
 CMD ["Rscript", "-e", "primace::primace_init()"]
