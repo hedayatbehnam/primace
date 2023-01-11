@@ -16,7 +16,7 @@ ML models were as follows:
  2. Survival Extreme Gradient Boosting (xgboost)
 
 ### The link to online `PRIMACE`:
-**[PRIMACE Prediction Tool](https://behnam-hedayat.shinyapps.io/primace)**
+**[PRIMACE Prediction Tool](https://primace.aikadeh.com)**
 
 ## Instructions
 
