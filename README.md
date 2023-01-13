@@ -43,5 +43,3 @@ If your dataset does not have columsn named `First_MACE_bin` as target event var
 
 ### Using Prediction of Your Patient
 In `Manual Prediction` tab of `Prediction Tool` submenu, you can input your patient's features, then click `Manual Prediction` button to see the result of app prediction.
-
-
