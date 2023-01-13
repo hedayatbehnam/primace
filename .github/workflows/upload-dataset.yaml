@@ -32,7 +32,7 @@ jobs:
           
       - name: R CMD CHECK
         run : |
-            rcmdcheck::rcmdcheck(error_on="warning")
+            rcmdcheck::rcmdcheck(check_dir=".", error_on="warning")
         shell : Rscript {0}
             
       - name: Find Last Modified File in R/dataset directory

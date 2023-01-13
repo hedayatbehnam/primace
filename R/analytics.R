@@ -10,8 +10,8 @@ analyticsSidebar <- function(id){
 #' @param id id of module
 #' @noRd
 analyticsUI <- function(id){
-  test_set <- tryCatch({readRDS(paste0(here::here(), "/R/datasets/dataset.RDS"))},
-                       error=function(e) readRDS(paste0(here::here(), "/primace/R/datasets/dataset.RDS")))
+  test_set <- tryCatch({readRDS(here("R/datasets/test_set.RDS"))},
+                       error=function(e) print(e))
   test_set <- suppressWarnings(dataset_modification(test_set))
   tabItem(tabName = "analytics",style="overflow:hidden;",
           fluidRow(box(width=12, status="primary",solidHeader = F, id="custom-box",
@@ -33,8 +33,8 @@ analyticsUI <- function(id){
 #' @noRd
 analyticsServer <- function(id){
   moduleServer(id, function(input, output, session){
-    test_set <- tryCatch({readRDS(paste0(here::here(), "/R/datasets/dataset.RDS"))},
-                         error=function(e) readRDS(paste0(here::here(), "/primace/R/datasets/dataset.RDS")))
+    test_set <- tryCatch({readRDS(here::here("R/datasets/test_set.RDS"))},
+                         error=function(e) readRDS(here::here("primace/R/datasets/test_set.RDS")))
     test_set <- suppressWarnings((dataset_modification(test_set)))
     output$plotHist <- renderPlot({
       ggplot(test_set, aes_string(x=input$var, fill=input$group), height=500) +
@@ -44,6 +44,4 @@ analyticsServer <- function(id){
     },height=500, res=96, width="auto")
   })
 }
-
-
               
