@@ -2,7 +2,9 @@
 % Please edit documentation in R/survROC.R
 \name{survROC}
 \alias{survROC}
-\title{survROC.}
+\title{survROC.
+modified function of survivalROC package to return specificity as well.
+It is used for prediction of survival according to time of interest.}
 \usage{
 survROC(
   Stime,
@@ -44,8 +46,7 @@ specificity, prediction time, area under the curve at specified prediction time,
 cumulative survival.
 }
 \description{
+survROC.
 modified function of survivalROC package to return specificity as well.
-}
-\details{
 It is used for prediction of survival according to time of interest.
 }

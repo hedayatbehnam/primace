@@ -1,6 +1,7 @@
-#' @title style of html
+#' Style of UI
 #' @param tags tags for general use for various element
 #' @param htmlParam which html parameters to refers styles to
+#' @noRd
 style_ref <- function(tags, htmlParam) {
     tags[[htmlParam]]('
       .content-wrapper, .right-side {

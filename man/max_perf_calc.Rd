@@ -2,7 +2,8 @@
 % Please edit documentation in R/max_perf_calc.R
 \name{max_perf_calc}
 \alias{max_perf_calc}
-\title{Performance Calculator}
+\title{Performance Calculator
+creating confusion matrix to show best performance result.}
 \usage{
 max_perf_calc(predict_table)
 }
@@ -13,5 +14,6 @@ max_perf_calc(predict_table)
 table of confusion matrix as dataframe
 }
 \description{
+Performance Calculator
 creating confusion matrix to show best performance result.
 }

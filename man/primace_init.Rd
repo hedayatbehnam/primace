@@ -2,10 +2,12 @@
 % Please edit documentation in R/primace_init.R
 \name{primace_init}
 \alias{primace_init}
-\title{Runner file}
+\title{Runner file
+initializing app}
 \usage{
 primace_init()
 }
 \description{
+Runner file
 initializing app
 }

@@ -1,5 +1,5 @@
-#' @title Model Loader
-#' @description Loading trained models on original study
+#' Model Loader
+#' Loading trained models on original study
 #' @param input input of shinyserver
 #' @param rf_model path to survival random forest model
 #' @param xgb_model path to xgboost model

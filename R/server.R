@@ -1,6 +1,6 @@
-#' @title The Shiny App Server.
-#' @description An app to predict first year survival following primary percutaneous coronary intervention.
-#' @details This app can be used to predict and assess performance of user's provided datasets,
+#' The Shiny App Server.
+#' An app to predict first year survival following primary percutaneous coronary intervention.
+#' This app can be used to predict and assess performance of user's provided datasets,
 #' based of containing target variables, it also provides manual prediction tool to predict a patient,
 #' according to its features selected online.
 #' @importFrom pROC ggroc roc
@@ -13,8 +13,9 @@
 #' @param input input set by Shiny.
 #' @param output output set by Shiny.
 #' @param session session set by Shiny.
+#' @noRd
 server <- function(input, output, session) {
-  library(primace)
+  analyticsServer("analytics")
   status <- crank <- NULL
   rv <- reactiveValues()
   rv$varnameComplete <- rv$perfMetrics <- rv$predMetrics <- FALSE

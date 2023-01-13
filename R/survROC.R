@@ -1,6 +1,6 @@
-#' @title survROC.
-#' @description modified function of survivalROC package to return specificity as well.
-#' @details It is used for prediction of survival according to time of interest.
+#' survROC.
+#' modified function of survivalROC package to return specificity as well.
+#' It is used for prediction of survival according to time of interest.
 #' @param Stime event or censor times
 #' @param status status at event or censor time
 #' @param marker crank scores

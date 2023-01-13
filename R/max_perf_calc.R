@@ -1,5 +1,5 @@
-#' @title Performance Calculator
-#' @description creating confusion matrix to show best performance result.
+#' Performance Calculator
+#' creating confusion matrix to show best performance result.
 #' @importFrom caret confusionMatrix
 #' @param predict_table predicted table of outcomes of each observation
 #' @return table of confusion matrix as dataframe

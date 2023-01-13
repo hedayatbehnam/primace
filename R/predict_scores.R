@@ -1,5 +1,5 @@
-#' @title Score Predictor.
-#' @description Main predicting tool of data by saved pre-trained machine learning models
+#' Score Predictor.
+#' Main predicting tool of data by saved pre-trained machine learning models
 #' @import mlr3
 #' @import mlr3learners
 #' @import mlr3extralearners

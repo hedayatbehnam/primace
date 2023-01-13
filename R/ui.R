@@ -1,10 +1,12 @@
-#' @title User Interface
-#' @description Main user interface of primace app
-#' @details Using shinydashboard package to create a dashboard like tabbed UI
+#' User Interface
+#' Main user interface of primace app
+#' Using shinydashboard package to create a dashboard like tabbed UI
 #' sidebar of main user interface
+#' @noRd
 sidebar <- dashboardSidebar(
   sidebarMenu(
     menuItem("Home", tabName = "home", icon = icon("home")),
+    analyticsSidebar("analytics"),
     menuItem("Authors", tabName = "authors", icon = icon("pencil-alt")),
     menuItem("Abstract", tabName = "abstract", icon = icon("file")),
     menuItem("Prediction Tool", tabName = "prediction", icon = icon("wrench"),
@@ -13,7 +15,8 @@ sidebar <- dashboardSidebar(
     menuItem("About", tabName = "about", icon = icon("info"))
   )
 )
-#' body part of main user interface
+#' body of main user interface
+#' @noRd
 body <- dashboardBody(
   shinybusy::add_busy_spinner(spin = "half-circle", position = "bottom-right",
                               margins = c("60%", "42%"), width = "70px", height = "70px"),
@@ -454,13 +457,17 @@ body <- dashboardBody(
             fluidRow(box(width=12, status="primary",solidHeader = F, id="custom-box",
             p(span("About", style="font-weight:bold; font-size:24px;")),
                  class="usual-box-title")
-    ))
+    )),
+    analyticsUI("analytics")
   )
 )
-
+#' header of main ui
+#' @noRd
 CustomHeader <- dashboardHeader(title ="PRIMACE")
 # CustomHeader$children[[3]]$children <- list(
 #   div(class="login-box",icon("user"),"Login"))
+#' ui composite
+#' @noRd
 ui <- shinydashboardPlus::dashboardPage(
   skin = "purple",
   header = CustomHeader,

@@ -2,7 +2,8 @@
 % Please edit documentation in R/load_model.R
 \name{load_model}
 \alias{load_model}
-\title{Model Loader}
+\title{Model Loader
+Loading trained models on original study}
 \usage{
 load_model(
   input,
@@ -21,5 +22,6 @@ load_model(
 loaded models in rds format
 }
 \description{
+Model Loader
 Loading trained models on original study
 }

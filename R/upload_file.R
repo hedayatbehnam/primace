@@ -1,12 +1,13 @@
-#' @title upload file.
-#' @description a function to upload different formats of data for prediction.
-#' @details User can import csv, xlsx, sav and rds format of data.
+#' upload file.
+#' a function to upload different formats of data for prediction.
+#' User can import csv, xlsx, sav and rds format of data.
 #' @importFrom shiny req
 #' @importFrom utils read.csv
 #' @importFrom foreign read.spss
 #' @importFrom readxl read_excel
 #' @param input input set if Shiny
 #' @return A list containing dataset named survData and whether target variable is available or not
+#' @noRd
 upload_data <- function(input){
     dataset <- NULL
     noTarget <- FALSE
