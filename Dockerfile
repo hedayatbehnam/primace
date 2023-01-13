@@ -16,6 +16,7 @@ COPY . .
 
 RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")'
 RUN Rscript -e 'library(renv)' 
+RUN Rscript -e 'install.packages("remotes")'
 RUN Rscript -e 'remotes::install_version("mlr3viz", version = "0.5.10")'
 RUN Rscript -e 'renv::restore()'
 RUN R CMD build .
