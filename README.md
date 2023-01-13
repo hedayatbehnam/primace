@@ -2,8 +2,7 @@
 [![R-CMD-check](https://github.com/hedayatbehnam/primace/workflows/R-CMD-check/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
 [![test-coverage](https://github.com/hedayatbehnam/primace/workflows/test-coverage/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
 [![Check-New-Dataset](https://github.com/hedayatbehnam/primace/workflows/Check-New-Dataset/badge.svg)](https://github.com/hedayatbehnam/primace/actions)  
-[![https://img.shields.io/badge/Web--App-PRIMACE-blue](https://github.com/hedayatbehnam/primace/actions)
-
+[![PRIMACE](R/www/Web--App-PRIMACE-blue.svg)](https://img.shields.io/badge/Web--App-PRIMACE-blue)
 <!-- badges: end -->
 
 # PRIMACE Prediction Tool
