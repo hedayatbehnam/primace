@@ -1,5 +1,6 @@
 external.libraries:
-ignored.packages: mlr3viz
+ignored.packages: mlr3viz, mlr3proba, mlr3learners, mlr3extralearners, mlr3,
+    mlr3measures, mlr3tuning, mlr3misc
 package.dependency.fields: Imports, Depends, LinkingTo
 r.version:
 snapshot.type: explicit
