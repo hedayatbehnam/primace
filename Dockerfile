@@ -14,7 +14,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 WORKDIR primace
 COPY . .
 
-RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")' 
+RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")'
 RUN Rscript -e 'library(renv)' 
 RUN Rscript -e 'renv::restore()'
 RUN R CMD build .
