@@ -32,6 +32,7 @@ jobs:
           
       - name: R CMD CHECK
         run : |
+            remotes::install_version("mlr3viz", version = "0.5.10")
             rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
             

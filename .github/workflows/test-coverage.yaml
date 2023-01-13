@@ -28,6 +28,7 @@ jobs:
 
       - name: test-coverage
         run : |
+          remotes::install_version("mlr3viz", version = "0.5.10")
           remotes::install_cran(c("covr", "DT"))
           devtools::load_all(".")
           test_cov <- devtools::test_coverage(".")
