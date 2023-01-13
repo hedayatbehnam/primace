@@ -34,10 +34,6 @@ jobs:
         run : |
             rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
-        
-      - name: delete primace.Rcheck
-        run : |
-            rm -rf primace.Rcheck
             
       - name: Find Last Modified File in R/dataset directory
         id: changed-files-specific

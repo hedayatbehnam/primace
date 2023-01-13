@@ -16,8 +16,8 @@ COPY . .
 
 RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")'
 RUN Rscript -e 'library(renv)' 
-RUN Rscript -e 'renv::install("mlr3viz")'
 RUN Rscript -e 'renv::restore()'
+RUN Rscript -e 'remotes::install_github("mlr-org/mlr3viz")'
 RUN R CMD build .
 RUN R CMD INSTALL primace_0.0.0.9000.tar.gz
 RUN R -e 'library(primace)'
