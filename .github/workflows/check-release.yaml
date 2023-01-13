@@ -33,8 +33,12 @@ jobs:
             
       - name: R CMD CHECK inside r
         run : |
-            rcmdcheck::rcmdcheck(check_dir=".", error_on="warning")
+            rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
+        
+      - name: delete primace.Rcheck
+        run : |
+            rm -rf primace.Rcheck
 
   docker:
     runs-on: ubuntu-latest
