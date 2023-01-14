@@ -38,8 +38,8 @@ jobs:
             install.packages("mlr3measures")
             install.packages("mlr3tuning")
             install.packages("mlr3misc")
-            devtools::install_github("mlr3extralearners")
-            remote::install_version("mlr3proba", version = "0.4.0")
+            devtools::install_github("mlr-org/mlr3extralearners")
+            remotes::install_version("mlr3proba", version = "0.4.0")
             remotes::install_version("mlr3viz", version = "0.5.10")
             rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
