@@ -17,7 +17,7 @@ jobs:
           node-version: "16"
       - name: update-liara
         env:
-          LIARA_TOKEN: ${{ secrets.LIARA_GITOKEN }}
+          LIARA_TOKEN: ${{ secrets.LIARA_TOKEN }}
         run: |
           npm i -g @liara/cli@3
           liara deploy --image=bhedayat/test-primace --port=3838 --api-token=$LIARA_TOKEN --detach --app="primace"
