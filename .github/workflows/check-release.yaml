@@ -2,9 +2,9 @@
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches: [main, master, packaged-v, v3]
+    branches: [main, master, packaged-v]
   pull_request:
-    branches: [main, master, packaged-v, v3]
+    branches: [main, master, packaged-v]
 
 name: R-CMD-check
 
@@ -33,17 +33,12 @@ jobs:
             
       - name: R CMD CHECK inside r
         run : |
-            install.packages("mlr3")
-            install.packages("mlr3learners")
-            install.packages("mlr3measures")
-            install.packages("mlr3tuning")
-            install.packages("mlr3misc")
-            devtools::install_github("mlr-org/mlr3extralearners")
-            remotes::install_github("mlr-org/mlr3proba")
-            remotes::install_version("mlr3viz", version = "0.5.10")
             rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
         
+      - name: delete primace.Rcheck
+        run : |
+            rm -rf primace.Rcheck
 
   docker:
     runs-on: ubuntu-latest
@@ -99,7 +94,7 @@ jobs:
           node-version: "16"
       - name: update-liara
         env:
-          LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
+          LIARA_TOKEN: ${{ secrets.LIARA_GITOKEN }}
         run: |
           npm i -g @liara/cli@3
-          liara deploy --port=3838 --app="primace" --api-token="$LIARA_TOKEN" --image=bhedayat/test-primace:latest --detach 
+          liara deploy --image=bhedayat/test-primace --port=3838 --api-token=$LIARA_TOKEN --detach --app="primace"
