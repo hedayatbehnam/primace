@@ -24,8 +24,8 @@ RUN Rscript -e 'install.packages("mlr3learners")'
 RUN Rscript -e 'install.packages("mlr3measures")'
 RUN Rscript -e 'install.packages("mlr3tuning")'
 RUN Rscript -e 'install.packages("mlr3misc")'
-RUN Rscript -e 'devtools::install_github("mlr3extralearners")'
-RUN Rscript -e 'remotes::install_version("mlr3proba", version = "0.4.0")'
+RUN Rscript -e 'devtools::install_github("mlr-org/mlr3extralearners")'
+RUN Rscript -e 'remotes::install_github("mlr-org/mlr3proba")'
 RUN Rscript -e 'remotes::install_version("mlr3viz", version = "0.5.10")'
 RUN R CMD build .
 RUN R CMD INSTALL primace_0.0.0.9000.tar.gz
