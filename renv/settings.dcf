@@ -1,8 +1,9 @@
 external.libraries:
-ignored.packages:
+ignored.packages: mlr3viz, mlr3proba, mlr3learners, mlr3extralearners, mlr3,
+    mlr3measures, mlr3tuning, mlr3misc
 package.dependency.fields: Imports, Depends, LinkingTo
 r.version:
-snapshot.type: implicit
+snapshot.type: explicit
 use.cache: TRUE
 vcs.ignore.library: TRUE
 vcs.ignore.local: TRUE

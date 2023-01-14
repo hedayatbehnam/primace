@@ -1,8 +1,9 @@
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/hedayatbehnam/primace/workflows/R-CMD-check/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
 [![test-coverage](https://github.com/hedayatbehnam/primace/workflows/test-coverage/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
-[![Check-New-Dataset](https://github.com/hedayatbehnam/primace/workflows/Check-New-Dataset/badge.svg)](https://github.com/hedayatbehnam/primace/actions)  
-[![PRIMACE](R/www/Web--App-PRIMACE-blue.svg)](https://primace.aikadeh.com)
+[![Check-New-Dataset](https://github.com/hedayatbehnam/primace/workflows/Check-New-Dataset/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
+[![Activiy](R/www/primace_activity.svg)](https://github.com/hedayatbehnam/primace/commits/)
+[![PRIMACE](R/www/webapp.svg)](https://primace.aikadeh.com)
 <!-- badges: end -->
 
 # PRIMACE Prediction Tool
@@ -42,5 +43,3 @@ If your dataset does not have columsn named `First_MACE_bin` as target event var
 
 ### Using Prediction of Your Patient
 In `Manual Prediction` tab of `Prediction Tool` submenu, you can input your patient's features, then click `Manual Prediction` button to see the result of app prediction.
-
-

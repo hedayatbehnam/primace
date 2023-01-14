@@ -6,4 +6,3 @@ if (!requireNamespace("here", quietly = TRUE))
   install.packages("here")
 library("here")
 Sys.setenv(root_absPath = here::here())
-
