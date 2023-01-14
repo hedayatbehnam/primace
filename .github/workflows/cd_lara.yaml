@@ -1,0 +1,20 @@
+on:
+  push:
+    branches: [main,v3, packaged-v]
+  pull_request:
+    branches: [main, v3, packaged-v]
+
+CD-Liara:
+  runs-on: ubuntu-latest
+
+  steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: "16"
+  - name: update-liara
+    env:
+      LIARA_TOKEN: ${{ secrets.LIARA_GITOKEN }}
+    run: |
+      npm i -g @liara/cli@3
+      liara deploy --image=bhedayat/test-primace --port=3838 --api-token=$LIARA_TOKEN --detach --app="primace"
