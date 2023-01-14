@@ -1,11 +1,13 @@
 on:
   push:
-    branches: [main,v3, packaged-v]
+    branches: [main, v3, packaged-v]
   pull_request:
     branches: [main, v3, packaged-v]
 
+name: cd-liara
+
 jobs:
-  CD-Liara:
+  CD-Liara2:
     runs-on: ubuntu-latest
   
     steps:
@@ -13,9 +15,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "16"
-    - name: update-liara
-      env:
-        LIARA_TOKEN: ${{ secrets.LIARA_GITOKEN }}
-      run: |
-        npm i -g @liara/cli@3
-        liara deploy --image=bhedayat/test-primace --port=3838 --api-token=$LIARA_TOKEN --detach --app="primace"
+      - name: update-liara
+        env:
+          LIARA_TOKEN: ${{ secrets.LIARA_GITOKEN }}
+        run: |
+          npm i -g @liara/cli@3
+          liara deploy --image=bhedayat/test-primace --port=3838 --api-token=$LIARA_TOKEN --detach --app="primace"
