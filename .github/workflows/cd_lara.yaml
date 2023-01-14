@@ -20,4 +20,4 @@ jobs:
           LIARA_TOKEN: ${{ secrets.LIARA_TOKEN }}
         run: |
           npm i -g @liara/cli@3
-          liara deploy --image=bhedayat/test-primace --port=3838 --api-token=$LIARA_TOKEN --detach --app="primace"
+          liara deploy --app="primace" --api-token="$LIARA_TOKEN" --image="bhedayat/test-primace" --port=3838  --detach 
