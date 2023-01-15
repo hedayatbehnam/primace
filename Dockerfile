@@ -1,5 +1,7 @@
 FROM rocker/shiny:latest
-
+ARG GIT_PAT
+ENV GITHUB_PAT=${GIT_PAT}
+RUN echo "$GITHUB_PAT"
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
   libxml2-dev \
   libcairo2-dev \
