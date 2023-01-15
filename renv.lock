@@ -23,6 +23,19 @@
       "Repository": "CRAN",
       "Hash": "9e703ad8bf0e99f3691f05da32dfe68b"
     },
+    "set6": {
+          "Package": "set6",
+          "Version": "0.2.5",
+          "Source": "GitHub",
+          "RemoteType": "github",
+          "RemoteHost": "api.github.com",
+          "RemoteRepo": "set6",
+          "RemoteUsername": "xoopR",
+          "RemoteRef": "HEAD",
+          "RemoteSha": "e65ffeea48d30d687482f6706d0cb43b16ba3919",
+          "Hash": "9aa0d0deb59a1ae4a5df847969de6910"
+      },
+      
     "MASS": {
       "Package": "MASS",
       "Version": "7.3-53.1",
@@ -131,7 +144,9 @@
     "callr": {
       "Package": "callr",
       "Version": "3.7.3",
-      "Source": "Repository"
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "9b2191ede20fa29828139b9900922e51"
     },
     "caret": {
       "Package": "caret",
@@ -250,13 +265,6 @@
       "Repository": "CRAN",
       "Hash": "fc35e13bb582e5fe6f63f3d647a4cbe5"
     },
-    "dictionar6": {
-      "Package": "dictionar6",
-      "Version": "0.1.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "ea905aa030653825eea59d1364d4fa8c"
-    },
     "diffobj": {
       "Package": "diffobj",
       "Version": "0.3.5",
@@ -270,19 +278,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "bf1cd206a5d170d132ef75c7537b9bdb"
-    },
-    "distr6": {
-      "Package": "distr6",
-      "Version": "1.6.11",
-      "Source": "GitHub",
-      "Remotes": "xoopR/set6, xoopR/param6",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "distr6",
-      "RemoteUsername": "alan-turing-institute",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "8cae431082393ec0f15823530e8a1c3a66d7e1fa",
-      "Hash": "9b8544a9693f539594b5a2d2b880d64f"
     },
     "downloader": {
       "Package": "downloader",
@@ -718,19 +713,6 @@
       "Repository": "CRAN",
       "Hash": "9e3d8d65cb9c5ca5966340a6bfec60b2"
     },
-    "param6": {
-      "Package": "param6",
-      "Version": "0.2.4",
-      "Source": "GitHub",
-      "Remotes": "xoopR/set6",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "param6",
-      "RemoteUsername": "xoopR",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "0fa35771276fc05efe007a71bda466ced1e4c5eb",
-      "Hash": "b071301bb617743ee9c343c485e6fae2"
-    },
     "pillar": {
       "Package": "pillar",
       "Version": "1.6.4",
@@ -790,7 +772,9 @@
     "processx": {
       "Package": "processx",
       "Version": "3.8.0",
-      "Source": "Repository"
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "a33ee2d9bf07564efb888ad98410da84"
     },
     "prodlim": {
       "Package": "prodlim",
@@ -897,6 +881,19 @@
       "Repository": "CRAN",
       "Hash": "76c9e04c712a05848ae7a23d2f170a40"
     },
+    "param6": {
+          "Package": "param6",
+          "Version": "0.2.4",
+          "Source": "GitHub",
+          "Remotes": "xoopR/set6",
+          "RemoteType": "github",
+          "RemoteHost": "api.github.com",
+          "RemoteRepo": "param6",
+          "RemoteUsername": "xoopR",
+          "RemoteRef": "HEAD",
+          "RemoteSha": "0fa35771276fc05efe007a71bda466ced1e4c5eb",
+          "Hash": "b071301bb617743ee9c343c485e6fae2"
+      },
     "remotes": {
       "Package": "remotes",
       "Version": "2.4.1",
@@ -904,6 +901,26 @@
       "Repository": "CRAN",
       "Hash": "feaca31e417db79fd1832e25b51a7717"
     },
+    "dictionar6": {
+          "Package": "dictionar6",
+          "Version": "0.1.3",
+          "Source": "Repository",
+          "Repository": "CRAN",
+          "Hash": "ea905aa030653825eea59d1364d4fa8c"
+      },
+    "distr6": {
+          "Package": "distr6",
+          "Version": "1.6.11",
+          "Source": "GitHub",
+          "Remotes": "xoopR/set6, xoopR/param6",
+          "RemoteType": "github",
+          "RemoteHost": "api.github.com",
+          "RemoteRepo": "distr6",
+          "RemoteUsername": "alan-turing-institute",
+          "RemoteRef": "HEAD",
+          "RemoteSha": "8cae431082393ec0f15823530e8a1c3a66d7e1fa",
+          "Hash": "9b8544a9693f539594b5a2d2b880d64f"
+      },
     "renv": {
       "Package": "renv",
       "Version": "0.14.0",
@@ -987,18 +1004,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "3f9796a8d0a0e8c6eb49a4b029359d1f"
-    },
-    "set6": {
-      "Package": "set6",
-      "Version": "0.2.5",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "set6",
-      "RemoteUsername": "xoopR",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "e65ffeea48d30d687482f6706d0cb43b16ba3919",
-      "Hash": "9aa0d0deb59a1ae4a5df847969de6910"
     },
     "shiny": {
       "Package": "shiny",
@@ -1192,7 +1197,9 @@
     "xfun": {
       "Package": "xfun",
       "Version": "0.36",
-      "Source": "Repository"
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "f5baec54606751aa53ac9c0e05848ed6"
     },
     "xml2": {
       "Package": "xml2",
@@ -1231,3 +1238,4 @@
     }
   }
 }
+
