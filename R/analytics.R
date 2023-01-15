@@ -11,7 +11,7 @@ analyticsSidebar <- function(id){
 #' @noRd
 analyticsUI <- function(id){
   test_set <- readRDS(paste0(Sys.getenv("root_absPath"),"/R/datasets/test_set.RDS"))
-  test_set <- suppressWarnings(dataset_modification(test_set))
+  # test_set <- suppressWarnings(dataset_modification(test_set))
   tabItem(tabName = "analytics",style="overflow:hidden;",
           fluidRow(box(width=12, status="primary",solidHeader = F, id="custom-box",
                        p(span("Analytics", style="font-weight:bold; font-size:24px;")),
@@ -33,7 +33,7 @@ analyticsUI <- function(id){
 analyticsServer <- function(id){
   moduleServer(id, function(input, output, session){
     test_set <- readRDS(paste0(Sys.getenv("root_absPath"), "/R/datasets/test_set.RDS"))
-    test_set <- suppressWarnings((dataset_modification(test_set)))
+    # test_set <- suppressWarnings((dataset_modification(test_set)))
     output$plotHist <- renderPlot({
       ggplot(test_set, aes_string(x=input$var, fill=input$group), height=500) +
         geom_histogram(aes(y=..density..))+
