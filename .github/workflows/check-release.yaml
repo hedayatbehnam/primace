@@ -109,7 +109,7 @@ jobs:
         run: |
           echo -e "\033[1;31mNo new dataset file has been added..."
         
-  docker:
+  docker2:
     runs-on: ubuntu-latest
     needs: R-CMD-check
     env:
