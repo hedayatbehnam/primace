@@ -18,7 +18,7 @@ COPY . .
 
 RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")'
 RUN Rscript -e 'library(renv)' 
-RUN Rscript -e 'install.packages("remotes")'
+RUN Rscript -e 'install.packages("devtools")'
 RUN Rscript -e 'renv::settings$ignored.packages(c("mlr3viz","mlr3proba","mlr3learners","mlr3extralearners","mlr3","mlr3measures", "mlr3tuning", "mlr3misc"))'
 RUN Rscript -e 'renv::restore(exclude=c("mlr3viz","mlr3proba","mlr3learners","mlr3extralearners","mlr3","mlr3measures", "mlr3tuning", "mlr3misc"))'
 RUN Rscript -e 'install.packages("mlr3")'

@@ -32,6 +32,7 @@ jobs:
             
       - name: R CMD CHECK inside r
         run : |
+            install.packages("devtools")
             install.packages("mlr3")
             install.packages("mlr3learners")
             install.packages("mlr3measures")
