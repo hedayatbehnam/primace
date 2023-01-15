@@ -1,4 +1,4 @@
-GITUB_PAT=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
+
 RENV_PATHS_LIBRARY=renv/library
 _R_CHECK_SYSTEM_CLOCK_=0 
 R_LIBS=renv/library
