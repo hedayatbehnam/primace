@@ -3,8 +3,6 @@
 on:
   push:
     branches: [main, master, packaged-v, v3]
-  pull_request:
-    branches: [main, master, packaged-v, v3]
 
 name: R-CMD-check
 
@@ -43,8 +41,28 @@ jobs:
             remotes::install_version("mlr3viz", version = "0.5.10")
             rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
-        
 
+      - name: Find Last Modified File in R/dataset directory
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v35
+        with:
+          files: |
+            R/datasets/dataset.RDS
+
+      - name: Check File Last Modification - SUCCESS
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run : |
+          devtools::load_all(".")
+          devtools::build()
+          library(primace)
+          primace::preprocessing()
+        shell : Rscript {0}
+          
+      - name: Check File Last Modification - FAILURE
+        if: steps.changed-files-specific.outputs.any_changed == 'false'
+        run: |
+          echo -e "\033[1;31mNo new dataset file has been added..."
+        
   docker:
     runs-on: ubuntu-latest
     needs: R-CMD-check
@@ -102,4 +120,4 @@ jobs:
           LIARA_TOKEN: ${{ secrets.LIARA_TOKEN }}
         run: |
           npm i -g @liara/cli@3
-          liara deploy --port=3838 --app="primace" --api-token="$LIARA_TOKEN" --image=bhedayat/test-primace --detach 
+          liara deploy --app="primace" --api-token="$LIARA_TOKEN" --image="bhedayat/test-primace" --port=3838  --detach 
