@@ -3,21 +3,22 @@
 [![test-coverage](https://github.com/hedayatbehnam/primace/workflows/test-coverage/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
 [![Check-New-Dataset](https://github.com/hedayatbehnam/primace/workflows/Check-New-Dataset/badge.svg)](https://github.com/hedayatbehnam/primace/actions)  
 
-[![PRIMACE](R/www/webapp.svg)](https://primace.aikadeh.com)
+[![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)
 <!-- badges: end -->
 
 # PRIMACE Prediction Tool
-`PRIMACE` is a shinyapps web application based on R language shiny package which can be used to predict major cardiovascular events (MACE) in first year following Primary Percutaneous Coronary Intervention (PPCI)  
+`PRIMACE` is a shinyapp web application based on R language shiny package which can be used to predict major cardiovascular events (MACE) in first year following Primary Percutaneous Coronary Intervention (PPCI)  
 **PPCI:** Primary Percutaneous Coronary Intervention  
 **MACE:** Major Adverse Cardiovascular Events
 
 ## Background
 We published a related article with title of "Effects of opium use on one-year major adverse cardiovascular events (MACE) in the patients with ST-segment elevation MI undergoing primary PCI: a propensity score matched - machine learning based study" in BMC Cardiovascular Journal.  
 ML models were as follows:  
- 1. Survival Random Forest
+ 1. Survival Random Forest  
  2. Survival Extreme Gradient Boosting (xgboost)
 
-### The link to online `PRIMACE`:
+### The link to online `PRIMACE`:  
+[![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)  
 **[PRIMACE Prediction Tool](https://primace.aikadeh.com)**
 
 ## Instructions

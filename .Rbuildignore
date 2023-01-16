@@ -11,3 +11,6 @@ app.R
 ^\.github$
 ^tmp$
 ^node-js$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
