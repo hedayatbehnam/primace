@@ -1,6 +1,6 @@
-#' @title Packages loader
-#' @description  Loading packages and sources
-#' @details Not Run in shiny cloud.
+#' Packages loader
+#' Loading packages and sources
+#' Not Run in shiny cloud.
 #' @importFrom utils globalVariables
 #' @return None
 load_dependencies <- function(){

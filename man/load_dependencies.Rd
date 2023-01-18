@@ -2,7 +2,9 @@
 % Please edit documentation in R/global.R
 \name{load_dependencies}
 \alias{load_dependencies}
-\title{Packages loader}
+\title{Packages loader
+Loading packages and sources
+Not Run in shiny cloud.}
 \usage{
 load_dependencies()
 }
@@ -10,8 +12,7 @@ load_dependencies()
 None
 }
 \description{
+Packages loader
 Loading packages and sources
-}
-\details{
 Not Run in shiny cloud.
 }

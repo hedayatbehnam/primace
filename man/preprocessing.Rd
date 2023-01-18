@@ -2,13 +2,20 @@
 % Please edit documentation in R/preprocessing.R
 \name{preprocessing}
 \alias{preprocessing}
-\title{Data Preprocessing}
+\title{Data Preprocessing
+module to perform preprocessing on dataset}
 \usage{
-preprocessing()
+preprocessing(train = TRUE, data = read_data())
+}
+\arguments{
+\item{train}{if training should be perfrom in addition to dataset modification}
+
+\item{data}{dataset to be provided, default read_data() from PRIMACE github repo by read_data() function}
 }
 \value{
 uploaded preprocessed dataset
 }
 \description{
+Data Preprocessing
 module to perform preprocessing on dataset
 }
