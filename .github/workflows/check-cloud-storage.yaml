@@ -3,6 +3,9 @@ on:
     branches: [main, pkgdown-v]
   pull_request:
     branches: [main, pkgdown-v]
+    
+name: Liara-Cloud-Storage
+
 jobs:
   liara_cloud_storage:
     runs-on: ubuntu-latest
