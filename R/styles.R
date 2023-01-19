@@ -7,7 +7,7 @@ NULL
 style_ref <- function(tags, htmlParam) {
     tags[[htmlParam]]('
       .content-wrapper, .right-side {
-         background-color: #f2f3f4;
+         background-color: #e8ebed;
       }
       .title {
         font-size : 22px;
@@ -73,24 +73,61 @@ style_ref <- function(tags, htmlParam) {
      .skin-purple .main-sidebar {
         box-shadow: 1px 1px 1px 1px rgba(0,0,0,.8);
      }
-     
-     
      /* logo */
      .skin-purple .main-header .logo {
         background-color: black;
+        font-weight:bold;
+        box-shadow: 0px 3px 56px -10px rgba(0,0,0,.3);
+        color:white;
      }
- 
      /* logo when hovered */
      .skin-purple .main-header .logo:hover {
         background-color: black;
+        font-weight:bold;
+        box-shadow: 0px 3px 56px -10px rgba(0,0,0,.3);
+        color:white;
      }
- 
      /* navbar (rest of the header) */
      .skin-purple .main-header .navbar {
         background-color: black;
-     }  
-                              
-                              
+        box-shadow: 0px 3px 56px -10px rgba(0,0,0,.3);
+     } 
+     
+
+      /* navbar (rest of the header) */
+      .skin-purple .main-header .navbar {
+        # background-color: #f4b943;
+      }        
+
+      /* main sidebar */
+      .skin-purple .main-sidebar {
+        # background-color: #f4b943;
+      }
+
+      /* active selected tab in the sidebarmenu */
+      .skin-purple .main-sidebar .sidebar .sidebar-menu .active a{
+        # background-color: #ff0000;
+      }
+
+      /* other links in the sidebarmenu */
+      .skin-purple .main-sidebar .sidebar .sidebar-menu a{
+        # background-color: #00ff00;
+        # color: #000000;
+      }
+
+      /* other links in the sidebarmenu when hovered */
+       .skin-purple .main-sidebar .sidebar .sidebar-menu a:hover{
+          # background-color: #ff69b4;
+       }
+      /* toggle button */                    
+       .skin-purple .main-header .navbar .sidebar-toggle{
+          background-color: black;
+        }
+      /* toggle button when hovered  */                    
+       .skin-purple .main-header .navbar .sidebar-toggle:hover{
+          background-color: black;
+          
+        }
      #loadmessage {
         position: fixed;
         top: 0px;
