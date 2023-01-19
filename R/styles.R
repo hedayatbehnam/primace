@@ -1,3 +1,5 @@
+#' @include server.R
+NULL
 #' Style of UI
 #' @param tags tags for general use for various element
 #' @param htmlParam which html parameters to refers styles to
@@ -13,9 +15,10 @@ style_ref <- function(tags, htmlParam) {
         text-align:center;
         background-color: white;
         boder: none;
-        box-shadow: 0px 0px 20px 1px rgba(0,0,0,.2);
+        box-shadow: 0px 0px 20px 1px rgba(255,255,255,.4);
         border-radius:5px;
         align-items:center;
+        # color: black;
       }
       #custom-box .box-header {
         display: none;
@@ -25,12 +28,13 @@ style_ref <- function(tags, htmlParam) {
         text-align:center;
         background-color: #e6e6f5;
         boder: none;
-        box-shadow: 0px 0px 20px 1px rgba(0,0,0,.2);
+        box-shadow: 0px 0px 20px 1px rgba(0,0,0,.4);
         border-radius:5px;
         align-items:center;
+        color:black;
       }
       .usual-box-title {
-        box-shadow: 0px 0px 20px 1px rgba(0,0,0,.2);
+        box-shadow: 0px 0px 20px 1px rgba(0,0,0,.4);
         border-radius:5px;
       }
       .login-box {
@@ -69,6 +73,24 @@ style_ref <- function(tags, htmlParam) {
      .skin-purple .main-sidebar {
         box-shadow: 1px 1px 1px 1px rgba(0,0,0,.8);
      }
+     
+     
+     /* logo */
+     .skin-purple .main-header .logo {
+        background-color: black;
+     }
+ 
+     /* logo when hovered */
+     .skin-purple .main-header .logo:hover {
+        background-color: black;
+     }
+ 
+     /* navbar (rest of the header) */
+     .skin-purple .main-header .navbar {
+        background-color: black;
+     }  
+                              
+                              
      #loadmessage {
         position: fixed;
         top: 0px;
