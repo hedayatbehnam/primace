@@ -1,3 +1,9 @@
+on:
+  push:
+    branches: [main, pkgdown-v]
+  pull_request:
+    branches: [main, pkgdown-v]
+
 liara_cloud_storage:
   runs-on: ubuntu-latest
   steps:
