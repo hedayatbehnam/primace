@@ -3,25 +3,25 @@ on:
     branches: [main, pkgdown-v]
   pull_request:
     branches: [main, pkgdown-v]
-
-liara_cloud_storage:
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: "16"
-        
-    - name: install aws-sdk
-      run: |
-        npm install aws-sdk
-  
-    - name: listObject aws-sdki
-      env:
-        LIARA_SECRET_KEY: ${{ secrets.LIARA_SECRET_KEY }}
-        LIARA_ACCESS_KEY: ${{ secrets.LIARA_ACCESS_KEY }}
-        LIARA_ENDPOINT: ${{ secrets.LIARA_ENDPOINT }}
-        LIARA_BUCKET_NAME: ${{ secrets.LIARA_BUCKET_NAME }}
-      run: |
-        node node-js/listObject.js
+jobs:
+  liara_cloud_storage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          
+      - name: install aws-sdk
+        run: |
+          npm install aws-sdk
+    
+      - name: listObject aws-sdki
+        env:
+          LIARA_SECRET_KEY: ${{ secrets.LIARA_SECRET_KEY }}
+          LIARA_ACCESS_KEY: ${{ secrets.LIARA_ACCESS_KEY }}
+          LIARA_ENDPOINT: ${{ secrets.LIARA_ENDPOINT }}
+          LIARA_BUCKET_NAME: ${{ secrets.LIARA_BUCKET_NAME }}
+        run: |
+          node node-js/listObject.js
     
