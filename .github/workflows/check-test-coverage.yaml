@@ -26,9 +26,7 @@ jobs:
     
       - name: test-coverage
         run : |
-            install.packages("devtools")
-            devtools::install_version("mlr3viz", version = "0.5.10")
-            devtools::install_cran(c("covr", "DT"))
+            install.packages(c("covr", "DT", "devtools"))
             devtools::load_all(".")
             test_cov <- devtools::test_coverage(".")
             print(test_cov)
