@@ -45,28 +45,6 @@ jobs:
             rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
 
-      - name: Find Last Modified File in R/dataset directory
-        id: changed-files-specific
-        uses: tj-actions/changed-files@v35
-        with:
-          files: |
-            R/datasets/dataset.RDS
-
-      - name: Check File Last Modification - SUCCESS
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
-        run : |
-          devtools::load_all(".")
-          devtools::build()
-          library(primace)
-          primace::preprocessing()
-        shell : Rscript {0}
-          
-      - name: Check File Last Modification - FAILURE
-        if: steps.changed-files-specific.outputs.any_changed == 'false'
-        run: |
-          echo -e "\033[1;31mNo new dataset file has been added..."
-        
-
   docker:
     runs-on: ubuntu-latest
     needs: R-CMD-check
