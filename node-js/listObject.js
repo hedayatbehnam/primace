@@ -1,16 +1,16 @@
 const AWS = require('aws-sdk');
 
 const config = {
-    endpoint: process.env(LIARA_ENDPOINT),
-    accessKeyId: process.env(LIARA_ACCESS_KEY),
-    secretAccessKey: process.env(LIARA_SECRET_KEY),
+    endpoint: process.env.LIARA_ENDPOINT,
+    accessKeyId: process.env.LIARA_ACCESS_KEY,
+    secretAccessKey: process.env.LIARA_SECRET_KEY,
     region: "default",
 }
 
 const client = new AWS.S3(config);
 
 const params = {
-  Bucket:  process.env(LIARA_BUCKET_NAME), 
+  Bucket:  process.env.LIARA_BUCKET_NAME, 
 };      
 
 // callback
