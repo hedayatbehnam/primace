@@ -18,8 +18,7 @@ const params = {
 
 
 // callback
-client.listObjectsV2(params, (err, data) => {
+client.getObject(params, (err, data) => {
   if (err) console.error(err, err.stack);
-  else console.log("success", data);
+  else console.log(data);
 });
-
