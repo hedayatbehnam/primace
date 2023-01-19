@@ -1,5 +1,3 @@
-#' @include data.R
-NULL
 #' Analytics Sidebar
 #' UI sidebar for Showing descriptive analysis on current dataset
 #' @param id id of module
@@ -17,15 +15,15 @@ analyticsUI <- function(id){
   tabItem(tabName = "analytics",style="overflow:hidden;",
           fluidRow(box(width=12, status="primary",solidHeader = F, id="custom-box",
                        p(span("Analytics", style="font-weight:bold; font-size:24px;")),
-                       "Descriptive analysis of latest dataset is provided here"
-                       )),
+                       "Descriptive analysis of latest dataset is provided here",
+                       class="usual-box-title")),
           fluidRow(infoBox(title = "Number of Observation", value = nrow(test_set),width = 6),
                    infoBox(title = "Mean Age of Patients", value = round(mean(test_set$Age),2),width = 6)),
-          fluidRow(box(id="custom-box",solidHeader = F, status = "primary", width = 6,
-                       selectInput(NS(id, "var"), label = "Select Variable", selected = "Age",choices = names(test_set %>% select_if(is.numeric))),
-                       selectInput(NS(id, "group"), label = "Select Group", selected = "Gender", choices = names(test_set %>% select_if(is.factor))))),
-          fluidRow(box(height = 500,id="custom-box",solidHeader = F, status = "primary", 
-                       width = 6, plotOutput(NS(id, "plotHist"), height=500))))
+          fluidRow(box(id="custom-box",class="usual-box-title",solidHeader = F, status = "primary", width = 6,
+                       selectInput(NS(id, "var"), label = "Select Variable", selected = "Age",choices = names(test_set)),
+                       selectInput(NS(id, "group"), label = "Select Group", selected = "Gender", choices = names(test_set)))),
+          fluidRow(box(height = 500,id="custom-box",class="usual-box-title",solidHeader = F, status = "primary", 
+                       width = 6,plotOutput(NS(id, "plotHist"), height=500))))
 }
 #' Analytics Server
 #' Server side of analyticsUI

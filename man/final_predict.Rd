@@ -2,8 +2,7 @@
 % Please edit documentation in R/final_predict.R
 \name{final_predict}
 \alias{final_predict}
-\title{Final Prediction
-Prediction of each observation according to best points found by youden and closest topleft method.}
+\title{Final Prediction}
 \usage{
 final_predict(predict_table, best_scores, target)
 }
@@ -18,6 +17,5 @@ final_predict(predict_table, best_scores, target)
 predicted table according to best cut-off points of youden index and closest top left point
 }
 \description{
-Final Prediction
 Prediction of each observation according to best points found by youden and closest topleft method.
 }

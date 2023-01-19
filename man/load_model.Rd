@@ -7,8 +7,8 @@ Loading trained models on original study}
 \usage{
 load_model(
   input,
-  rf_model = paste0(Sys.getenv("root_absPath"), "/R/models/rfsrc.learner_mod.RDS"),
-  xgb_model = paset0(Sys.getenv("root_absPath"), "/R/models/xgboost.learner_mod.RDS")
+  rf_model = "models/rfsrc.learner_mod.RDS",
+  xgb_model = "models/xgboost.learner_mod.RDS"
 )
 }
 \arguments{

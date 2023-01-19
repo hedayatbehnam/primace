@@ -21,15 +21,15 @@ server <- function(input, output, session) {
   rv$varnameComplete <- rv$perfMetrics <- rv$predMetrics <- FALSE
   reactiveVal_output(rv, 'perfMetrics', 'empty', output)
   reactiveVal_output(rv, 'predMetrics', 'empty', output)
-  vars <- reactiveValues()
   output$tableVarNames <- renderDataTable({ 
     primace::varnames
   }, options = list(pageLength=10, scrollX=TRUE) 
   )
+  vars <- reactiveValues()
   observeEvent(input$predict_btn,{
     vars$model <- load_model(input,
-                             rf_model=paste0(Sys.getenv("root_absPath"),"/R/models/rfsrc.learner_mod.RDS"),
-                             xgb_model=paste0(Sys.getenv("root_absPath"),"/R/models/xgboost.learner_mod.RDS"))
+                             rf_model="models/rfsrc.learner_mod.RDS",
+                             xgb_model="models/xgboost.learner_mod.RDS")
     vars$data <- upload_data(input)
     vars$time <- case_when(
       input$time_select == "3rd Month" ~ 91,
@@ -44,7 +44,7 @@ server <- function(input, output, session) {
       } else if (vars$data == 'nonValid') {
         reactiveVal_output(rv, 'predMetrics', 'nonValid', output)
         reactiveVal_output(rv, 'perfMetrics', 'nonValid', output)
-        shinybusy::notify_failure("Uploaded file should be in
+        shinybusy::notify_failure("Uploaded file should be in 
                                                 .csv, .rds, .xlsx or .sav format",
                                   position = "center-center",
                                   shinybusy::config_notify(clickToClose=T,width = '400px', fontWeight="bold",
@@ -52,7 +52,7 @@ server <- function(input, output, session) {
       } else if (vars$data == 'mismatch'){
         reactiveVal_output(rv, 'predMetrics', 'mismatch', output)
         reactiveVal_output(rv, 'perfMetrics', 'mismatch', output)
-        shinybusy::notify_failure("At least one variable in uploaded dataset is
+        shinybusy::notify_failure("At least one variable in uploaded dataset is 
                                               not in original training dataset.",
                                   position = "center-center",
                                   shinybusy::config_notify(clickToClose=T,width = '400px', fontWeight="bold",
@@ -62,7 +62,7 @@ server <- function(input, output, session) {
       reactiveVal_output(rv, 'predMetrics', 'complete', output)
       vars$predTbl <- predict_scores(data=vars$data$survData, model=vars$model)
       if (!vars$data$target){
-        vars$surv_roc <- survROC(Stime=vars$predTbl$time,
+        vars$surv_roc <- survROC(Stime=vars$predTbl$time, 
                                  status=vars$predTbl$status,
                                  marker=vars$predTbl$crank,
                                  predict.time=vars$time,
@@ -70,14 +70,11 @@ server <- function(input, output, session) {
         vars$bestPoints <- best_point(c = vars$surv_roc$cut.values,
                                       se = vars$surv_roc$TPR,
                                       sp = vars$surv_roc$Specificity)
-        vars$final_predict <- final_predict(predict_table = vars$predTbl,
+        vars$final_predict <- final_predict(predict_table = vars$predTbl, 
                                             best_scores = vars$bestPoints,
                                             target=T)
         tryCatch({
-          vars$performance_result <- max_perf_calc(predict_table = vars$final_predict) %>% 
-            mutate_at(c("youden", "closest_topleft"), as.numeric) %>% 
-            mutate_if(is.numeric, round ,)
-          print(glimpse(vars$performance_result))
+          vars$performance_result <- max_perf_calc(predict_table = vars$final_predict)
           loadingFunc(message = "initializing ROC plot...")
           reactiveVal_output(rv, 'perfMetrics', 'complete', output)
         }, error=function(e){
@@ -89,13 +86,13 @@ server <- function(input, output, session) {
         })
       } else {
         reactiveVal_output(rv, 'perfMetrics', 'noTarget', output)
-        shinybusy::notify_failure("Because your data file does not contains target variable called
+        shinybusy::notify_failure("Because your data file does not contains target variable called 
                                   Total_MACE, no performance assessment was conducted.",
                                   position = "center-center",
                                   shinybusy::config_notify(clickToClose=T,width = '400px', fontWeight="bold",
                                                            fontSize = "16px", textColor = "white"))
         bestScore <- list(youden=8, closest.tl=8)
-        vars$final_predict <- final_predict(predict_table = vars$predTbl,
+        vars$final_predict <- final_predict(predict_table = vars$predTbl, 
                                             best_scores = bestScore, target=F)
       }
     }
@@ -107,13 +104,13 @@ server <- function(input, output, session) {
     vars$performance_result
   })
   output$predict_plot <- renderPlot({
-    ggroc(roc(vars$df$Total_MACE, vars$pred$Yes,
-              ci=T, smooth=T, smooth.n=10,
-              auc=T), legacy.axes = T, color="red") +
-      xlab("1-Specificity") + ylab("Sensitivity")+
-      geom_segment(aes(x=0,y=0,xend = 1, yend = 1),
-                   linetype = 2,col='black',
-                   lwd=0.05)
+      ggroc(roc(vars$df$Total_MACE, vars$pred$Yes,
+                ci=T, smooth=T, smooth.n=10,
+                auc=T), legacy.axes = T, color="red") + 
+        xlab("1-Specificity") + ylab("Sensitivity")+
+        geom_segment(aes(x=0,y=0,xend = 1, yend = 1),
+                     linetype = 2,col='black',
+                     lwd=0.05)
   }, width="auto", height = 500, res = 96)
   observeEvent(input$man_predict_btn, {
     vars$man_df <- manual_prediction(input)
@@ -121,10 +118,10 @@ server <- function(input, output, session) {
   })
   output$manual_predict_tbl <- renderDataTable({
     if(!is.null(vars$man_predict)){
-      bestScore <- list(youden=7.5, closest.tl=8)
-      vars$final_predict <- final_predict(predict_table = vars$man_predict,
+      bestScore <- list(youden=8, closest.tl=8)
+      vars$final_predict <- final_predict(predict_table = vars$man_predict, 
                                           best_scores = bestScore, target=F)
-      tail(vars$final_predict, n=1) %>% mutate_if(is.numeric, round, 3)
+      vars$final_predict %>% mutate_if(is.numeric, round, 3)
     }
   }, options = list(scrollX=TRUE, dom='t'))
 }

@@ -4,7 +4,6 @@
 [![Check-New-Dataset](https://github.com/hedayatbehnam/primace/workflows/Check-New-Dataset/badge.svg)](https://github.com/hedayatbehnam/primace/actions)  
 
 [![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)
-
 <!-- badges: end -->
 
 # PRIMACE Prediction Tool

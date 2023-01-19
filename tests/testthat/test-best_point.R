@@ -11,4 +11,5 @@ test_that("best_point test", {
     expect_named(best_point(c = vars$surv_roc$cut.values,se = vars$surv_roc$TPR,
                             sp = vars$surv_roc$Specificity),c("youden", "closest.tl"))
   })
+  
 })

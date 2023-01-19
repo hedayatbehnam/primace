@@ -1,5 +1,5 @@
-#' Best Point Finder
-#' Finding best point of ROC curve according to youden and closest topleft method.
+#' @title Best Point Finder
+#' @description Finding best point of ROC curve according to youden and closest topleft method.
 #' @param c c_rank scores
 #' @param se sensitivity
 #' @param sp specificity

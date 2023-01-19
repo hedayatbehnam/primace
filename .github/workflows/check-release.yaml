@@ -24,12 +24,12 @@ jobs:
       - uses: r-lib/actions/setup-renv@v2
         with:
           profile: '"shiny"'
-  
+          
       - name: install texlive
         run : |
             sudo apt-get install texlive
             sudo apt-get install texlive-fonts-extra
-
+            
       - name: R CMD CHECK inside r
         run : |
             install.packages("devtools")

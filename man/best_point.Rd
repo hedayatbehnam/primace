@@ -2,8 +2,7 @@
 % Please edit documentation in R/best_point.R
 \name{best_point}
 \alias{best_point}
-\title{Best Point Finder
-Finding best point of ROC curve according to youden and closest topleft method.}
+\title{Best Point Finder}
 \usage{
 best_point(c, se, sp)
 }
@@ -18,6 +17,5 @@ best_point(c, se, sp)
 A list containing youden index and closest topleft points
 }
 \description{
-Best Point Finder
 Finding best point of ROC curve according to youden and closest topleft method.
 }

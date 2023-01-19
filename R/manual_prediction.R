@@ -31,9 +31,9 @@ manual_prediction <- function(input){
     Cardiogenicshock = input$Cardiogenicshock,
     Door_to_Device = input$Door_to_Device,
     Opium_bin = input$Opium_bin,
-    Time_to_MACE = 0,
-    First_MACE_bin = 0
+    First_MACE_bin = 0, 
+    Time_to_MACE = 0
   )
-  manual_features %>% mutate_all(as.numeric) -> manual_features
+  manual_features %>% mutate_if(is.character, as.numeric) -> manual_features
   return (manual_features)
 }

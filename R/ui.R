@@ -1,5 +1,3 @@
-#' @include global.R styles.R analytics.R authors.R abstract.R
-NULL
 #' User Interface
 #' Main user interface of primace app
 #' Using shinydashboard package to create a dashboard like tabbed UI
@@ -7,28 +5,124 @@ NULL
 #' @noRd
 sidebar <- dashboardSidebar(
   sidebarMenu(
-    homeSidebar('home'),
+    menuItem("Home", tabName = "home", icon = icon("home")),
     analyticsSidebar("analytics"),
-    authorsSidebar("authors"),
-    abstractSidebar('abstract'),
+    menuItem("Authors", tabName = "authors", icon = icon("pencil-alt")),
+    menuItem("Abstract", tabName = "abstract", icon = icon("file")),
     menuItem("Prediction Tool", tabName = "prediction", icon = icon("wrench"),
-             badgeLabel = "API", badgeColor = "purple"),
-    contactSidebar('contacts'),
-    aboutSidebar('about')
+             badgeLabel = "API", badgeColor = "green"),
+    menuItem("Contact", tabName = "contact", icon = icon("phone")),
+    menuItem("About", tabName = "about", icon = icon("info"))
   )
 )
 #' body of main user interface
 #' @noRd
 body <- dashboardBody(
-  shinybusy::add_busy_spinner(spin = "half-circle", position = "bottom-right", color="white",
+  shinybusy::add_busy_spinner(spin = "half-circle", position = "bottom-right",
                               margins = c("60%", "42%"), width = "70px", height = "70px"),
   style_ref(tags, "style"),
   tags$script(HTML("$('body').addClass('fixed');")),
   tabItems(
-    homeUI('home'),
-    analyticsUI("analytics"),
-    authorsUI('authors'),
-    abstractUI('abstract'),
+    tabItem(tabName = "home",
+            br(),
+            fluidRow(column(width=10, offset = 1,box(id='custom-box',width=12,  status = "primary", solidHeader = F,
+                "PRIMACE Is A Machine Learning Prediction Tool for First Year Survival Following Primary Percutaneous Intervention", br(),class="title"))), hr(),
+            fluidRow(solidHeader = F, column(width = 10, offset=1, align="center", box(id='custom-box', width=12, status = "primary", 
+                                            solidHeader = F,img(src='logothc.png',align = "center", width=200),br(),
+                       p("Tehran Heart Center", class="thc-logo-text"),
+                       p("Artificial Intelligence Division",
+                       class="thc-logo-subtext"), class='title'))), hr(),
+            fluidRow(column(width=5, offset=1,box(width =12, id='custom-box',solidHeader = F, status = "primary",
+                              "Using Survival Random Forest Machine Learning Model
+                              to Predict Outcome with provided data in file format of .RDS, 
+                              .csv, .sav, .xlsx ",class="title")),
+                     column(width = 5,box(width = 12,id = 'custom-box',solidHeader = F, status = "primary",
+                              "An Online Machine Learning Tool to Predict First 
+                              Year Major Adverse Cardiovascular Events  
+                              Following Primary Percutaneous
+                              Coronary Intervention", class="title")))),
+    tabItem(tabName = "authors",
+            fluidRow(box(width = 12, id='custom-box',status = "primary",solidHeader = F,
+              p(span("Authors and Affiliations", style="font-weight:bold; 
+                    font-size:24px;")),hr(),
+                    "Yaser Jenab"," MD", tags$sup("1"),br(),
+                    "Behnam Hedayat, MD", tags$sup("2"), br(),
+                    "Amirali Karimi, MD", tags$sup("3"), br(),
+                    "Sarah Taaghi, MD", tags$sup("4"),br(),
+                    "Seyyed Mojtaba Ghorashi, MD", tags$sup("5"),br(),
+                    "Hamed Ekhtiari, MD", tags$sup("6"),br(),
+                    hr(),
+                    "1. Professor of Cardiology, Fellowship of Interventional Cardiology, 
+                        Tehran Heart Center, 
+                        Tehran University of Medical Sciences", br(),
+                    "2. Assistant Professor of Cardiology, 
+                        Tehran Heart Center, 
+                        Tehran University of Medical Sciences, Tehran, Iran.", br(),
+                    "3. School of medicine, Tehran University of Medical Sciences, 
+                        Tehran, Iran", br(),
+                    "4. Assistant Professor of Cardiology,
+                        Rasoul Akram Hospital,
+                        Iran University of Medical Sciences,
+                        Tehran, Iran",br(),
+                    "5. Cardiovascular Disease Research Institute,
+                        Tehran Heart Center, 
+                        Tehran University of Medical Sciences, Tehran, Iran.",br(),
+                    "6. Department of Psychiatry, 
+                        University of Minnesota, Minneapolis, MN, USA",
+                    br(),hr(),
+                    span("Correspondence:", style="font-weight:bold"),br(), 
+                         "Sarah Taaghi, ", br(), "Assistant professor of cardiology", 
+                          br(),
+                          "Rasoul Akram Hospital, ", br(), 
+                          "Iran University of Medical Sciences,", br(),
+                          "Tehran, Iran.", class="usual-box-title")
+    )),
+    tabItem(tabName = "abstract", 
+            fluidRow(box(width=12, status = "primary", solidHeader = F, id='custom-box',
+                  p(span("Abstract", style="font-weight:bold; font-size:24px;")), hr(),
+                  p(strong("Background:")),"Considerable number of people still 
+                  use opium worldwide and many believe in opium's health benefits. 
+                  However, several studies proved the detrimental effects of 
+                  opium on the body, especially the cardiovascular system. 
+                  Herein, we aimed to provide the first evidence regarding the 
+                  effects of opium use on one-year major adverse cardiovascular 
+                  events (MACE) in the patients with ST-elevation MI (STEMI) who 
+                  underwent primary PCI.", hr(),
+                  p(strong("Materials and methods:")),"We performed a propensity 
+                  score matching of 2:1 (controls: opium users) that yielded 518 
+                  opium users and 1036 controls. Then, we performed conventional 
+                  statistical and machine learning analyses on these matched cohorts. 
+                  Regarding the conventional analysis, we performed multivariate 
+                  analysis for hazard ratio (HR) of different variables and MACE 
+                  and plotted Kaplan Meier curves. In the machine learning section, 
+                  we used two tree-based ensemble algorithms, Survival Random Forest 
+                  and XGboost for survival analysis. Variable importance (VIMP), 
+                  tree minimal depth, and variable hunting were used to identify 
+                  the importance of opium among other variables.", hr(),
+                  p(strong("Results:")),"Opium users experienced more one-year 
+                  MACE than their counterparts, although it did not reach 
+                  statistical significance (Opium: 72/518 (13.9%), Control: 
+                  112/1036 (10.8%), HR: 1.27 (95% CI: 0.94-1.71), adjusted 
+                  p-value=0.136). Survival random forest algorithm ranked opium 
+                  use as 13th, 13th, and 12th among 26 variables, in variable 
+                  importance, minimal depth, and variable hunting, respectively. 
+                  XGboost revealed opium use as the 12th important variable. 
+                  Partial dependence plot demonstrated that opium users had 
+                  more one-year MACE compared to non-opium-users.", hr(),
+                  p(strong("Conclusion:")), "Opium had no protective effects on 
+                  one-year MACE after primary PCI on patients with STEMI. 
+                  Machine learning and one-year MACE analysis revealed some 
+                  evidence of its possible detrimental effects, although the 
+                  evidence was not strong and significant. As we observed no 
+                  strong evidence on protective or detrimental effects of opium, 
+                  future STEMI guidelines may provide similar strategies for 
+                  opium and non-opium users, pending the results of forthcoming 
+                  studies. Governments should increase the public awareness 
+                  regarding the evidence for non-beneficial or detrimental effects 
+                  of opium on various diseases, including the outcomes of primary 
+                  PCI, to dissuade many users from relying on false beliefs about 
+                  opium's benefits to continue its consumption.",class="usual-box-title")
+    )),
     tabItem(tabName = "prediction",
         tabsetPanel(type="tabs", id = "predictTabs",
             tabPanel("Introduction", 
@@ -348,13 +442,28 @@ body <- dashboardBody(
             # ),
         )
     ),
-    contactsUI('contact'),
-    aboutUI('about')
+    tabItem(tabName = "contact",
+            fluidRow(box(width=12, status = "primary",solidHeader = F, id='custom-box',
+                         p(span("Contact", style="font-weight:bold; 
+                                    font-size:24px;")), hr(),
+                          strong("Phone: "), "+98-21-88029600", br(),
+                          strong("Email: "),"email@thc.tums.ac.ir, 
+                          dr.hedayatb@gmail.com", br(),
+                          strong("Address: "), "Tehran Heart Center, 
+                          Kargar St. Jalal al-Ahmad Cross, Tehran, Iran",br(),
+                          strong("Zip Code: "), "1411713138",class="usual-box-title")
+    )),
+    tabItem(tabName = "about",
+            fluidRow(box(width=12, status="primary",solidHeader = F, id="custom-box",
+            p(span("About", style="font-weight:bold; font-size:24px;")),
+                 class="usual-box-title")
+    )),
+    analyticsUI("analytics")
   )
 )
 #' header of main ui
 #' @noRd
-CustomHeader <- dashboardHeader(title ="PRIMACE", userOutput("user"))
+CustomHeader <- dashboardHeader(title ="PRIMACE")
 # CustomHeader$children[[3]]$children <- list(
 #   div(class="login-box",icon("user"),"Login"))
 #' ui composite
@@ -364,5 +473,5 @@ ui <- shinydashboardPlus::dashboardPage(
   header = CustomHeader,
   sidebar = sidebar,
   body = body,
-  footer = dashboardFooter(left = "All rights reserved. 2023")
+  footer = dashboardFooter(left = "All rights reserved.")
 )
