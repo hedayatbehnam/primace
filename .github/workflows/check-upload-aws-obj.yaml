@@ -7,7 +7,7 @@ on:
 name: Liara-Upload-aws-obj
 
 jobs:
-  liara_upload-aws-obj
+  liara_upload-aws-obj:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
