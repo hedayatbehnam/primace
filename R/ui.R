@@ -20,7 +20,7 @@ sidebar <- dashboardSidebar(
 #' body of main user interface
 #' @noRd
 body <- dashboardBody(
-  shinybusy::add_busy_spinner(spin = "half-circle", position = "bottom-right", color="white",
+  shinybusy::add_busy_spinner(spin = "half-circle", position = "bottom-right", color="black",
                               margins = c("60%", "42%"), width = "70px", height = "70px"),
   style_ref(tags, "style"),
   tags$script(HTML("$('body').addClass('fixed');")),
