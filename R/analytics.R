@@ -12,6 +12,7 @@ analyticsSidebar <- function(id){
 #' @param id id of module
 #' @noRd
 analyticsUI <- function(id){
+  # test_set <- suppressWarnings(dataset_modification(test_set))
   tabItem(tabName = "analytics",style="overflow:hidden;",
           fluidRow(box(title = strong("Descriptive Analysis of Train, Test and Total Data"),width=12, status = "primary", solidHeader = F, id="custom-box",
                        column(3,selectInput(inputId = NS(id,"data_select"),label = "Select Dataset", selected = "Total", choices = c("Total", "Train","Test"))))),
@@ -35,10 +36,11 @@ analyticsUI <- function(id){
 #' @noRd
 analyticsServer <- function(id){
   moduleServer(id, function(input, output, session){
-    tryCatch({
-      s3_data <- Sys.getenv("s3")$get_object(Bucket = "aiworld", Key = "dataset/dataset.RDS")
-      s3_train <-Sys.getenv("s3")$get_object(Bucket = "aiworld", Key = "dataset/train.RDS")
-      s3_test <-Sys.getenv("s3")$get_object(Bucket = "aiworld", Key = "dataset/test.RDS")
+    if (Sys.getenv("s3") != ""){
+      s3 <- Sys.getenv("s3")
+      s3_data <- s3$get_object(Bucket = "aiworld", Key = "dataset/dataset.RDS")
+      s3_train <-s3$get_object(Bucket = "aiworld", Key = "dataset/train.RDS")
+      s3_test <- s3$get_object(Bucket = "aiworld", Key = "dataset/test.RDS")
       data <- "data.rds"
       train <- "train.rds"
       test <- "test.rds"
@@ -49,12 +51,12 @@ analyticsServer <- function(id){
       train <- readRDS(train)
       test <- readRDS(test)
       total <- c(train,test)
-    }, error= function(e) {
+    } else {
       data <- readRDS(paste0(Sys.getenv("root_absPath"), "/R/datasets/dataset.RDS"))
       train <- readRDS(paste0(Sys.getenv("root_absPath"), "/R/datasets/train.RDS"))
       test <- readRDS(paste0(Sys.getenv("root_absPath"), "/R/datasets/test.RDS"))
       total <- c(train, test)
-    })
+    }
     dataVar <- reactiveValues()
     observeEvent(input$data_select, {
         if (input$data_select == "Total") dataVar$filter_row <- total else if (input$data_select=="Train") dataVar$filter_row <- train else dataVar$filter_row <- test 
