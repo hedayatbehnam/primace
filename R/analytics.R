@@ -53,13 +53,11 @@ analyticsServer <- function(id){
       test <- readRDS(test)
       total <- c(train,test)
     } else {
-      data <- readRDS(paste0(Sys.getenv("root_absPath"), "/R/datasets/dataset.RDS"))
-      train <- readRDS(paste0(Sys.getenv("root_absPath"), "/R/datasets/train.RDS"))
-      test <- readRDS(paste0(Sys.getenv("root_absPath"), "/R/datasets/test.RDS"))
-      total <- c(train, test)
+      return (NULL)
     }
     dataVar <- reactiveValues()
     observeEvent(input$data_select, {
+        req(total)
         if (input$data_select == "Total") dataVar$filter_row <- total else if (input$data_select=="Train") dataVar$filter_row <- train else dataVar$filter_row <- test 
         dataVar$dataset <- data %>% dplyr::slice(dataVar$filter_row)
     })
@@ -78,8 +76,7 @@ analyticsServer <- function(id){
         geom_density(alpha=0.2)+
         theme(plot.margin = margin(0, 2,100,2))
     },height=500, res=96, width="auto")
-    output$obs_num <- renderText({req(dataVar$dataset) 
-      nrow(dataVar$dataset)})
+    output$obs_num <- renderText({if (req(dataVar$dataset)) nrow(dataVar$dataset)})
     output$mace_num <- renderText({req(dataVar$dataset) 
       round(as.numeric(table(dataVar$dataset$First_MACE_bin))[2],3)})
     output$time_mean <- renderText({req(dataVar$dataset) 
