@@ -12,8 +12,6 @@ analyticsSidebar <- function(id){
 #' @param id id of module
 #' @noRd
 analyticsUI <- function(id){
-  test_set <- readRDS(paste0(Sys.getenv("root_absPath"),"/R/datasets/dataset.RDS"))
-  # test_set <- suppressWarnings(dataset_modification(test_set))
   tabItem(tabName = "analytics",style="overflow:hidden;",
           fluidRow(box(title = strong("Descriptive Analysis of Train, Test and Total Data"),width=12, status = "primary", solidHeader = F, id="custom-box",
                        column(3,selectInput(inputId = NS(id,"data_select"),label = "Select Dataset", selected = "Total", choices = c("Total", "Train","Test"))))),
@@ -25,8 +23,8 @@ analyticsUI <- function(id){
           fluidRow(infoBox(title = "Number of MACE", value = textOutput(NS(id, "mace_num")), width = 6, color = "red", icon = icon("skull-crossbones")),
                    infoBox(title = "Mean Time to MACE", value = textOutput(NS(id,"time_mean")),width = 6, icon = icon("clock"),color = "navy")),
           fluidRow(box(id="custom-box",solidHeader = F, status = "primary", width = 6,
-                       selectInput(inputId = NS(id, "var"), label = "Select Variable", selected = "Age",choices = names(test_set %>% select_if(is.numeric))),
-                       selectInput(inputId = NS(id, "group"), label = "Select Group", selected = "Gender", choices = names(test_set %>% select_if(is.factor))))),
+                       uiOutput(NS(id,"varnames_num")),
+                       uiOutput(NS(id,"varnames_fct")))),
           fluidRow(box(height = 500,id="custom-box",solidHeader = F, status = "primary", 
                        width = 6, plotOutput(outputId = NS(id, "plotHist"), height=500))))
 }
@@ -37,16 +35,39 @@ analyticsUI <- function(id){
 #' @noRd
 analyticsServer <- function(id){
   moduleServer(id, function(input, output, session){
-    data <- readRDS(paste0(Sys.getenv("root_absPath"), "/R/datasets/dataset.RDS"))
-    train <- readRDS(paste0(Sys.getenv("root_absPath"), "/R/datasets/train.RDS"))
-    test <- readRDS(paste0(Sys.getenv("root_absPath"), "/R/datasets/test.RDS"))
-    total <- c(train, test)
+    tryCatch({
+      s3_data <- Sys.getenv("s3")$get_object(Bucket = "aiworld", Key = "dataset/dataset.RDS")
+      s3_train <-Sys.getenv("s3")$get_object(Bucket = "aiworld", Key = "dataset/train.RDS")
+      s3_test <-Sys.getenv("s3")$get_object(Bucket = "aiworld", Key = "dataset/test.RDS")
+      data <- "data.rds"
+      train <- "train.rds"
+      test <- "test.rds"
+      writeBin(s3_data$Body,con=data)
+      writeBin(s3_train$Body,con=train)
+      writeBin(s3_test$Body,con=test)
+      data <- readRDS(data)
+      train <- readRDS(train)
+      test <- readRDS(test)
+      total <- c(train,test)
+    }, error= function(e) {
+      data <- readRDS(paste0(Sys.getenv("root_absPath"), "/R/datasets/dataset.RDS"))
+      train <- readRDS(paste0(Sys.getenv("root_absPath"), "/R/datasets/train.RDS"))
+      test <- readRDS(paste0(Sys.getenv("root_absPath"), "/R/datasets/test.RDS"))
+      total <- c(train, test)
+    })
     dataVar <- reactiveValues()
     observeEvent(input$data_select, {
         if (input$data_select == "Total") dataVar$filter_row <- total else if (input$data_select=="Train") dataVar$filter_row <- train else dataVar$filter_row <- test 
         dataVar$dataset <- data %>% dplyr::slice(dataVar$filter_row)
     })
+    output$varnames_num <- renderUI({
+        selectInput(inputId = NS(id, "var"), label = "Select Variable", selected = "Age", choices = names(dataVar$dataset %>% select_if(is.numeric)))
+    })
+    output$varnames_fct <- renderUI({
+        selectInput(inputId = NS(id, "group"), label = "Select Group", selected = "Gender", choices = names(dataVar$dataset %>% select_if(is.factor)))
+    })
     output$plotHist <- renderPlot({
+      req(input$var)
       ggplot(dataVar$dataset, aes_string(x=input$var, fill=input$group), height=500) +
         geom_histogram(aes(y=..density..))+
         geom_density(alpha=0.2)+
