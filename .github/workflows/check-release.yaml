@@ -1,8 +1,6 @@
-# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
-# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches: [main, master, packaged-v, v3, pkgdown-v]
+    branches: [main, packaged-v, v3, pkgdown-v]
 
 name: R-CMD-check
 
@@ -13,6 +11,10 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      LIARA_ENDPOINT: ${{ secrets.LIARA_ENDPOINT }}
+      LIARA_BUCKET_NAME: ${{ secrets.LIARA_BUCKET_NAME }}
+      LIARA_ACCESS_KEY: ${{ secrets.LIARA_ACCESS_KEY }}
+      LIARA_SECRET_KEY: ${{ secrets.LIARA_SECRET_KEY }}
 
     steps:
       - uses: actions/checkout@v3
@@ -78,6 +80,10 @@ jobs:
           tags: ${{ env.TEST_TAG }}
           build-args: |
             GIT_PAT=${{ secrets.GITHUB_TOKEN }}
+            LIARA_ENDPOINT=${{ secrets.LIARA_ENDPOINT }}
+            LIARA_BUCKET_NAME=${{ secrets.LIARA_BUCKET_NAME }}
+            LIARA_ACCESS_KEY=${{ secrets.LIARA_ACCESS_KEY }}
+            LIARA_SECRET_KEY=${{ secrets.LIARA_SECRET_KEY }}
       -
         name: Test
         run: |
@@ -93,6 +99,10 @@ jobs:
           tags: ${{ env.LATEST_TAG }} 
           build-args: |
             GIT_PAT=${{ secrets.GITHUB_TOKEN }}
+            LIARA_ENDPOINT=${{ secrets.LIARA_ENDPOINT }}
+            LIARA_BUCKET_NAME=${{ secrets.LIARA_BUCKET_NAME }}
+            LIARA_ACCESS_KEY=${{ secrets.LIARA_ACCESS_KEY }}
+            LIARA_SECRET_KEY=${{ secrets.LIARA_SECRET_KEY }}
 
   CD_Liara:
     runs-on: ubuntu-latest
