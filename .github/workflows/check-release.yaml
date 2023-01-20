@@ -34,7 +34,8 @@ jobs:
 
       - name: R CMD CHECK inside r
         run : |
-            "printenv LIARA_ENDPOINT"
+            chk <- system("printenv LIARA_ENDPOINT", intern = T)
+            print(chk)
             install.packages("devtools")
             renv::restore()
             install.packages("mlr3")

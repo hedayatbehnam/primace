@@ -1,8 +1,6 @@
 on:
   push:
     branches: [main, master, pkgdown-v]
-  pull_request:
-    branches: [main, master, pkgdown-v]
 
 name: check-test-coverage
 
