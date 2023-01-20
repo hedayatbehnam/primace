@@ -9,7 +9,10 @@ if (!requireNamespace("paws", quietly = TRUE))
 library("here"); library("paws")
 Sys.setenv(root_absPath = here::here())
 args <- commandArgs(trailingOnly = T)
-tryCatch(Sys.setenv(s3 = paws::s3(config=list(endpoint=paste0("https://",args[1]), 
-        access_key_id=args[2], secret_access_key=args[3], region="default"))), 
-        error=function(e) invisible())
+tryCatch(Sys.setenv(s3 = paws::s3(config=list(
+  endpoint = paste0("https://",suppressWarnings(system("printenv LIARA_ENDPOINT", intern = T))), 
+  access_key_id = suppressWarnings(system("printenv LIARA_ACCESS_KEY", intern = T)), 
+  secret_access_key = suppressWarnings(system("printenv LIARA_SECRET_KEY", intern = T)), 
+  region="default"))), 
+error = function(e) invisible())
 

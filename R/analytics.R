@@ -37,6 +37,7 @@ analyticsUI <- function(id){
 analyticsServer <- function(id){
   moduleServer(id, function(input, output, session){
     if (Sys.getenv("s3") != ""){
+      print(Sys.getenv("s3"))
       s3 <- Sys.getenv("s3")
       s3_data <- s3$get_object(Bucket = "aiworld", Key = "dataset/dataset.RDS")
       s3_train <-s3$get_object(Bucket = "aiworld", Key = "dataset/train.RDS")
@@ -63,9 +64,11 @@ analyticsServer <- function(id){
         dataVar$dataset <- data %>% dplyr::slice(dataVar$filter_row)
     })
     output$varnames_num <- renderUI({
+        req(dataVar$dataset)
         selectInput(inputId = NS(id, "var"), label = "Select Variable", selected = "Age", choices = names(dataVar$dataset %>% select_if(is.numeric)))
     })
     output$varnames_fct <- renderUI({
+        req(dataVar$dataset)
         selectInput(inputId = NS(id, "group"), label = "Select Group", selected = "Gender", choices = names(dataVar$dataset %>% select_if(is.factor)))
     })
     output$plotHist <- renderPlot({
@@ -75,10 +78,14 @@ analyticsServer <- function(id){
         geom_density(alpha=0.2)+
         theme(plot.margin = margin(0, 2,100,2))
     },height=500, res=96, width="auto")
-    output$obs_num <- renderText({nrow(dataVar$dataset)})
-    output$mace_num <- renderText({round(as.numeric(table(dataVar$dataset$First_MACE_bin))[2],3)})
-    output$time_mean <- renderText({paste(round(mean(dataVar$dataset$Time_to_MACE[dataVar$dataset$First_MACE_bin==1]),2), "days")})
-    output$age_mean <- renderText({round(mean(dataVar$dataset$Age),2)})
+    output$obs_num <- renderText({req(dataVar$dataset) 
+      nrow(dataVar$dataset)})
+    output$mace_num <- renderText({req(dataVar$dataset) 
+      round(as.numeric(table(dataVar$dataset$First_MACE_bin))[2],3)})
+    output$time_mean <- renderText({req(dataVar$dataset) 
+      paste(round(mean(dataVar$dataset$Time_to_MACE[dataVar$dataset$First_MACE_bin==1]),2), "days")})
+    output$age_mean <- renderText({req(dataVar$dataset) 
+      round(mean(dataVar$dataset$Age),2)})
   })
 }
               

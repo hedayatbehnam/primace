@@ -13,6 +13,11 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      GIT_PAT: ${{ secrets.GITHUB_TOKEN }}
+      LIARA_ENDPOINT: ${{ secrets.LIARA_ENDPOINT }}
+      LIARA_BUCKET_NAME: ${{ secrets.LIARA_BUCKET_NAME }}
+      LIARA_ACCESS_KEY: ${{ secrets.LIARA_ACCESS_KEY }}
+      LIARA_SECRET_KEY: ${{ secrets.LIARA_SECRET_KEY }}
     
     steps:
       - uses: actions/checkout@v3
