@@ -10,8 +10,8 @@ library("here"); library("paws")
 Sys.setenv(root_absPath = here::here())
 args <- commandArgs(trailingOnly = T)
 liara_s3 <- suppressWarnings(system("printenv LIARA_BUCKET_NAME", intern = T))
-if (exists("liara_s3")){
-  if (attr(liara_s3, "status")!= 1){
+print(liara_s3)
+if (length(liara_s3) != 0){
     aws_s3 <- paws::s3(
       config = list(
         credentials = list(
@@ -25,6 +25,6 @@ if (exists("liara_s3")){
       )
     )
   } else { invisible(function() return (NULL))}
-} else { invisible(function() return (NULL))}
+
 
 
