@@ -23,6 +23,6 @@ if (attr(liara_s3, "status") != 1){
       region = "default"
     )
 )
-} else { function(e) return (NULL)}
+} else { invisible(function() return (NULL))}
 
 
