@@ -36,12 +36,11 @@ analyticsUI <- function(id){
 #' @noRd
 analyticsServer <- function(id){
   moduleServer(id, function(input, output, session){
-    if (Sys.getenv("s3") != ""){
-      print(Sys.getenv("s3"))
-      s3 <- Sys.getenv("s3")
-      s3_data <- s3$get_object(Bucket = "aiworld", Key = "dataset/dataset.RDS")
-      s3_train <-s3$get_object(Bucket = "aiworld", Key = "dataset/train.RDS")
-      s3_test <- s3$get_object(Bucket = "aiworld", Key = "dataset/test.RDS")
+    if (exists("aws_s3", inherits = T)){
+      aws_s3_inst <- get("aws_s3", inherits = T)
+      s3_data <- aws_s3$get_object(Bucket = "aiworld", Key = "dataset/dataset.RDS")
+      s3_train <-aws_s3$get_object(Bucket = "aiworld", Key = "dataset/train.RDS")
+      s3_test <- aws_s3$get_object(Bucket = "aiworld", Key = "dataset/test.RDS")
       data <- "data.rds"
       train <- "train.rds"
       test <- "test.rds"
@@ -76,7 +75,8 @@ analyticsServer <- function(id){
         geom_density(alpha=0.2)+
         theme(plot.margin = margin(0, 2,100,2))
     },height=500, res=96, width="auto")
-    output$obs_num <- renderText({if (req(dataVar$dataset)) nrow(dataVar$dataset)})
+    output$obs_num <- renderText({(req(dataVar$dataset)) 
+      nrow(dataVar$dataset)})
     output$mace_num <- renderText({req(dataVar$dataset) 
       round(as.numeric(table(dataVar$dataset$First_MACE_bin))[2],3)})
     output$time_mean <- renderText({req(dataVar$dataset) 

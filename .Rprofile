@@ -9,10 +9,20 @@ if (!requireNamespace("paws", quietly = TRUE))
 library("here"); library("paws")
 Sys.setenv(root_absPath = here::here())
 args <- commandArgs(trailingOnly = T)
-tryCatch(Sys.setenv(s3 = paws::s3(config=list(
-  endpoint = paste0("https://",suppressWarnings(system("printenv LIARA_ENDPOINT", intern = T))), 
-  access_key_id = suppressWarnings(system("printenv LIARA_ACCESS_KEY", intern = T)), 
-  secret_access_key = suppressWarnings(system("printenv LIARA_SECRET_KEY", intern = T)), 
-  region="default"))), 
-error = function(e) invisible())
+liara_s3 <- suppressWarnings(system("printenv LIARA_BUCKET_NAME", intern = T))
+if (attr(liara_s3, "status") != 1){
+  aws_s3 <- paws::s3(
+    config = list(
+      credentials = list(
+        creds = list(
+          access_key_id = suppressWarnings(system("printenv LIARA_ACCESS_KEY", intern = T)),
+          secret_access_key = suppressWarnings(system("printenv LIARA_SECRET_KEY", intern = T))
+        )
+      ),
+      endpoint = paste0("https://",suppressWarnings(system("printenv LIARA_ENDPOINT", intern = T))),
+      region = "default"
+    )
+)
+} else { function(e) return (NULL)}
+
 
