@@ -41,9 +41,9 @@ analyticsServer <- function(id){
       s3_data <- aws_s3$get_object(Bucket = "aiworld", Key = "dataset/dataset.RDS")
       s3_train <-aws_s3$get_object(Bucket = "aiworld", Key = "dataset/train.RDS")
       s3_test <- aws_s3$get_object(Bucket = "aiworld", Key = "dataset/test.RDS")
-      data <- "../tmp/data.rds"
-      train <- "../tmp/train.rds"
-      test <- "../tmp/test.rds"
+      data <- "/tmp/data.rds"
+      train <- "/tmp/train.rds"
+      test <- "/tmp/test.rds"
       writeBin(s3_data$Body,con=data)
       writeBin(s3_train$Body,con=train)
       writeBin(s3_test$Body,con=test)
