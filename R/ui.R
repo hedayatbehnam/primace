@@ -1,4 +1,4 @@
-#' @include global.R styles.R analytics.R authors.R abstract.R
+#' @include global.R styles.R analytics.R authors.R abstract.R home.R
 NULL
 #' User Interface
 #' Main user interface of primace app

@@ -54,6 +54,10 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       TEST_TAG: bhedayat/test-primace:test
       LATEST_TAG: bhedayat/test-primace:latest
+      LIARA_ENDPOINT: ${{ secrets.LIARA_ENDPOINT }}
+      LIARA_BUCKET_NAME: ${{ secrets.LIARA_BUCKET_NAME }}
+      LIARA_ACCESS_KEY: ${{ secrets.LIARA_ACCESS_KEY }}
+      LIARA_SECRET_KEY: ${{ secrets.LIARA_SECRET_KEY }}
     
     steps:
       -
