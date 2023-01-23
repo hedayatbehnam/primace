@@ -69,7 +69,9 @@ jobs:
               use-public-rspm: true
               
           - name: install paws package
-            run: install.packages("paws")
+            run: |
+              install.packages("paws")
+            shell: Rscript{0}
             
           - name: connect to aws s3 bucket - find last modifications time
             id: last_modified
