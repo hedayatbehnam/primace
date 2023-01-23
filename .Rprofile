@@ -10,7 +10,6 @@ library("here"); library("paws")
 Sys.setenv(root_absPath = here::here())
 args <- commandArgs(trailingOnly = T)
 liara_s3 <- suppressWarnings(system("printenv LIARA_BUCKET_NAME", intern = T))
-print(liara_s3)
 if (length(liara_s3) != 0){
     aws_s3 <- paws::s3(
       config = list(
@@ -24,7 +23,4 @@ if (length(liara_s3) != 0){
         region = "default"
       )
     )
-  } else { invisible(function() return (NULL))}
-
-
-
+} else { invisible(function() return (NULL))}

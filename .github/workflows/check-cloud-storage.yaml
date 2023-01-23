@@ -27,4 +27,4 @@ jobs:
           LIARA_BUCKET_NAME: ${{ secrets.LIARA_BUCKET_NAME }}
         run: |
           node node-js/listObject.js
-    
+          echo -e "\033[1;31mSuccessful connection to cloud storage s3 bucket..."

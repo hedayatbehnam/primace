@@ -27,4 +27,6 @@ jobs:
           LIARA_BUCKET_NAME: ${{ secrets.LIARA_BUCKET_NAME }}
         run: |
           node node-js/uploadFile.js
+          echo -e "\033[1;31mSuccessful get object from cloud storage s3 bucket..."
+
     
