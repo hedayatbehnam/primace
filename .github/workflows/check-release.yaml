@@ -68,35 +68,39 @@ jobs:
             with:
               use-public-rspm: true
               
+          - uses: r-lib/actions/setup-renv@v2
+            with:
+              profile: '"shiny"'
+              
           - name: install paws package
-            run: |
+            run : |
               install.packages("paws")
-            shell: Rscript{0}
+            shell : Rscript{0}
             
           - name: connect to aws s3 bucket - find last modifications time
             id: last_modified
-            run: |
+            run : |
               Rscript -e helper/check_lastModification.R >> $GITHUB_OUTPUT
         
           - name: failed-last-mod
             if: steps.last_modified.outputs == 'NULL'
-            run: | 
+            run : | 
               echo -e "\033[1;31mUnable to connect to s3 bucket."
           
           - name: not-changed-last-mod
             if: steps.last_modified.outputs == 'FALSE'
-            run: |
+            run : |
               echo -e "\033[1;31mDataset has no been changed since last modification"
                 
           - name: changed-last-mod-preprocessing
             if: steps.last_modified.outputs == 'TRUE'
-            run: |
+            run : |
               echo -e "\033[1;31mDataset has been changed"
               echo -e "\033[1;31mPreprocessing is being initiating..."
               
           - name: changed-last-mod-preprocessing
             if: steps.last_modified.outputs == 'TRUE'
-            run: |
+            run : |
               devtools::load_all(".")
               devtools::build()
               library(primace)
@@ -146,7 +150,7 @@ jobs:
             LIARA_SECRET_KEY=${{ secrets.LIARA_SECRET_KEY }}
       -
         name: Test
-        run: |
+        run : |
           
           docker run -d -p 3838:3838 --rm ${{ env.TEST_TAG }}
           PRIMACE=$(curl --silent localhost:3838 | grep -o PRIMACE | wc -l)
@@ -176,7 +180,7 @@ jobs:
       - name: update-liara
         env:
           LIARA_TOKEN: ${{ secrets.LIARA_TOKEN }}
-        run: |
+        run : |
           npm i -g @liara/cli@3
           liara deploy --app="primace" --api-token="$LIARA_TOKEN" --image="bhedayat/test-primace" --port=3838  --detach 
 
