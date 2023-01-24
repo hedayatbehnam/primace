@@ -13,17 +13,17 @@ preprocessing <- function(train=TRUE, data=read_data()){
   bmr <- tab <- NULL
   validate(need(is.data.frame(data), "No valid dataset is provided"))
   tryCatch({
-  df_modified <- suppressWarnings(dataset_modification(data))
-  missing_dataframe <- check_missings(df_modified) 
-  dataset_low_miss <- complete_case(missing_dataframe[3])
-  dataset_NCC_for_analysis <- as.data.frame(dataset_low_miss[3])
-  dataset_ncc_corr <- select(dataset_NCC_for_analysis, -c("Time_to_LastFU","Opiumdurationm","Opium","OpiumTypeOfConsumption",
-                                                          "File247","SmokingPacky","Smokingquittimem","First_MACE","My_file",
-                                                          "GPIIBIIIA.inf.h" ,"Next_Plan", "TVR", "No","Patient.Code2","Encounter.ID",
-                                                          "TLR", "CABG", "Mortality", "Death", "MI",
-                                                          "Opium_bin_num", "TCH", "PCI_Result"))
-  imp_miss_dataset <- missing_impute(dataset_ncc_corr)
-  one_year_dataset <- first_year_MACE(imp_miss_dataset)
+    df_modified <- suppressWarnings(dataset_modification(data))
+    missing_dataframe <- check_missings(df_modified) 
+    dataset_low_miss <- complete_case(missing_dataframe[3])
+    dataset_NCC_for_analysis <- as.data.frame(dataset_low_miss[3])
+    dataset_ncc_corr <- select(dataset_NCC_for_analysis, -c("Time_to_LastFU","Opiumdurationm","Opium","OpiumTypeOfConsumption",
+                                                            "File247","SmokingPacky","Smokingquittimem","First_MACE","My_file",
+                                                            "GPIIBIIIA.inf.h" ,"Next_Plan", "TVR", "No","Patient.Code2","Encounter.ID",
+                                                            "TLR", "CABG", "Mortality", "Death", "MI",
+                                                            "Opium_bin_num", "TCH", "PCI_Result"))
+    imp_miss_dataset <- missing_impute(dataset_ncc_corr)
+    one_year_dataset <- first_year_MACE(imp_miss_dataset)
   }, error=function(cond) one_year_dataset <- data)
   if (train){
     task <- TaskSurv$new(id = 'surv-task', backend =one_year_dataset, time = 'Time_to_MACE', event = 'First_MACE_bin')
