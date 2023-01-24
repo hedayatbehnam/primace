@@ -112,7 +112,7 @@ jobs:
       - name: connect to aws s3 bucket - find last modifications time
         id: last_modified
         run : |
-          Rscript -e helper/check_lastModification.R >> $GITHUB_OUTPUT
+          Rscript helper/check_lastModification.R >> $GITHUB_OUTPUT
     
       - name: failed-last-mod
         if: steps.last_modified.outputs == 'NULL'
