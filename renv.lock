@@ -458,9 +458,7 @@
     "here": {
       "Package": "here",
       "Version": "1.0.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "24b224366f9c2e7534d2344d10d59211"
+      "Source": "Repository"
     },
     "highr": {
       "Package": "highr",
@@ -699,6 +697,11 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "9e3d8d65cb9c5ca5966340a6bfec60b2"
+    },
+    "paws": {
+      "Package": "paws",
+      "Version": "0.1.12",
+      "Source": "Repository"
     },
     "pillar": {
       "Package": "pillar",
@@ -1182,6 +1185,11 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "2826c5d9efb0a88f657c7a679c7106db"
+    },
+    "zeallot": {
+      "Package": "zeallot",
+      "Version": "0.1.0",
+      "Source": "Repository"
     },
     "zip": {
       "Package": "zip",

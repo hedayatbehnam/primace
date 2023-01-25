@@ -45,6 +45,7 @@ LazyData: true
 Collate: 
     'about.R'
     'abstract.R'
+    'utilities.R'
     'data.R'
     'analytics.R'
     'authors.R'
@@ -59,7 +60,6 @@ Collate:
     'max_perf_calc.R'
     'predict_scores.R'
     'predictionTool.R'
-    'utilities.R'
     'preprocessing.R'
     'primace_init.R'
     'reactiveVal_output.R'

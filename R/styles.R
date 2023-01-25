@@ -50,8 +50,8 @@ style_ref <- function(tags, htmlParam) {
         font-size:15px;
       }
       img {
-        margin-top:80px;
-        margin-bottom: 20px;
+        margin-top:0px;
+        margin-bottom: 0px;
       }
       .thc-logo-text { 
         font-size:24px;
@@ -72,6 +72,17 @@ style_ref <- function(tags, htmlParam) {
       }
      .skin-purple .main-sidebar {
         box-shadow: 1px 1px 1px 1px rgba(0,0,0,.8);
+     }
+     
+     .footer {
+        position:absolute;
+        bottom:0;
+        width:100%;
+        height:50px; /* Height of the footer */
+        color: black;
+        padding: 10px;
+        background-color: none;
+        z-index: 1000;
      }
      /* logo */
      .skin-purple .main-header .logo {

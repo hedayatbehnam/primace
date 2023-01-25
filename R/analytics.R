@@ -1,4 +1,4 @@
-#' @include data.R
+#' @include data.R utilities.R
 NULL
 #' Analytics Sidebar
 #' UI sidebar for Showing descriptive analysis on current dataset
@@ -12,7 +12,6 @@ analyticsSidebar <- function(id){
 #' @param id id of module
 #' @noRd
 analyticsUI <- function(id){
-  # test_set <- suppressWarnings(dataset_modification(test_set))
   tabItem(tabName = "analytics",style="overflow:hidden;",
           fluidRow(box(title = strong("Descriptive Analysis of Train, Test and Total Data"),width=12, status = "primary", solidHeader = F, id="custom-box",
                        column(3,selectInput(inputId = NS(id,"data_select"),label = "Select Dataset", selected = "Total", choices = c("Total", "Train","Test"))))),
@@ -36,24 +35,11 @@ analyticsUI <- function(id){
 #' @noRd
 analyticsServer <- function(id){
   moduleServer(id, function(input, output, session){
-    if (exists("aws_s3", inherits = T)){
-      aws_s3_inst <- get("aws_s3", inherits = T)
-      s3_data <- aws_s3$get_object(Bucket = "aiworld", Key = "dataset/dataset.RDS")
-      s3_train <-aws_s3$get_object(Bucket = "aiworld", Key = "dataset/train.RDS")
-      s3_test <- aws_s3$get_object(Bucket = "aiworld", Key = "dataset/test.RDS")
-      data <- "/tmp/data.rds"
-      train <- "/tmp/train.rds"
-      test <- "/tmp/test.rds"
-      writeBin(s3_data$Body,con=data)
-      writeBin(s3_train$Body,con=train)
-      writeBin(s3_test$Body,con=test)
-      data <- readRDS(data)
-      train <- readRDS(train)
-      test <- readRDS(test)
-      total <- c(train,test)
-    } else {
-      return (NULL)
-    }
+    loaded_data <- read_data_s3()
+    data <- loaded_data$data
+    train <- loaded_data$train
+    test <- loaded_data$test
+    total <- loaded_data$total
     dataVar <- reactiveValues()
     observeEvent(input$data_select, {
         req(total)
@@ -70,11 +56,11 @@ analyticsServer <- function(id){
     })
     output$plotHist <- renderPlot({
       req(input$var)
-      ggplot(dataVar$dataset, aes_string(x=input$var, fill=input$group), height=500) +
+      ggplot(dataVar$dataset, aes_string(x=input$var, fill=input$group), height=400) +
         geom_histogram(aes(y=..density..))+
         geom_density(alpha=0.2)+
-        theme(plot.margin = margin(0, 2,100,2))
-    },height=500, res=96, width="auto")
+        theme(plot.margin = margin(0, 0,10,0))
+    },height=400, res=96, width="auto")
     output$obs_num <- renderText({(req(dataVar$dataset)) 
       nrow(dataVar$dataset)})
     output$mace_num <- renderText({req(dataVar$dataset) 

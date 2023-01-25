@@ -15,7 +15,7 @@ homeUI <- function(id){
           fluidRow(column(width=10, offset = 1,box(
             id='custom-box',width=12,  solidHeader = F,status = "primary",
             "PRIMACE Is A Machine Learning Prediction Tool for First Year Survival 
-            Following Primary Percutaneous Intervention", 
+            Following Primary Percutaneous Coronary Intervention", 
             br(),class="title"))), hr(),
           fluidRow(solidHeader = F, column(width = 10, offset=1, align="center",
                    box(id='custom-box', width=12, status = "primary", 
