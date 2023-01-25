@@ -15,14 +15,14 @@
       )
     )
     aws_obj_list <- aws_s3$list_objects_v2(Bucket = system("printenv LIARA_BUCKET_NAME", intern = T))
-    aws_obj_content <- lapply(aws_obj_list$Contents, function(x) x$Key==KEY)
+    aws_obj_content <- lapply(aws_obj_list$Contents, function(x) x$Key==KEY) 
     dataset_num <- which(unlist(aws_obj_content)==TRUE)
     dataset_file <- aws_obj_list$Contents[[dataset_num]]
     dataset_lastMod <- dataset_file$LastModified
     lastModified_df <- aws_s3$get_object(Bucket = "aiworld", Key = "lastModifications/lastModified.rds")
     lastModified_rds <- "/tmp/lastModified.rds"
-    writeBin(lastModified$Body,con=lastModified_rds)
-    lastModified_fin <- readRDS(data)
+    writeBin(lastModified_df$Body,con=lastModified_rds)
+    lastModified_fin <- readRDS(lastModified_rds)
     if (identical(lastModified_fin, dataset_lastMod)) return (TRUE) else return(FALSE)
   } else { return (NULL)}
 })()
