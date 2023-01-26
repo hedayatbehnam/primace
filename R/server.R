@@ -76,7 +76,7 @@ server <- function(input, output, session) {
         tryCatch({
           vars$performance_result <- max_perf_calc(predict_table = vars$final_predict) %>% 
             mutate_at(c("youden", "closest_topleft"), as.numeric) %>% 
-            mutate_if(is.numeric, round ,)
+            mutate_if(is.numeric, round , 3)
           print(glimpse(vars$performance_result))
           loadingFunc(message = "initializing ROC plot...")
           reactiveVal_output(rv, 'perfMetrics', 'complete', output)

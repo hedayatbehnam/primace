@@ -1,5 +1,5 @@
 <!-- badges: start -->
-[![R-Test-Build-Deploy](https://github.com/hedayatbehnam/primace/workflows/R-Test-Build-Deploy/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
+[![R-MLOps-Check](https://github.com/hedayatbehnam/primace/workflows/R-MLOps-Check/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
 
 [![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)
 
@@ -11,14 +11,18 @@
 **MACE:** Major Adverse Cardiovascular Events
 
 ## Background
-We published a related article with title of "Effects of opium use on one-year major adverse cardiovascular events (MACE) in the patients with ST-segment elevation MI undergoing primary PCI: a propensity score matched - machine learning based study" in BMC Cardiovascular Journal.  
+We published a related article with title of "Effects of opium use on one-year major adverse cardiovascular events (MACE) in the patients with ST-segment elevation MI undergoing primary PCI: a propensity score matched - machine learning based study" in **BMC Complementary Medicine and Therapies** journal.  
 ML models were as follows:  
  1. Survival Random Forest  
  2. Survival Extreme Gradient Boosting (xgboost)
 
-### The link to online `PRIMACE`:  
+#### **Link to Online `PRIMACE`:**
 [![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)  
 **[PRIMACE Prediction Tool](https://primace.aikadeh.com)**
+
+#### **Link to Original Article** 
+[![PRIMACE](man/figures/bmc.jpg)](https://link.springer.com/content/pdf/10.1186/s12906-023-03833-z.pdf)  
+**[Original Article in BMC Journal](https://link.springer.com/content/pdf/10.1186/s12906-023-03833-z.pdf)**
 
 ## Instructions
 

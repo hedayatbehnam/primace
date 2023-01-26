@@ -35,11 +35,12 @@ analyticsUI <- function(id){
 #' @noRd
 analyticsServer <- function(id){
   moduleServer(id, function(input, output, session){
-    loaded_data <- read_data_s3()
-    data <- loaded_data$data
-    train <- loaded_data$train
-    test <- loaded_data$test
-    total <- loaded_data$total
+    data <- train <- test <- total <- NULL
+    tryCatch({oaded_data <- read_data_s3()
+             data <- loaded_data$data
+             train <- loaded_data$train
+             test <- loaded_data$test
+             total <- loaded_data$total}, error=function(e) e)
     dataVar <- reactiveValues()
     observeEvent(input$data_select, {
         req(total)

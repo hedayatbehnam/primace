@@ -11,7 +11,7 @@ A vector of raw dataset variables names
 source dataset
 }
 \usage{
-data(test_set)
+data(raw_variables)
 }
 \description{
 raw dataset variable names

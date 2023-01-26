@@ -15,3 +15,4 @@ app.R
 ^docs$
 ^pkgdown$
 ^helper$
+R/datasets/*
