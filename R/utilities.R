@@ -55,25 +55,23 @@ read_data <- function(url="https://raw.github.com/hedayatbehnam/primace/main/R/d
 #' @return a list of full data, test and train indices
 #' @noRd
 read_data_s3 <- function(..., s3="aws_s3", bucket="aiworld"){
-  if (exists(s3, inherits = T)){
     aws_s3_inst <- get(s3, inherits = T)
-    s3_data <- aws_s3$get_object(Bucket = bucket, Key = "dataset/dataset.RDS")
-    s3_train <-aws_s3$get_object(Bucket = bucket, Key = "dataset/train.RDS")
-    s3_test <- aws_s3$get_object(Bucket = bucket, Key = "dataset/test.RDS")
-    data <- "/tmp/data.rds"
-    train <- "/tmp/train.rds"
-    test <- "/tmp/test.rds"
-    writeBin(s3_data$Body,con=data)
-    writeBin(s3_train$Body,con=train)
-    writeBin(s3_test$Body,con=test)
-    data <- readRDS(data)
-    train <- readRDS(train)
-    test <- readRDS(test)
-    total <- c(train,test)
-    return (list(data=data, train=train, test=test, total=total))
-  } else {
-    return (NULL)
-  }
+    if (!is.null(aws_s3_inst)){
+      s3_data <- aws_s3$get_object(Bucket = bucket, Key = "dataset/dataset.RDS")
+      s3_train <-aws_s3$get_object(Bucket = bucket, Key = "dataset/train.RDS")
+      s3_test <- aws_s3$get_object(Bucket = bucket, Key = "dataset/test.RDS")
+      data <- "/tmp/data.rds"
+      train <- "/tmp/train.rds"
+      test <- "/tmp/test.rds"
+      writeBin(s3_data$Body,con=data)
+      writeBin(s3_train$Body,con=train)
+      writeBin(s3_test$Body,con=test)
+      data <- readRDS(data)
+      train <- readRDS(train)
+      test <- readRDS(test)
+      total <- c(train,test)
+      return (list(data=data, train=train, test=test, total=total))
+    } else { invisible(return (NULL))}
 }
 #' Dataset Modifier 
 #' module to peform some preprocessing steps automatically on new dataset privided by read_data function

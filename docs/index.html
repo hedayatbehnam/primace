@@ -51,22 +51,28 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9">
-<p><a href="https://primace.aikadeh.com" class="external-link"><img src="reference/figures/webapp.svg" alt="PRIMACE"></a> <!-- badges: end --></p>
-<div class="section level1">
+<p><a href="https://primace.aikadeh.com" class="external-link"><img src="reference/figures/webapp.svg" alt="PRIMACE"></a></p>
+<!-- badges: end --><div class="section level1">
 <div class="page-header"><h1 id="primace-prediction-tool">PRIMACE Prediction Tool<a class="anchor" aria-label="anchor" href="#primace-prediction-tool"></a>
 </h1></div>
 <p><code>PRIMACE</code> is a shinyapp web application based on R language shiny package which can be used to predict major cardiovascular events (MACE) in first year following Primary Percutaneous Coronary Intervention (PPCI)<br><strong>PPCI:</strong> Primary Percutaneous Coronary Intervention<br><strong>MACE:</strong> Major Adverse Cardiovascular Events</p>
 <div class="section level2">
 <h2 id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
 </h2>
-<p>We published a related article with title of “Effects of opium use on one-year major adverse cardiovascular events (MACE) in the patients with ST-segment elevation MI undergoing primary PCI: a propensity score matched - machine learning based study” in BMC Cardiovascular Journal.<br>
-ML models were as follows:<br>
+<p>We published a related article with title of “Effects of opium use on one-year major adverse cardiovascular events (MACE) in the patients with ST-segment elevation MI undergoing primary PCI: a propensity score matched - machine learning based study” in <strong>BMC Complementary Medicine and Therapies</strong> journal.<br><strong>ML models were as follows</strong>:<br>
 1. Survival Random Forest<br>
 2. Survival Extreme Gradient Boosting (xgboost)</p>
-<div class="section level3">
-<h3 id="the-link-to-online-primace">The link to online <code>PRIMACE</code>:<a class="anchor" aria-label="anchor" href="#the-link-to-online-primace"></a>
-</h3>
+<div class="section level4">
+<h4 id="link-to-online-primace">
+<strong>Link to Online <code>PRIMACE</code></strong><a class="anchor" aria-label="anchor" href="#link-to-online-primace"></a>
+</h4>
 <p><a href="https://primace.aikadeh.com" class="external-link"><img src="reference/figures/webapp.svg" alt="PRIMACE"></a><br><strong><a href="https://primace.aikadeh.com" class="external-link">PRIMACE Prediction Tool</a></strong></p>
+</div>
+<div class="section level4">
+<h4 id="link-to-original-article">
+<strong>Link to Original Article</strong><a class="anchor" aria-label="anchor" href="#link-to-original-article"></a>
+</h4>
+<p><a href="https://link.springer.com/content/pdf/10.1186/s12906-023-03833-z.pdf" class="external-link"><img src="reference/figures/bmc.jpg" alt="PRIMACE"></a><br><strong><a href="https://link.springer.com/content/pdf/10.1186/s12906-023-03833-z.pdf" class="external-link">Original Article in BMC Journal</a></strong></p>
 </div>
 </div>
 <div class="section level2">
@@ -86,7 +92,7 @@ The acceptable variables names are provided in <code>Prediction Tool</code> tab 
 <div class="section level3">
 <h3 id="selecting-models-and-prediction">Selecting models and prediction<a class="anchor" aria-label="anchor" href="#selecting-models-and-prediction"></a>
 </h3>
-<p>In <code>Upload File</code> section, you can select among seven models we trained in our study. After selecting a model, push the <code>Predict...</code> button to initiates prediction on the dataset. It would take a little time to complete prediction process.</p>
+<p>In <code>Upload File</code> section, you can select among two models (at the moment just random survival forest is available) we trained in our study. After selecting a model, push the <code>Predict...</code> button to initiates prediction on the dataset. It would take a little time to complete prediction process.</p>
 </div>
 <div class="section level3">
 <h3 id="dataset-with-known-target-variable">Dataset with known target variable<a class="anchor" aria-label="anchor" href="#dataset-with-known-target-variable"></a>
@@ -132,9 +138,7 @@ The acceptable variables names are provided in <code>Prediction Tool</code> tab 
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/hedayatbehnam/primace/actions" class="external-link"><img src="https://github.com/hedayatbehnam/primace/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://github.com/hedayatbehnam/primace/actions" class="external-link"><img src="https://github.com/hedayatbehnam/primace/workflows/test-coverage/badge.svg" alt="test-coverage"></a></li>
-<li><a href="https://github.com/hedayatbehnam/primace/actions" class="external-link"><img src="https://github.com/hedayatbehnam/primace/workflows/Check-New-Dataset/badge.svg" alt="Check-New-Dataset"></a></li>
+<li><a href="https://github.com/hedayatbehnam/primace/actions" class="external-link"><img src="https://github.com/hedayatbehnam/primace/workflows/R-MLOps-Check/badge.svg" alt="R-MLOps-Check"></a></li>
 </ul>
 </div>
 

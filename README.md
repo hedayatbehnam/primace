@@ -11,12 +11,12 @@
 **MACE:** Major Adverse Cardiovascular Events
 
 ## Background
-We published a related article with title of "Effects of opium use on one-year major adverse cardiovascular events (MACE) in the patients with ST-segment elevation MI undergoing primary PCI: a propensity score matched - machine learning based study" in **BMC Complementary Medicine and Therapies** journal.  
-ML models were as follows:  
+We published a related article with title of "Effects of opium use on one-year major adverse cardiovascular events (MACE) in the patients with ST-segment elevation MI undergoing primary PCI: a propensity score matched - machine learning based study" in **BMC Complementary Medicine and Therapies** journal.    
+**ML models were as follows**:    
  1. Survival Random Forest  
  2. Survival Extreme Gradient Boosting (xgboost)
 
-#### **Link to Online `PRIMACE`:**
+#### **Link to Online `PRIMACE`**
 [![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)  
 **[PRIMACE Prediction Tool](https://primace.aikadeh.com)**
 

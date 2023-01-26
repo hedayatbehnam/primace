@@ -36,7 +36,7 @@ analyticsUI <- function(id){
 analyticsServer <- function(id){
   moduleServer(id, function(input, output, session){
     data <- train <- test <- total <- NULL
-    tryCatch({oaded_data <- read_data_s3()
+    tryCatch({loaded_data <- read_data_s3()
              data <- loaded_data$data
              train <- loaded_data$train
              test <- loaded_data$test

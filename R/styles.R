@@ -50,7 +50,7 @@ style_ref <- function(tags, htmlParam) {
         font-size:15px;
       }
       img {
-        margin-top:0px;
+        margin-top:50px;
         margin-bottom: 0px;
       }
       .thc-logo-text { 

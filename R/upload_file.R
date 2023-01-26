@@ -13,7 +13,8 @@ upload_data <- function(input){
     noTarget <- FALSE
     loadedFile <- input$loadFile  # read uploaded file in fileInput section
     if (is.null(loadedFile$datapath)){
-      return ('empty')
+      # return ('empty')
+      return(list(survData = primace::sample_set, target = noTarget))
     }
     ext <- tools::file_ext(loadedFile$datapath) # detect file extension
     req(loadedFile)
