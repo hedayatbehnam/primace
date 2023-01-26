@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [main, packaged-v, v3, pkgdown-v]
+    branches: [main, pkg-v2]
 
 name: R-MLOps-Check
 
@@ -110,34 +110,9 @@ jobs:
         shell : Rscript {0}
         
       - name: connect to aws s3 bucket - find last modifications time
-        id: last_modified
-        run : |
-          echo "check_lastMod=$(Rscript helper/check_lastModification.R)" >> $GITHUB_OUTPUT
-    
-      - name: failed-last-mod
-        if: steps.last_modified.outputs.check_lastMod == 'NULL'
-        run : | 
-          echo -e "\033[1;31mUnable to connect to s3 bucket."
-      
-      - name: not-changed-last-mod
-        if: steps.last_modified.outputs.check_lastMod == 'FALSE'
-        run : |
-          echo -e "\033[1;31mDataset has no been changed since last modification"
-            
-      - name: changed-last-mod-preprocessing
-        if: steps.last_modified.outputs.check_lastMod == 'TRUE'
-        run : |
-          echo -e "\033[1;31mDataset has been changed"
-          echo -e "\033[1;31mPreprocessing is being initiating..."
-          
-      - name: changed-last-mod-preprocessing
-        if: steps.last_modified.outputs.check_lastMod == 'TRUE'
-        run : |
-          devtools::load_all(".")
-          devtools::build()
-          library(primace)
-          primace::preprocessing()
-        shell : Rscript {0}
+        run : ./.github/scripts/lastMod.sh
+        shell: bash
+  
           
   Docker-push-pull:
     runs-on: ubuntu-latest
