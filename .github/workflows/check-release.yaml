@@ -56,30 +56,6 @@ jobs:
         shell : Rscript {0}
       
 
-  liara_cloud_storage-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "16"
-          
-      - name: install aws-sdk
-        run: |
-          npm install aws-sdk
-    
-      - name: listObject aws-sdki
-        env:
-          LIARA_SECRET_KEY: ${{ secrets.LIARA_SECRET_KEY }}
-          LIARA_ACCESS_KEY: ${{ secrets.LIARA_ACCESS_KEY }}
-          LIARA_ENDPOINT: ${{ secrets.LIARA_ENDPOINT }}
-          LIARA_BUCKET_NAME: ${{ secrets.LIARA_BUCKET_NAME }}
-        run: |
-          node node-js/listObject.js
-          echo -e "\033[1;31mSuccessful connection to cloud storage s3 bucket..."
-          node node-js/uploadFile.js
-          echo -e "\033[1;31mSuccessful get object from cloud storage s3 bucket..."
-
   Check-New-Dataset:
     runs-on: ubuntu-latest
     needs: [R-CMD-check, liara_cloud_storage-check]
@@ -113,81 +89,4 @@ jobs:
         run : ./.github/scripts/lastMod.sh
         shell: bash
   
-          
-  Docker-push-pull:
-    runs-on: ubuntu-latest
-    needs: R-CMD-check
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      TEST_TAG: bhedayat/test-primace:test
-      LATEST_TAG: bhedayat/test-primace:latest
-      LIARA_ENDPOINT: ${{ secrets.LIARA_ENDPOINT }}
-      LIARA_BUCKET_NAME: ${{ secrets.LIARA_BUCKET_NAME }}
-      LIARA_ACCESS_KEY: ${{ secrets.LIARA_ACCESS_KEY }}
-      LIARA_SECRET_KEY: ${{ secrets.LIARA_SECRET_KEY }}
-    
-    steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v3
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      -
-        name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and export to Docker
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          load: true
-          tags: ${{ env.TEST_TAG }}
-          build-args: |
-            GIT_PAT=${{ secrets.GITHUB_TOKEN }}
-            LIARA_ENDPOINT=${{ secrets.LIARA_ENDPOINT }}
-            LIARA_BUCKET_NAME=${{ secrets.LIARA_BUCKET_NAME }}
-            LIARA_ACCESS_KEY=${{ secrets.LIARA_ACCESS_KEY }}
-            LIARA_SECRET_KEY=${{ secrets.LIARA_SECRET_KEY }}
-      -
-        name: Test
-        run : |
-          
-          docker run -d -p 3838:3838 --rm ${{ env.TEST_TAG }}
-          PRIMACE=$(curl --silent localhost:3838 | grep -o PRIMACE | wc -l)
-          if [[ $PRIMACE ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
-      -
-        name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          tags: ${{ env.LATEST_TAG }} 
-          build-args: |
-            GIT_PAT=${{ secrets.GITHUB_TOKEN }}
-            LIARA_ENDPOINT=${{ secrets.LIARA_ENDPOINT }}
-            LIARA_BUCKET_NAME=${{ secrets.LIARA_BUCKET_NAME }}
-            LIARA_ACCESS_KEY=${{ secrets.LIARA_ACCESS_KEY }}
-            LIARA_SECRET_KEY=${{ secrets.LIARA_SECRET_KEY }}
-
-  CD_Liara:
-    runs-on: ubuntu-latest
-    needs: Docker-push-pull
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "16"
-      - name: update-liara
-        env:
-          LIARA_TOKEN: ${{ secrets.LIARA_TOKEN }}
-        run : |
-          npm i -g @liara/cli@3
-          liara deploy --app="primace" --api-token="$LIARA_TOKEN" --image="bhedayat/test-primace" --port=3838  --detach 
-
+        
