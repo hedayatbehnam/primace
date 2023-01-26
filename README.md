@@ -1,7 +1,8 @@
 <!-- badges: start -->
+[![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)  
+
 [![R-MLOps-Check](https://github.com/hedayatbehnam/primace/workflows/R-MLOps-Check/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
 
-[![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)
 
 <!-- badges: end -->
 

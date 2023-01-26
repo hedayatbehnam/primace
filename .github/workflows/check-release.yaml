@@ -25,7 +25,6 @@ jobs:
         with:
           use-public-rspm: true
           
-          
       - uses: r-lib/actions/setup-renv@v2
         with:
           profile: '"shiny"'
