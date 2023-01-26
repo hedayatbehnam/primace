@@ -6,7 +6,11 @@ if [ "$DATA_STATUS" = "[1] NULL" ]; then
     echo "No dataset detected"
 elif [ "$DATA_STATUS" = "[1] FALSE" ]; then
     echo "Dataset has not been modified" 
-else
+    Rscript -e "devtools:load('.')"
+    Rscript -e "primace::preprocessing()"
+elif [ "$DATA_STATUS" = "[1] TRUE" ]; then
     echo "Dataset has been modified"
+else 
+    echo "Failed to access dataset"
 fi
 
