@@ -7,6 +7,7 @@ if [ "$DATA_STATUS" = "[1] NULL" ]; then
 elif [ "$DATA_STATUS" = "[1] FALSE" ]; then
     echo "Dataset has not been modified" 
     Rscript -e "devtools::load_all('.')"
+    Rscript -e "devtools::build()"
     Rscript -e "primace::preprocessing()"
 elif [ "$DATA_STATUS" = "[1] TRUE" ]; then
     echo "Dataset has been modified"
