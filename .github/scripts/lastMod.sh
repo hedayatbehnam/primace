@@ -15,6 +15,7 @@ elif [ "$DATA_STATUS" = "[1] FALSE" ]; then
     Rscript -e "library(mlr3tuning)"
     Rscript -e "library(mlr3extralearners)"
     Rscript -e "library(mlr3learners)"
+    Rscript -e "install.packages('paradox')"
     Rscript -e "library(paradox)"
     Rscript -e "primace::preprocessing()"
 elif [ "$DATA_STATUS" = "[1] TRUE" ]; then
