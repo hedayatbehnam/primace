@@ -38,8 +38,10 @@ jobs:
         run : |
             DATASET=$(Rscript helper/check_lastModification.R)
             echo $DATASET
-            if [ "$DATASET" == "[1] FALSE" ]; then echo "false is"; fi
-            ./.github/scripts/lastMod.sh
+            if [ "$DATASET" == "[1] FALSE" ]; then echo "Dataset has not been modified"
+            elif [ "$DATASET" == "[1] TRUE" ]; then echo "Dataset has been modified" && Rscript -e "primace::preprocessing()"
+            elif [ "$DATASET" == "[1] NULL" ]; then echo "No Dataset was found"
+            else echo "Failed to access bucket"; fi
         shell: bash
   
         
