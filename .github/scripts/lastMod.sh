@@ -9,6 +9,7 @@ elif [ "$DATA_STATUS" = "[1] FALSE" ]; then
     R CMD build .
     R CMD INSTALL primace_0.0.0.9000.tar.gz
     Rscript -e "library(primace)"
+    Rscript -e "library(shiny)"
     Rscript -e "primace::preprocessing()"
 elif [ "$DATA_STATUS" = "[1] TRUE" ]; then
     echo "Dataset has been modified"
