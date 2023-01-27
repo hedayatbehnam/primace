@@ -9,8 +9,9 @@ NULL
 #' @param data dataset to be provided, default read_data() from PRIMACE github repo by read_data() function
 #' @return uploaded preprocessed dataset
 #' @export
-preprocessing <- function(train=TRUE, data=read_data()){
+preprocessing <- function(train=TRUE, datasets=read_data_s3()){
   bmr <- tab <- NULL
+  data <- datasets$train
   tryCatch({
     df_modified <- suppressWarnings(dataset_modification(data))
     missing_dataframe <- check_missings(df_modified) 
