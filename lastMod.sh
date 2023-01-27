@@ -1,12 +1,12 @@
 #!/bin/bash
 DATA_STATUS=$(Rscript "helper/check_lastModification.R")
 
-if [[ "$DATA_STATUS" == "[1] NULL" ]]; then
+if [ "$DATA_STATUS" == "[1] NULL" ]; then
     echo "No dataset detected"
-elif [[ "$DATA_STATUS" == "[1] FALSE" ]]; then
+elif [ "$DATA_STATUS" == "[1] FALSE" ]; then
     echo "Dataset has not been modified" 
     Rscript -e "primace::preprocessing()"
-elif [[ "$DATA_STATUS" == "[1] TRUE" ]]; then
+elif [ "$DATA_STATUS" == "[1] TRUE" ]; then
     echo "Dataset has been modified"
 fi
 
