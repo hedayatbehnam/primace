@@ -1,6 +1,6 @@
 #!/bin/bash
 DATA_STATUS=$(Rscript "helper/check_lastModification.R")
-
+echo "$DATA_STATUS"
 if [ "$DATA_STATUS" == "[1] NULL" ]; then
     echo "No dataset detected"
 elif [ "$DATA_STATUS" == "[1] FALSE" ]; then

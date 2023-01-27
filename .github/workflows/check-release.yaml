@@ -35,7 +35,10 @@ jobs:
         shell : Rscript {0}
         
       - name: connect to aws s3 bucket - find last modifications time
-        run : ./.github/scripts/lastMod.sh
+        run : |
+            DATASET=$(Rscript helper/check_lastModification.R)
+            echo $DATASET
+            ./.github/scripts/lastMod.sh
         shell: bash
   
         
