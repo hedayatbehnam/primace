@@ -5,6 +5,7 @@ NULL
 #' @importFrom foreign read.spss
 #' @importFrom stats median
 #' @importFrom mlr3tuning tnr trm
+#' @import paradox
 #' @param train if training should be perfrom in addition to dataset modification
 #' @param data dataset to be provided, default read_data() from PRIMACE github repo by read_data() function
 #' @return uploaded preprocessed dataset
