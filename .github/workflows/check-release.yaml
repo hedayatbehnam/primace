@@ -33,16 +33,7 @@ jobs:
             sudo apt-get install texlive-fonts-extra
       - name: R CMD CHECK inside r
         run : |
-            install.packages("devtools")
             renv::restore()
-            install.packages("mlr3")
-            install.packages("mlr3learners")
-            install.packages("mlr3measures")
-            install.packages("mlr3tuning")
-            install.packages("mlr3misc")
-            devtools::install_github("mlr-org/mlr3extralearners")
-            devtools::install_github("mlr-org/mlr3proba")
-            devtools::install_version("mlr3viz", version = "0.5.10")
             rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
         
