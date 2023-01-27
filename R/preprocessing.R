@@ -1,4 +1,4 @@
-#' @include utilities.R 
+#' @include utilities.R global.R
 NULL
 #' Data Preprocessing
 #' module to perform preprocessing on dataset
@@ -37,7 +37,7 @@ preprocessing <- function(train=TRUE, datasets=read_data_s3()){
     set.seed(1234)
     ncores <- as.integer(system("nproc --all", intern = T))
     rfsrc.learner<- lrn("surv.rfsrc", ntree = 500, block.size = 1, cores=ncores)
-    rfsrc.search_space <- paradox::ps(mtry = p_int(lower = 2, upper = 15),
+    rfsrc.search_space <- ps(mtry = p_int(lower = 2, upper = 15),
                              nodesize = p_int(lower = 1, upper = 30),
                              nodedepth = p_int(lower = 1, upper = 15))
     rfsrc.instance <- TuningInstanceSingleCrit$new(

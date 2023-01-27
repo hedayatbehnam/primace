@@ -5,7 +5,7 @@
 \title{Data Preprocessing
 module to perform preprocessing on dataset}
 \usage{
-preprocessing(train = TRUE, data = read_data())
+preprocessing(train = TRUE, datasets = read_data_s3())
 }
 \arguments{
 \item{train}{if training should be perfrom in addition to dataset modification}

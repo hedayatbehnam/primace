@@ -8,16 +8,7 @@ elif [ "$DATA_STATUS" = "[1] FALSE" ]; then
     echo "Dataset has not been modified" 
     R CMD build .
     R CMD INSTALL primace_0.0.0.9000.tar.gz
-    Rscript -e "library(primace)"
-    Rscript -e "library(shiny)"
-    Rscript -e "library(mlr3proba)"
-    Rscript -e "library(mlr3measures)"
-    Rscript -e "library(mlr3tuning)"
-    Rscript -e "library(mlr3extralearners)"
-    Rscript -e "library(mlr3learners)"
-    Rscript -e "install.packages('paradox')"
-    Rscript -e "library(paradox)"
-    Rscript -e "primace::preprocessing()"
+    Rscript "primace::preprocessing()"
 elif [ "$DATA_STATUS" = "[1] TRUE" ]; then
     echo "Dataset has been modified"
 else 
