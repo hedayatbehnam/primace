@@ -1,18 +1,18 @@
-#' @include utilities.R 
+#' @include utilities.R global.R
 NULL
 #' Data Preprocessing
 #' module to perform preprocessing on dataset
 #' @importFrom foreign read.spss
 #' @importFrom stats median
-#' @importFrom mlr3tuning tnr trm
+#' @importFrom mlr3tuning tnr trm TuningInstanceSingleCrit
 #' @param train if training should be perfrom in addition to dataset modification
-#' @param data dataset to be provided, default read_data() from PRIMACE github repo by read_data() function
+#' @param datasets dataset to be provided, default read_data_s3() from aws s3 bucket
 #' @return uploaded preprocessed dataset
 #' @export
-preprocessing <- function(train=TRUE, data=read_data()){
+preprocessing <- function(train=TRUE, datasets=read_data_s3()){
   bmr <- tab <- NULL
-  validate(need(is.data.frame(data), "No valid dataset is provided"))
-  tryCatch({
+  data <- datasets$data[datasets$train,]
+  one_year_dataset <- tryCatch({
     df_modified <- suppressWarnings(dataset_modification(data))
     missing_dataframe <- check_missings(df_modified) 
     dataset_low_miss <- complete_case(missing_dataframe[3])
@@ -23,10 +23,10 @@ preprocessing <- function(train=TRUE, data=read_data()){
                                                             "TLR", "CABG", "Mortality", "Death", "MI",
                                                             "Opium_bin_num", "TCH", "PCI_Result"))
     imp_miss_dataset <- missing_impute(dataset_ncc_corr)
-    one_year_dataset <- first_year_MACE(imp_miss_dataset)
-  }, error=function(cond) one_year_dataset <- data)
-  if (train){
-    task <- TaskSurv$new(id = 'surv-task', backend =one_year_dataset, time = 'Time_to_MACE', event = 'First_MACE_bin')
+    return (invisible(first_year_MACE(imp_miss_dataset)))
+  }, error=function(e) { return (invisible(data)) })
+  if (train & !is.null(data)){
+    task <- TaskSurv$new(id = 'surv-task', backend = one_year_dataset, time = 'Time_to_MACE', event = 'First_MACE_bin')
     train_set <- sample(task$nrow, 0.8 * task$nrow)
     test_set <- setdiff(seq_len(task$nrow), train_set)
     inner.rsmp <- rsmp("cv", folds = 2)
@@ -53,7 +53,7 @@ preprocessing <- function(train=TRUE, data=read_data()){
     best.learner <- rfsrc_opt$archive$learner(uhash=best.uhash)
     print(best.learner)
     prev_model <- load_model(input=list(models="Survival Random Forest"),
-                             rf_model=paste0(Sys.getenv("root_absPath"),"R/models/rfsrc.learner_mod.RDS"))
+                             rf_model=paste0(Sys.getenv("root_absPath"),"/R/models/rfsrc.learner_mod.RDS"))
     design <- benchmark_grid(
       tasks = task,
       learners = c(prev_model, best.learner),
@@ -64,5 +64,5 @@ preprocessing <- function(train=TRUE, data=read_data()){
     tab <- bmr$aggregate(measure)
     # autoplot(bmr)pr
   }
-  return (list(data = one_year_dataset, benchmark=bmr, result=tab))
+  return (invisible(list(data = one_year_dataset, benchmark=bmr, result=tab)))
 }

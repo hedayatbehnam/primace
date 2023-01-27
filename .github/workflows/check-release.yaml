@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [main, packaged-v, v3, pkgdown-v]
+    branches: [main, pkg-renv]
 
 name: R-MLOps-Check
 
@@ -31,19 +31,9 @@ jobs:
         run : |
             sudo apt-get install texlive
             sudo apt-get install texlive-fonts-extra
-
       - name: R CMD CHECK inside r
         run : |
-            install.packages("devtools")
             renv::restore()
-            install.packages("mlr3")
-            install.packages("mlr3learners")
-            install.packages("mlr3measures")
-            install.packages("mlr3tuning")
-            install.packages("mlr3misc")
-            devtools::install_github("mlr-org/mlr3extralearners")
-            devtools::install_github("mlr-org/mlr3proba")
-            devtools::install_version("mlr3viz", version = "0.5.10")
             rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
         
@@ -79,11 +69,14 @@ jobs:
           echo -e "\033[1;31mSuccessful connection to cloud storage s3 bucket..."
           node node-js/uploadFile.js
           echo -e "\033[1;31mSuccessful get object from cloud storage s3 bucket..."
-
+ 
+ 
+ 
+ 
   Check-New-Dataset:
     runs-on: ubuntu-latest
-    needs: [R-CMD-check, liara_cloud_storage-check]
     name: Check Uploaded New Dataset File 
+    needs: [R-CMD-check, liara_cloud_storage-check]
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
@@ -103,42 +96,21 @@ jobs:
       - uses: r-lib/actions/setup-renv@v2
         with:
           profile: '"shiny"'
-          
-      - name: install paws package
-        run : |
-          install.packages("paws")
-        shell : Rscript {0}
-        
+  
       - name: connect to aws s3 bucket - find last modifications time
-        id: last_modified
         run : |
-          echo "check_lastMod=$(Rscript helper/check_lastModification.R)" >> $GITHUB_OUTPUT
-    
-      - name: failed-last-mod
-        if: steps.last_modified.outputs.check_lastMod == 'NULL'
-        run : | 
-          echo -e "\033[1;31mUnable to connect to s3 bucket."
-      
-      - name: not-changed-last-mod
-        if: steps.last_modified.outputs.check_lastMod == 'FALSE'
-        run : |
-          echo -e "\033[1;31mDataset has no been changed since last modification"
-            
-      - name: changed-last-mod-preprocessing
-        if: steps.last_modified.outputs.check_lastMod == 'TRUE'
-        run : |
-          echo -e "\033[1;31mDataset has been changed"
-          echo -e "\033[1;31mPreprocessing is being initiating..."
-          
-      - name: changed-last-mod-preprocessing
-        if: steps.last_modified.outputs.check_lastMod == 'TRUE'
-        run : |
-          devtools::load_all(".")
-          devtools::build()
-          library(primace)
-          primace::preprocessing()
-        shell : Rscript {0}
-          
+            DATASET=$(Rscript helper/check_lastModification.R)
+            echo $DATASET
+            Rscript -e "devtools::load_all('.')"
+            R CMD build .
+            R CMD INSTALL primace_0.0.0.9000.tar.gz
+            Rscript -e "library('primace')"
+            if [ "$DATASET" == "[1] FALSE" ]; then echo "Dataset has not been modified"
+            elif [ "$DATASET" == "[1] TRUE" ]; then echo "Dataset has been modified" && Rscript -e "primace::preprocessing()"
+            elif [ "$DATASET" == "[1] NULL" ]; then echo "No Dataset was found"
+            else echo "Failed to access bucket"; fi
+        shell: bash
+  
   Docker-push-pull:
     runs-on: ubuntu-latest
     needs: R-CMD-check
@@ -185,7 +157,9 @@ jobs:
         run : |
           
           docker run -d -p 3838:3838 --rm ${{ env.TEST_TAG }}
-          PRIMACE=$(curl --silent localhost:3838 | grep -o PRIMACE | wc -l)
+          sleep 5
+          PRIMACE=$(curl --silent localhost:3838)
+          echo $PRIMACE
           if [[ $PRIMACE ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
       -
         name: Build and push
@@ -199,7 +173,6 @@ jobs:
             LIARA_BUCKET_NAME=${{ secrets.LIARA_BUCKET_NAME }}
             LIARA_ACCESS_KEY=${{ secrets.LIARA_ACCESS_KEY }}
             LIARA_SECRET_KEY=${{ secrets.LIARA_SECRET_KEY }}
-
   CD_Liara:
     runs-on: ubuntu-latest
     needs: Docker-push-pull
@@ -215,4 +188,3 @@ jobs:
         run : |
           npm i -g @liara/cli@3
           liara deploy --app="primace" --api-token="$LIARA_TOKEN" --image="bhedayat/test-primace" --port=3838  --detach 
-

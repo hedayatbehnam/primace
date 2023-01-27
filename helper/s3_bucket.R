@@ -16,4 +16,3 @@ connect_s3 <- function(...){
     return (aws_s3)
   } else { invisible(return (NULL))}
 }
-
