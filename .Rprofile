@@ -1,9 +1,9 @@
 source("renv/activate.R")
-libs <- c("here", "paws", "zeallot")
+libs <- c("here", "paws", "zeallot", "paradox")
 invisible(sapply(libs, function(x) { if (!requireNamespace(x, quietly = TRUE)) install.packages(x)}))
 invisible(sapply(libs,library, character.only=TRUE))
 source("helper/s3_bucket.R")
-library(paradox)
+
 options(warn = 0)
 options(shiny.maxRequestSize=30*1024^2)
 options(repos =c(CRAN="https://cloud.r-project.org"))
