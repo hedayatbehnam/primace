@@ -34,6 +34,7 @@ jobs:
             DATASET=$(Rscript helper/check_lastModification.R)
             echo $DATASET
             Rscript -e "devtools::load_all('.')"
+            Rscript -e "library('primace')"
             if [ "$DATASET" == "[1] FALSE" ]; then echo "Dataset has not been modified" && Rscript -e "primace::preprocessing()"
             elif [ "$DATASET" == "[1] TRUE" ]; then echo "Dataset has been modified" && Rscript -e "primace::preprocessing()"
             elif [ "$DATASET" == "[1] NULL" ]; then echo "No Dataset was found"
