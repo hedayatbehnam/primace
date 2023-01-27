@@ -14,7 +14,7 @@ elif [ "$DATA_STATUS" = "[1] FALSE" ]; then
     Rscript -e "library(mlr3measures)"
     Rscript -e "library(mlr3tuning)"
     Rscript -e "library(mlr3extralearners)"
-    Rscriptv-e "library(mlr3learners)"
+    Rscript -e "library(mlr3learners)"
     Rscript -e "primace::preprocessing()"
 elif [ "$DATA_STATUS" = "[1] TRUE" ]; then
     echo "Dataset has been modified"
