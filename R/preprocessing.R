@@ -24,7 +24,7 @@ preprocessing <- function(train=TRUE, datasets=read_data_s3()){
                                                             "Opium_bin_num", "TCH", "PCI_Result"))
     imp_miss_dataset <- missing_impute(dataset_ncc_corr)
     one_year_dataset <- first_year_MACE(imp_miss_dataset)
-  }, error=function(cond) one_year_dataset <- data)
+  }, error=function(cond) { one_year_dataset <- data; return (one_year_dataset) })
   if (train){
     task <- TaskSurv$new(id = 'surv-task', backend =one_year_dataset, time = 'Time_to_MACE', event = 'First_MACE_bin')
     train_set <- sample(task$nrow, 0.8 * task$nrow)
