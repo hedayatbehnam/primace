@@ -6,9 +6,8 @@ if [ "$DATA_STATUS" = "[1] NULL" ]; then
     echo "No dataset detected"
 elif [ "$DATA_STATUS" = "[1] FALSE" ]; then
     echo "Dataset has not been modified" 
-
-    Rscript -e "devtools::build(path='.')"
-    Rscript -e "devtools::load_all('.')"
+    RUN R CMD build .
+    RUN R CMD INSTALL primace_0.0.0.9000.tar.gz
     Rscript -e "library(primace)"
     Rscript -e "primace::preprocessing()"
 elif [ "$DATA_STATUS" = "[1] TRUE" ]; then
