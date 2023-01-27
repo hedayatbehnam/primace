@@ -25,8 +25,8 @@ preprocessing <- function(train=TRUE, datasets=read_data_s3()){
     imp_miss_dataset <- missing_impute(dataset_ncc_corr)
     return (first_year_MACE(imp_miss_dataset))
   }, error=function(e) { return (data) })
-  if (train){
-    task <- TaskSurv$new(id = 'surv-task', backend =one_year_dataset, time = 'Time_to_MACE', event = 'First_MACE_bin')
+  if (train & !is.null(data)){
+    task <- TaskSurv$new(id = 'surv-task', backend = one_year_dataset, time = 'Time_to_MACE', event = 'First_MACE_bin')
     train_set <- sample(task$nrow, 0.8 * task$nrow)
     test_set <- setdiff(seq_len(task$nrow), train_set)
     inner.rsmp <- rsmp("cv", folds = 2)
