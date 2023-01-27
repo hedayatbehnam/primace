@@ -5,9 +5,8 @@ NULL
 #' @importFrom foreign read.spss
 #' @importFrom stats median
 #' @importFrom mlr3tuning tnr trm
-#' @import paradox
 #' @param train if training should be perfrom in addition to dataset modification
-#' @param data dataset to be provided, default read_data() from PRIMACE github repo by read_data() function
+#' @param datasets dataset to be provided, default read_data_s3() from aws s3 bucket
 #' @return uploaded preprocessed dataset
 #' @export
 preprocessing <- function(train=TRUE, datasets=read_data_s3()){

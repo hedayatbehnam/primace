@@ -10,7 +10,7 @@ preprocessing(train = TRUE, datasets = read_data_s3())
 \arguments{
 \item{train}{if training should be perfrom in addition to dataset modification}
 
-\item{data}{dataset to be provided, default read_data() from PRIMACE github repo by read_data() function}
+\item{datasets}{dataset to be provided, default read_data_s3() from aws s3 bucket}
 }
 \value{
 uploaded preprocessed dataset

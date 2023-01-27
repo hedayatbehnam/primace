@@ -34,7 +34,8 @@ jobs:
             DATASET=$(Rscript helper/check_lastModification.R)
             echo $DATASET
             Rscript -e "devtools::load_all('.')"
-            R CMD INSTALL --no-multiarch --with-keep.source primace
+            R CMD build .
+            R CMD INSTALL primace_0.0.0.9000.tar.gz
             Rscript -e "library('primace')"
             if [ "$DATASET" == "[1] FALSE" ]; then echo "Dataset has not been modified" && Rscript -e "primace::preprocessing()"
             elif [ "$DATASET" == "[1] TRUE" ]; then echo "Dataset has been modified" && Rscript -e "primace::preprocessing()"
