@@ -38,6 +38,7 @@ jobs:
         run : |
             DATASET=$(Rscript helper/check_lastModification.R)
             echo $DATASET
+            if [ "$DATASET" == "[1] FALSE" ]; then echo "false is"; fi
             ./.github/scripts/lastMod.sh
         shell: bash
   
