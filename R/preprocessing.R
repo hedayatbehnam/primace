@@ -11,7 +11,7 @@ NULL
 #' @export
 preprocessing <- function(train=TRUE, datasets=read_data_s3()){
   bmr <- tab <- NULL
-  data <- datasets$train
+  data <- datasets$data[datasets$train,]
   one_year_dataset <- tryCatch({
     df_modified <- suppressWarnings(dataset_modification(data))
     missing_dataframe <- check_missings(df_modified) 
@@ -24,7 +24,7 @@ preprocessing <- function(train=TRUE, datasets=read_data_s3()){
                                                             "Opium_bin_num", "TCH", "PCI_Result"))
     imp_miss_dataset <- missing_impute(dataset_ncc_corr)
     return (first_year_MACE(imp_miss_dataset))
-  }, error=function(cond) { one_year_dataset <- data; return (one_year_dataset) })
+  }, error=function(e) { return (data) })
   if (train){
     task <- TaskSurv$new(id = 'surv-task', backend =one_year_dataset, time = 'Time_to_MACE', event = 'First_MACE_bin')
     train_set <- sample(task$nrow, 0.8 * task$nrow)
@@ -53,7 +53,7 @@ preprocessing <- function(train=TRUE, datasets=read_data_s3()){
     best.learner <- rfsrc_opt$archive$learner(uhash=best.uhash)
     print(best.learner)
     prev_model <- load_model(input=list(models="Survival Random Forest"),
-                             rf_model=paste0(Sys.getenv("root_absPath"),"R/models/rfsrc.learner_mod.RDS"))
+                             rf_model=paste0(Sys.getenv("root_absPath"),"/R/models/rfsrc.learner_mod.RDS"))
     design <- benchmark_grid(
       tasks = task,
       learners = c(prev_model, best.learner),
