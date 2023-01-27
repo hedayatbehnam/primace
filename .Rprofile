@@ -1,6 +1,4 @@
 source("renv/activate.R")
-renv::restore()
-
 load_dependencies <- function(){
   libraries <- c("shiny","shinydashboard","foreign","readxl","dplyr","randomForestSRC", 
                  "pracma","pROC","mlr3proba","mlr3learners","mlr3extralearners","caret",
@@ -8,7 +6,6 @@ load_dependencies <- function(){
   invisible(suppressMessages(lapply(libraries, library, character.only = TRUE)))
 }
 load_dependencies()
-
 libs <- c("here", "paws", "zeallot", "paradox")
 invisible(sapply(libs, function(x) { if (!requireNamespace(x, quietly = TRUE)) install.packages(x)}))
 invisible(sapply(libs,library, character.only=TRUE))
