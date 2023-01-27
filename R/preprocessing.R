@@ -11,7 +11,6 @@ NULL
 #' @export
 preprocessing <- function(train=TRUE, data=read_data()){
   bmr <- tab <- NULL
-  validate(need(is.data.frame(data), "No valid dataset is provided"))
   tryCatch({
     df_modified <- suppressWarnings(dataset_modification(data))
     missing_dataframe <- check_missings(df_modified) 
