@@ -64,5 +64,5 @@ preprocessing <- function(train=TRUE, datasets=read_data_s3()){
     tab <- bmr$aggregate(measure)
     # autoplot(bmr)pr
   }
-  return (list(data = one_year_dataset, benchmark=bmr, result=tab))
+  return (invisible(list(data = one_year_dataset, benchmark=bmr, result=tab)))
 }
