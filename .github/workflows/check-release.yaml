@@ -31,8 +31,7 @@ jobs:
   
       - name: R CMD CHECK inside r
         run : |
-            renv::restore()
-            primace::preprocessing()
+            devtools::load_all(".")
         shell : Rscript {0}
         
       - name: connect to aws s3 bucket - find last modifications time
