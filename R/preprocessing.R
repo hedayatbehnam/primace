@@ -4,7 +4,7 @@ NULL
 #' module to perform preprocessing on dataset
 #' @importFrom foreign read.spss
 #' @importFrom stats median
-#' @importFrom mlr3tuning tnr trm
+#' @importFrom mlr3tuning tnr trm TuningInstanceSingleCrit
 #' @param train if training should be perfrom in addition to dataset modification
 #' @param datasets dataset to be provided, default read_data_s3() from aws s3 bucket
 #' @return uploaded preprocessed dataset
