@@ -29,15 +29,11 @@ jobs:
         with:
           profile: '"shiny"'
   
-      - name: R CMD CHECK inside r
-        run : |
-            devtools::load_all(".")
-        shell : Rscript {0}
-        
       - name: connect to aws s3 bucket - find last modifications time
         run : |
             DATASET=$(Rscript helper/check_lastModification.R)
             echo $DATASET
+            Rscript -e "devtools::load_all('.')"
             if [ "$DATASET" == "[1] FALSE" ]; then echo "Dataset has not been modified" && Rscript -e "primace::preprocessing()"
             elif [ "$DATASET" == "[1] TRUE" ]; then echo "Dataset has been modified" && Rscript -e "primace::preprocessing()"
             elif [ "$DATASET" == "[1] NULL" ]; then echo "No Dataset was found"
