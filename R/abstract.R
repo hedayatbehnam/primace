@@ -54,7 +54,7 @@ abstractUI <- function(id){
                   regarding the evidence for non-beneficial or detrimental effects 
                   of opium on various diseases, including the outcomes of primary 
                   PCI, to dissuade many users from relying on false beliefs about 
-                  opium's benefits to continue its consumption.")
+                  opium's benefits to continue its consumption.", class="custom-box")
           ))
 }
 

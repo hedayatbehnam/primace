@@ -2,6 +2,7 @@
 
 export(preprocessing)
 export(primace_init)
+import(crosstable)
 import(dplyr)
 import(mlr3)
 import(mlr3extralearners)
