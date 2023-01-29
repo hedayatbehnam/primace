@@ -36,6 +36,7 @@ analyticsUI <- function(id){
 #' Analytics Server
 #' Server side of analyticsUI
 #' @importFrom forcats fct_collapse fct_drop
+#' @import crosstable
 #' @param id id of module
 #' @noRd
 analyticsServer <- function(id){

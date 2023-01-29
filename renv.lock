@@ -245,6 +245,11 @@
       "Repository": "CRAN",
       "Hash": "93762d0a34d78e6a025efdbfb5c6bb41"
     },
+    "crosstable": {
+      "Package": "crosstable",
+      "Version": "0.5.0",
+      "Source": "Repository"
+    },
     "curl": {
       "Package": "curl",
       "Version": "4.3.2",

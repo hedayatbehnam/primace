@@ -20,11 +20,11 @@ sidebar <- dashboardSidebar(
 #' body of main user interface
 #' @noRd
 body <- dashboardBody(
+  # style_ref(tags, "style"),
+  tags$head(includeScript(path = paste0(Sys.getenv("root_absPath"),"/R/static/google-analytics.js"))),
   shinybusy::add_busy_spinner(spin = "half-circle", position = "bottom-right", color="black",
                               margins = c("60%", "42%"), width = "70px", height = "70px"),
-  # style_ref(tags, "style"),
   includeCSS(path = paste0(Sys.getenv("root_absPath"),"/R/www/style.css")),
-  tags$head(includeScript(path = paste0(Sys.getenv("root_absPath"),"/R/static/google-analytics.js"))),
   tags$script(HTML("$('body').addClass('fixed');")),
   tabItems(
     homeUI('home'),
