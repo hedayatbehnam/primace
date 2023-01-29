@@ -12,7 +12,7 @@ analyticsSidebar <- function(id){
 #' @param id id of module
 #' @noRd
 analyticsUI <- function(id){
-  tabItem(tabName = "analytics",style="overflow:hidden;",
+  tabItem(tabName = "analytics",
           fluidRow(box(title = strong("Descriptive Analysis of Train, Test and Total Data"),width=12, status = "primary", solidHeader = F, id="custom-box",
                        column(3,selectInput(inputId = NS(id,"data_select"),label = "Select Dataset", selected = "Total", choices = c("Total", "Train","Test"))))),
           fluidRow(box(width=12, status="primary",solidHeader = F, id="custom-box",
@@ -22,11 +22,16 @@ analyticsUI <- function(id){
                    infoBox(title = "Mean Age of Patients", value = textOutput(NS(id, "age_mean")),width = 6, color = "purple", icon = icon("calendar"))),
           fluidRow(infoBox(title = "Number of MACE", value = textOutput(NS(id, "mace_num")), width = 6, color = "red", icon = icon("skull-crossbones")),
                    infoBox(title = "Mean Time to MACE", value = textOutput(NS(id,"time_mean")),width = 6, icon = icon("clock"),color = "navy")),
-          fluidRow(box(id="custom-box",solidHeader = F, status = "primary", width = 6,
+          fluidRow(column(6,box(id="custom-box",solidHeader = F, status = "primary", width = 12,
                        uiOutput(NS(id,"varnames_num")),
                        uiOutput(NS(id,"varnames_fct")))),
-          fluidRow(box(height = 500,id="custom-box",solidHeader = F, status = "primary", 
-                       width = 6, plotOutput(outputId = NS(id, "plotHist"), height=500))))
+                   column(6, box(id="custom-box",solidHeader = F, status = "primary", width = 12,
+                      uiOutput(NS(id,"varnames_cat")),
+                      uiOutput(NS(id,"varnames_grp"))))),
+          fluidRow(column(6,box(height = 500,id="custom-box",solidHeader = F, status = "primary", 
+                       width = 12, plotOutput(outputId = NS(id, "plotHist"), height=500))),
+                   column(6, box(height = 500,id="custom-box",solidHeader = F, status = "primary", 
+                       width = 12, dataTableOutput(outputId = NS(id, "cross_tab"))))))
 }
 #' Analytics Server
 #' Server side of analyticsUI
@@ -55,6 +60,14 @@ analyticsServer <- function(id){
         req(dataVar$dataset)
         selectInput(inputId = NS(id, "group"), label = "Select Group", selected = "Gender", choices = names(dataVar$dataset %>% select_if(is.factor)))
     })
+    output$varnames_cat <- renderUI({
+      req(dataVar$dataset)
+      selectInput(inputId = NS(id, "cat"), label = "Select Variable", selected = "DM", choices = names(dataVar$dataset %>% select_if(is.factor)))
+    })
+    output$varnames_grp <- renderUI({
+      req(dataVar$dataset)
+      selectInput(inputId = NS(id, "grp"), label = "by Group", selected = "First_MACE_bin", choices = names(dataVar$dataset %>% select_if(is.factor)))
+    })
     output$plotHist <- renderPlot({
       req(input$var)
       ggplot(dataVar$dataset, aes_string(x=input$var, fill=input$group), height=400) +
@@ -62,7 +75,7 @@ analyticsServer <- function(id){
         geom_density(alpha=0.2)+
         theme(plot.margin = margin(0, 0,10,0))
     },height=400, res=96, width="auto")
-    output$obs_num <- renderText({(req(dataVar$dataset)) 
+    output$obs_num <- renderText({req(dataVar$dataset) 
       nrow(dataVar$dataset)})
     output$mace_num <- renderText({req(dataVar$dataset) 
       round(as.numeric(table(dataVar$dataset$First_MACE_bin))[2],3)})
@@ -70,6 +83,9 @@ analyticsServer <- function(id){
       paste(round(mean(dataVar$dataset$Time_to_MACE[dataVar$dataset$First_MACE_bin==1]),2), "days")})
     output$age_mean <- renderText({req(dataVar$dataset) 
       round(mean(dataVar$dataset$Age),2)})
+    output$cross_tab <- renderDataTable({req(dataVar$dataset)
+      crosstable(data=dataVar$dataset, cols=input$cat ,by=input$grp)
+      },options = list(scrollX=TRUE, dom='t'))
   })
 }
               

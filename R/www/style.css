@@ -42,7 +42,7 @@
   font-size:15px;
 }
 img {
-  margin-top:0px;
+  margin-top:50px;
   margin-bottom: 0px;
 }
 .thc-logo-text { 
@@ -84,29 +84,23 @@ img {
   background-color: black;
   box-shadow: 0px 3px 56px -10px rgba(0,0,0,.3);
 } 
-
-
 /* navbar (rest of the header) */
 .skin-purple .main-header .navbar {
   # background-color: #f4b943;
 }        
-
 /* main sidebar */
 .skin-purple .main-sidebar {
   # background-color: #f4b943;
 }
-
 /* active selected tab in the sidebarmenu */
 .skin-purple .main-sidebar .sidebar .sidebar-menu .active a{
   # background-color: #ff0000;
 }
-
 /* other links in the sidebarmenu */
 .skin-purple .main-sidebar .sidebar .sidebar-menu a{
   # background-color: #00ff00;
   # color: #000000;
 }
-
 /* other links in the sidebarmenu when hovered */
  .skin-purple .main-sidebar .sidebar .sidebar-menu a:hover{
     # background-color: #ff69b4;
@@ -118,8 +112,20 @@ img {
 /* toggle button when hovered  */                    
  .skin-purple .main-header .navbar .sidebar-toggle:hover{
     background-color: black;
-    
   }
+  
+  
+ .skin-purple .wrapper .content-wrapper .content {
+    overflow-y: hidden;
+  }
+  
+  
+.custom-footer {
+  bottom:0;
+  height:50px;
+  margin-top:10px; 
+  border-top:solid 1px black
+}
 #loadmessage {
   position: fixed;
   top: 0px;
@@ -151,6 +157,10 @@ img {
   margin-top:0px; 
   font-size:15px;
 }
+
+.custom-footer {
+  height:90px;
+}
 }
 @media only screen and (max-width:980px){
 .title{
@@ -170,4 +180,12 @@ img {
   margin-top:0px; 
   font-size:15px;
 }
-}     
+}
+
+
+@media only screen and (max-width:780px){
+.custom-footer {
+  height:90px;
+}
+
+}

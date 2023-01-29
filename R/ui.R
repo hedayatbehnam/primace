@@ -22,11 +22,9 @@ sidebar <- dashboardSidebar(
 body <- dashboardBody(
   shinybusy::add_busy_spinner(spin = "half-circle", position = "bottom-right", color="black",
                               margins = c("60%", "42%"), width = "70px", height = "70px"),
-  style_ref(tags, "style"),
-  # tagList(
-  # tags$head(
-  #   tags$link(rel="stylesheet", type="text/css",
-  #             href=".css"))),
+  # style_ref(tags, "style"),
+  includeCSS(path = paste0(Sys.getenv("root_absPath"),"/R/www/style.css")),
+  tags$head(includeScript(path = paste0(Sys.getenv("root_absPath"),"/R/static/google-analytics.js"))),
   tags$script(HTML("$('body').addClass('fixed');")),
   tabItems(
     homeUI('home'),
@@ -355,11 +353,7 @@ body <- dashboardBody(
     contactsUI('contact'),
     aboutUI('about')
   ),br(),
-  tags$footer(align = "center",
-                fluidRow(column(6,fluidRow(icon("github","fa-1x"), strong("PRIMACE")), fluidRow(tagList(a("Github Repo", href="https://github.com/hedayatbehnam/primace")))), 
-                         column(6,fluidRow(img(src="bmc.svg", style="margin:0; padding:1; background-color:black;")), 
-                                fluidRow(tagList(a("Published Article", href="https://link.springer.com/content/pdf/10.1186/s12906-023-03833-z.pdf")), style="margin:0; padding:0;")),
-                  style="height:100%;padding-top:15px; padding-bottom:15px;bottom:0;"), style="bottom:0;height:50px;margin-top:10px; border-top:solid 1px black;")
+
 )
 #' header of main ui
 #' @noRd
@@ -368,9 +362,14 @@ CustomHeader <- dashboardHeader(title ="PRIMACE", userOutput("user"))
 #   div(class="login-box",icon("user"),"Login"))
 #' ui composite
 #' @noRd
-ui <- dashboardPage(
+ui <- shinydashboardPlus::dashboardPage(
   skin = "purple",
   header = CustomHeader,
   sidebar = sidebar,
-  body = body
+  body = body,
+  footer = dashboardFooter( tags$footer(align = "center",
+                                         fluidRow(column(6,fluidRow(icon("github","fa-1x"), strong("PRIMACE")), fluidRow(tagList(a("Github Repo", href="https://github.com/hedayatbehnam/primace")))), 
+                                                  column(6,fluidRow(img(src="bmc.svg", style="margin:0; padding:1; background-color:black;")), 
+                                                         fluidRow(tagList(a("Published Article", href="https://link.springer.com/content/pdf/10.1186/s12906-023-03833-z.pdf")), style="margin:0; padding:0;")),
+                                                  style="height:100%;padding-top:15px; padding-bottom:15px;bottom:0;"), class="custom-footer"))
 )
