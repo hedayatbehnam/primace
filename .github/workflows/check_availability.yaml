@@ -1,17 +1,11 @@
-name: Check-Web-App-Availability
-
 on:
   schedule:
-    # Runs "At 11:00 on every day-of-week from Monday through Friday"
-    - cron: '0 8 * * 1-5'
+    - cron: '15 9 * * 1-5'
     
 jobs:
-  build:
-    name: Web-App-Availability
+  web_app-availability:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      
       - name: curl PRIMACE
         run: |
           PRIMACE=$(curl --silent https://primace.aikadeh.com)
