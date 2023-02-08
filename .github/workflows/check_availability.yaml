@@ -1,7 +1,7 @@
 on:
   schedule:
-    - cron: '35 10 * * 1-5'
-  branches: cron-pkg
+    branches: cron-pkg
+    -cron: '40 10 * * 1-5'
     
 jobs:
   Web-App-Availability:
