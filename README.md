@@ -1,7 +1,8 @@
 <!-- badges: start -->
 [![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)  
 
-[![R-MLOps-Check](https://github.com/hedayatbehnam/primace/workflows/R-MLOps-Check/badge.svg)](https://github.com/hedayatbehnam/primace/actions) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/hedayatbehnam/primace/blob/main/LICENSE.md) [![GitHub issues](https://img.shields.io/github/issues/hedayatbehnam/primace?color=green)](https://github.com/hedayatbehnam/primace/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/hedayatbehnam/primace?color=green)](https://github.com/hedayatbehnam/primace/pulls)
+[![R-MLOps-Check](https://github.com/hedayatbehnam/primace/workflows/R-MLOps-Check/badge.svg)](https://github.com/hedayatbehnam/primace/actions) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/hedayatbehnam/primace/blob/main/LICENSE.md)  \
+[![GitHub issues](https://img.shields.io/github/issues/hedayatbehnam/primace?logo=github)](https://github.com/hedayatbehnam/primace/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/hedayatbehnam/primace?color=green&logo=github)](https://github.com/hedayatbehnam/primace/pulls)
 
 <!-- badges: end -->
 
