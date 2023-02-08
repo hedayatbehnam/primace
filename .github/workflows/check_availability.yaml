@@ -1,6 +1,5 @@
 on:
   schedule:
-    branches: cron-pkg
     -cron: '40 10 * * 1-5'
     
 jobs:
