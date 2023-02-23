@@ -1,17 +1,21 @@
 #' Fake data generator
 #' To generate fake data for testing by generating fake data with proper and improper variables, 
 #' we test uploding files and models functions.
+#'
 #' @importFrom stats runif
+#'
 #' @param type determines the type of fake data as "standard" for data which has same 
 #' class and number of variables, "more" which has more variable other than main data, 
 #' "less" which at least lacks one variable compared to standard form
 #' "mismatch", which has different class of some variabls compared to standard form.
 #' @param rows_num number of observations of fake data
 #' @param event whether event variable should be added, default is True
-#' @param time whether time variable should be added, default is True
+#' @param time whether time variable should be added, default is 
+#'
 #' @return fake data as data frame
+#'
 #' @noRd
-data_generator <- function(type="standard", rows_num=12, event=T, time=T){
+data_generator <- function(type=c("standard","less", "more", "mismatch"), rows_num=12, event=T, time=T){
   fake_data <- data.frame(Clopidogrel = integer(),Pain_to_Door = integer(),Ca.ch.A = integer(),
                           Nitrate = integer(),HDL = integer(),LDL = integer(),TG = integer(),BMI = integer(),Cr = double(),
                           Hb = double(),Statines = integer(),COPD = integer(),ASA = integer(),Betablocker = integer(),
@@ -19,6 +23,7 @@ data_generator <- function(type="standard", rows_num=12, event=T, time=T){
                           Gender = integer(),Age = integer(),CS = integer(), Block = integer(),Cardiogenicshock = integer(),
                           Door_to_Device = integer(),Opium_bin = integer(),stringsAsFactors = F)
   fake_data <- as.data.frame(apply(fake_data, 2, function(x) sample(c(1,2),rows_num,replace = T)))
+  type <- match.arg(type)
   if (type=="less"){
     missed_var <- sample(names(fake_data), floor(runif(1)*10)+1, replace=F)
     fake_data %>% dplyr::select(-all_of(missed_var)) -> fake_data
@@ -31,13 +36,18 @@ data_generator <- function(type="standard", rows_num=12, event=T, time=T){
   if (time == T) fake_data$Time_to_MACE <-  sample(c(1,365), rows_num,replace = T)
   return (fake_data)
 }
+
 #' New Data Reader
 #' module to read new data automatically from github repo
 #' when new dataset is available, this module automatically reads it as entry point for machine learning operationals.
+#'
 #' @importFrom foreign read.spss
 #' @importFrom utils fileSnapshot
+#'
 #' @param url url of new_dataset file in github located in R/data/new_dataset.RDS. directory
+#'
 #' @return uploaded new dataset
+#'
 #' @noRd
 read_data <- function(url="https://raw.github.com/hedayatbehnam/primace/main/R/datasets/dataset.RDS"){
   tryCatch({
@@ -48,11 +58,15 @@ read_data <- function(url="https://raw.github.com/hedayatbehnam/primace/main/R/d
     return (new_data)
   }, error = function(e) cat("No new dataset has been uploaded."))
 }
+
 #' Read S3 Object
 #' read s3 dataset objects from bucket
+#'
 #' @param s3 variable of s3 read by paws::s3()
 #' @param bucket bucket name
+#'
 #' @return a list of full data, test and train indices
+#'
 #' @noRd
 read_data_s3 <- function(..., s3="aws_s3", bucket="aiworld"){
     aws_s3_inst <- get(s3, inherits = T)
@@ -73,11 +87,16 @@ read_data_s3 <- function(..., s3="aws_s3", bucket="aiworld"){
       return (list(data=data, train=train, test=test, total=total))
     } else { invisible(return (NULL))}
 }
+
 #' Dataset Modifier 
 #' module to peform some preprocessing steps automatically on new dataset privided by read_data function
+#'
 #' @importFrom forcats fct_collapse fct_drop
+#'
 #' @param dataset dataset read by read_data function
+#'
 #' @return modified dataset
+#'
 #' @noRd
 dataset_modification <- function(dataset) {
   # merge clopidogrel & plavix: Clopidogrel
@@ -198,12 +217,16 @@ dataset_modification <- function(dataset) {
   # ------------- end of data type handling>
   return(dataset)
 }
+
 #' Check Missing Values
 #' check missing values percentage and their patterins
+#'
 #' @param data_file dataset for checking its missing values
+#'
 #' @return returns a list containing total count of missing values, variables with low missing values,
 #' a dataset with less than 10% missing values, variables vector with less than 10 percent missing values,
 #' variables vector with high missing values, missing patterns.
+#'
 #' @noRd
 check_missings <- function(data_file){
   missing_var_count <- miss_count <- var_name <- percent <- missing_var_percent <- star_above_10 <- variable_below_10 <- 
@@ -236,10 +259,14 @@ check_missings <- function(data_file){
   return_list <- list(missing_var_count, variable_low_mis, df_b10_miss, variable_below_10, variable_high_mis_vector)
   return(return_list)
 }
-#' @title Complete Case Dataset
-#' @description creating a dataset with no missing values
+
+#' Complete Case Dataset
+#' creating a dataset with no missing values
+#'
 #' @importFrom stats complete.cases
+#'
 #' @param low_miss_dataframe returned dataset with less than ten percent missing values from check_missing function, ie. missing_data function third value
+#'
 #' @return a list containing complete case dataset and included variables in complete case
 complete_case <- function(low_miss_dataframe){
   df_low_miss <- var_names_excluded <- prepared_dataset <- prepared_dataset_CC <- included_dataset <- return_list <- NULL
@@ -253,18 +280,25 @@ complete_case <- function(low_miss_dataframe){
   return_list <- list(prepared_dataset_CC, included_dataset, prepared_dataset)
   return(return_list)
 }
-#' @title get mode of a vector
-#' @description to find mode of a vector of items
+
+#' get mode of a vector
+#' to find mode of a vector of items
+#'
 #' @param v vetor of items
+#'
 #' @return mode of vector
 getmode <- function(v){         #function to find mode
   uniqv <- unique(v)
   uniqv[which.max(tabulate(match(v,uniqv)))]
 }
+
 #' mode and median missing imputation
 #' replacing missing values by mode for categorical variable and median for numerical variables 
+#'
 #' @param dataset dataset to be imputed
+#'
 #' @return imputed dataset
+#'
 #' @noRd
 missing_impute <- function(dataset){
   for (i in seq_along(names(dataset))){
@@ -279,10 +313,14 @@ missing_impute <- function(dataset){
   }
   return (dataset)
 }
+
 #' First Year MACE
 #' creating data for one year survival, by correcting event for time less than a year ie 365.25 days.
+#'
 #' @param dataset dataset to be provided.
+#'
 #' @return dataset with MACE and censor time modfied for less than 365.25 days.
+#'
 #' @noRd
 first_year_MACE <- function(dataset){
   for (i in seq_len(nrow(dataset))){
