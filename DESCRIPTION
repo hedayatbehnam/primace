@@ -39,7 +39,8 @@ Imports:
     shinydashboardPlus (>= 2.0.3),
     mlr3tuning,
     crosstable,
-    rcmdcheck
+    rcmdcheck,
+    recipes
 Depends: 
     R (>= 3.5.0)
 LazyData: true
