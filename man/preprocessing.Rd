@@ -2,8 +2,7 @@
 % Please edit documentation in R/preprocessing.R
 \name{preprocessing}
 \alias{preprocessing}
-\title{Data Preprocessing
-module to perform preprocessing on dataset}
+\title{Data Preprocessing}
 \usage{
 preprocessing(train = TRUE, datasets = read_data_s3())
 }
@@ -16,6 +15,5 @@ preprocessing(train = TRUE, datasets = read_data_s3())
 uploaded preprocessed dataset
 }
 \description{
-Data Preprocessing
 module to perform preprocessing on dataset
 }

@@ -1,13 +1,18 @@
 #' @include utilities.R global.R
 NULL
 #' Data Preprocessing
+#' 
 #' module to perform preprocessing on dataset
+#' 
+#' @param train if training should be perfrom in addition to dataset modification
+#' @param datasets dataset to be provided, default read_data_s3() from aws s3 bucket
+#' 
+#' @return uploaded preprocessed dataset
+#' 
 #' @importFrom foreign read.spss
 #' @importFrom stats median
 #' @importFrom mlr3tuning tnr trm TuningInstanceSingleCrit
-#' @param train if training should be perfrom in addition to dataset modification
-#' @param datasets dataset to be provided, default read_data_s3() from aws s3 bucket
-#' @return uploaded preprocessed dataset
+#' 
 #' @export
 preprocessing <- function(train=TRUE, datasets=read_data_s3()){
   bmr <- tab <- NULL
