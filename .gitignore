@@ -4,4 +4,4 @@
 .Ruserdata
 ^renv$
 R/datasets/*
-docs
+
