@@ -15,8 +15,6 @@ jobs:
       LIARA_BUCKET_NAME: ${{ secrets.LIARA_BUCKET_NAME }}
       LIARA_ACCESS_KEY: ${{ secrets.LIARA_ACCESS_KEY }}
       LIARA_SECRET_KEY: ${{ secrets.LIARA_SECRET_KEY }}
-      RENV_PATHS_ROOT: ~/.local/share/renv
-
 
     steps:
       - uses: actions/checkout@v3
@@ -34,16 +32,9 @@ jobs:
             sudo apt-get install texlive
             sudo apt-get install texlive-fonts-extra
             
-      - name: Cache packages
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.RENV_PATHS_ROOT }}
-          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-renv-          
-  
       - name: R CMD CHECK inside r
         run : |
+            renv::activate()
             renv::restore()
             rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
