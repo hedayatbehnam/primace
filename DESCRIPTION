@@ -38,7 +38,8 @@ Imports:
     forcats (>= 0.5.2),
     shinydashboardPlus (>= 2.0.3),
     mlr3tuning,
-    crosstable
+    crosstable,
+    rcmdcheck
 Depends: 
     R (>= 3.5.0)
 LazyData: true
