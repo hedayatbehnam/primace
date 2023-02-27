@@ -2,7 +2,8 @@
 % Please edit documentation in R/utilities.R
 \name{complete_case}
 \alias{complete_case}
-\title{Complete Case Dataset}
+\title{Complete Case Dataset
+creating a dataset with no missing values}
 \usage{
 complete_case(low_miss_dataframe)
 }
@@ -13,5 +14,6 @@ complete_case(low_miss_dataframe)
 a list containing complete case dataset and included variables in complete case
 }
 \description{
+Complete Case Dataset
 creating a dataset with no missing values
 }

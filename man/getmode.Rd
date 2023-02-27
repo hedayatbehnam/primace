@@ -2,7 +2,8 @@
 % Please edit documentation in R/utilities.R
 \name{getmode}
 \alias{getmode}
-\title{get mode of a vector}
+\title{get mode of a vector
+to find mode of a vector of items}
 \usage{
 getmode(v)
 }
@@ -13,5 +14,6 @@ getmode(v)
 mode of vector
 }
 \description{
+get mode of a vector
 to find mode of a vector of items
 }

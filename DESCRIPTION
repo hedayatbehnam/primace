@@ -8,7 +8,7 @@ Description: Prediting possibility of first year major adverse cardiovascular ev
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 StagedInstall: no
 Suggests: 
     testthat (>= 3.0.0)
