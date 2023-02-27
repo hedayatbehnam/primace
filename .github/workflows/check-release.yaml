@@ -33,6 +33,7 @@ jobs:
             sudo apt-get install texlive-fonts-extra
       - name: R CMD CHECK inside r
         run : |
+            install.packages("rcmdcheck")
             renv::restore()
             rcmdcheck::rcmdcheck(error_on="warning")
         shell : Rscript {0}
