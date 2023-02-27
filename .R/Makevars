@@ -1,0 +1,3 @@
+#F77 = /usr/bin/gfortran
+#FC = $F77
+#FLIBS = -L/usr/bin/gfortran
