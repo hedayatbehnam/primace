@@ -103,6 +103,7 @@ jobs:
         run : |
             DATASET=$(Rscript helper/check_lastModification.R)
             echo $DATASET
+            Rscript -e "install.packages('devtools')"
             Rscript -e "devtools::load_all('.')"
             R CMD build .
             R CMD INSTALL primace_0.0.0.9000.tar.gz
