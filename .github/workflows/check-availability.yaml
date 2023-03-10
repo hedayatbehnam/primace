@@ -1,0 +1,17 @@
+on:
+  schedule:
+    - cron: '0 8 * * *'
+    
+name: check-webapp-availability
+    
+jobs:
+  Web-App-Availability:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: curl PRIMACE
+        run: |
+          PRIMACE=$(curl --silent https://primace.aikadeh.com)
+          echo $PRIMACE
+          if [[ $PRIMACE ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
