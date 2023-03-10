@@ -160,13 +160,10 @@ jobs:
         run : |
           
           docker run -d -p 3838:3838 --rm ${{ env.TEST_TAG }}
-          echo "\033[1;31mDocker run Done...!"
+          echo "Docker run successfully..."
           sleep 5
-          echo "\033[1;31mSleep terminated"
-          PRIMACE=$(curl --silent localhost:3838)
-          echo "\033[1;31mCurling finished...!"
-          echo $PRIMACE
-          if [[ $PRIMACE ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
+          echo "Sleep terminated..."
+          if [[ $(curl --silent localhost:3838) ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
       -
         name: Build and push
         uses: docker/build-push-action@v3
