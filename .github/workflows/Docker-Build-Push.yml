@@ -6,8 +6,12 @@ name: Docker-Build-Push
 
 jobs:
 
+  R-CMD-Check: 
+    uses: ./.github/workflows/R-CMD-Check.yml@main
+    
   Docker-push-pull:
     runs-on: ubuntu-latest
+    needs: [R-CMD-Check]
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       TEST_TAG: bhedayat/test-primace:test
