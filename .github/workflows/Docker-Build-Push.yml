@@ -7,7 +7,7 @@ name: Docker-Build-Push
 jobs:
 
   R-CMD-Check: 
-    uses: ./.github/workflows/R-CMD-Check.yml@main
+    uses: ./.github/workflows/R-CMD-Check.yml
     
   Docker-push-pull:
     runs-on: ubuntu-latest
