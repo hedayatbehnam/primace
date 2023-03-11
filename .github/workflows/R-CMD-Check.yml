@@ -1,7 +1,6 @@
-on:
-  push:
-    branches: [main, arg-pkg]
-    
+on: 
+  workflow_call:
+  
   schedule:
     - cron: '* 9 * * *'
 

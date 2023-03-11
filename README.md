@@ -1,9 +1,14 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 <!-- badges: start -->
 [![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)  
 
-[![R-MLOps-Check](https://github.com/hedayatbehnam/primace/workflows/R-MLOps-Check/badge.svg)](https://github.com/hedayatbehnam/primace/actions)[![R-CMD-Check](https://github.com/hedayatbehnam/primace/workflows/R-CMD-Check/badge.svg)](https://github.com/hedayatbehnam/primace/actions)  \
-[![Check-S3-Bucket](https://github.com/hedayatbehnam/primace/workflows/Check-S3-Bucket/badge.svg)](https://github.com/hedayatbehnam/primace/actions) [![Check-Data-Modification](https://github.com/hedayatbehnam/primace/workflows/Check-Data-Modification/badge.svg)](https://github.com/hedayatbehnam/primace/actions)  \
-[![Check-Webapp-Availability](https://github.com/hedayatbehnam/primace/workflows/Check-Webapp-Availability/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
+[![Docker-Build-Push](https://github.com/hedayatbehnam/primace/workflows/Docker-Build-Push/badge.svg)](https://github.com/hedayatbehnam/primace/actions)[![R-CMD-Check](https://github.com/hedayatbehnam/primace/workflows/R-CMD-Check/badge.svg)](https://github.com/hedayatbehnam/primace/actions)  \
+[![S3-Bucket-Connection](https://github.com/hedayatbehnam/primace/workflows/S3-Bucket-Connection/badge.svg)](https://github.com/hedayatbehnam/primace/actions) [![Data-Modification-Check](https://github.com/hedayatbehnam/primace/workflows/Data-Modification-Check/badge.svg)](https://github.com/hedayatbehnam/primace/actions)  \
+[![Webapp-Availability](https://github.com/hedayatbehnam/primace/workflows/Webapp-Availability/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
 
 [![GitHub issues](https://img.shields.io/github/issues/hedayatbehnam/primace?color=blue&logo=github)](https://github.com/hedayatbehnam/primace/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/hedayatbehnam/primace?color=blue&logo=github)](https://github.com/hedayatbehnam/primace/pulls) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/hedayatbehnam/primace/blob/main/LICENSE.md) 
 
