@@ -3,7 +3,7 @@ on:
     branches: [main, arg-pkg]
     
   schedule:
-    cron: '* 7 * * *'
+    - cron: '* 7 * * *'
 
 name: Check-S3-Bucket
 

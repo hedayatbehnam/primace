@@ -1,8 +1,11 @@
 on:
+  push:
+    branches: [main, arg-pkg]
+    
   schedule:
     - cron: '0 8 * * *'
     
-name: check-webapp-availability
+name: Check-Webapp-Availability
     
 jobs:
   Web-App-Availability:
