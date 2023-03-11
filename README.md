@@ -1,20 +1,20 @@
 ---
-output:
-  pdf_document: default
-  html_document: default
+title: PRIMACE Prediction Tool
 ---
+
 <!-- badges: start -->
 [![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)  
 
-[![Docker-Build-Push](https://github.com/hedayatbehnam/primace/workflows/Docker-Build-Push/badge.svg)](https://github.com/hedayatbehnam/primace/actions)[![R-CMD-Check](https://github.com/hedayatbehnam/primace/workflows/R-CMD-Check/badge.svg)](https://github.com/hedayatbehnam/primace/actions)  
-[![S3-Bucket-Connection](https://github.com/hedayatbehnam/primace/workflows/S3-Bucket-Connection/badge.svg)](https://github.com/hedayatbehnam/primace/actions)[![Data-Modification-Check](https://github.com/hedayatbehnam/primace/workflows/Data-Modification-Check/badge.svg)](https://github.com/hedayatbehnam/primace/actions)  
-[![Webapp-Availability](https://github.com/hedayatbehnam/primace/workflows/Webapp-Availability/badge.svg)](https://github.com/hedayatbehnam/primace/actions)
+
+[![Continuous-Deployment](https://github.com/hedayatbehnam/primace/workflows/Continuous-Deployment/badge.svg)](https://github.com/hedayatbehnam/primace/actions) [![Docker-Build-Push](https://github.com/hedayatbehnam/primace/workflows/Docker-Build-Push/badge.svg)](https://github.com/hedayatbehnam/primace/actions)    
+[![R-CMD-Check](https://github.com/hedayatbehnam/primace/workflows/R-CMD-Check/badge.svg)](https://github.com/hedayatbehnam/primace/actions) [![S3-Bucket-Connection](https://github.com/hedayatbehnam/primace/workflows/S3-Bucket-Connection/badge.svg)](https://github.com/hedayatbehnam/primace/actions)     
+[![Data-Modification-Check](https://github.com/hedayatbehnam/primace/workflows/Data-Modification-Check/badge.svg)](https://github.com/hedayatbehnam/primace/actions) [![Webapp-Availability](https://github.com/hedayatbehnam/primace/workflows/Webapp-Availability/badge.svg)](https://github.com/hedayatbehnam/primace/actions)  
 
 [![GitHub issues](https://img.shields.io/github/issues/hedayatbehnam/primace?color=blue&logo=github)](https://github.com/hedayatbehnam/primace/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/hedayatbehnam/primace?color=blue&logo=github)](https://github.com/hedayatbehnam/primace/pulls) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/hedayatbehnam/primace/blob/main/LICENSE.md) 
 
 <!-- badges: end -->
 
-# PRIMACE Prediction Tool
+# Overview
 `PRIMACE` is a shinyapp web application based on R language shiny package which can be used to predict major cardiovascular events (MACE) in first year following Primary Percutaneous Coronary Intervention (PPCI)  
 **PPCI:** Primary Percutaneous Coronary Intervention  
 **MACE:** Major Adverse Cardiovascular Events

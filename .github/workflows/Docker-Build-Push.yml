@@ -1,6 +1,4 @@
 on:
-  workflow_call:
-  
   workflow_run:
     workflows: ["R-CMD-Check"]
     types: [completed]
