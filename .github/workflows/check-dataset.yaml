@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '0 10 * * *'
 
 name: Check-Data-Modification
 

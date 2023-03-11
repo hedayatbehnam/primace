@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [main, pkg-renv]
+    branches: [main]
 
 name: R-MLOps-Check
 
