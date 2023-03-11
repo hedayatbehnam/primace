@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '* 7 * * *'
 
-name: Check-S3-Bucket
+name: S3-Bucket-Connection
 
 jobs:
 
