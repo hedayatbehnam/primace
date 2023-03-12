@@ -1,6 +1,5 @@
----
-title: PRIMACE Prediction Tool
----
+
+# PRIMACE Prediction Tool  
 
 <!-- badges: start -->
 [![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)  

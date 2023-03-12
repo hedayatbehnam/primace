@@ -1,8 +1,7 @@
 on:
-  workflow_run:
-    workflows: ["R-CMD-Check"]
-    types: [completed]
-
+  push: 
+    branches: [main, arg-pkg]
+    
 name: Docker-Build-Push
 
 jobs:
