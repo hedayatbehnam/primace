@@ -3,7 +3,7 @@ on:
     branches: [main, arg-pkg]
     
   schedule:
-    - cron: '* 9 * * *'
+    - cron: '0 9 * * *'
 
 name: R-CMD-Check
 
