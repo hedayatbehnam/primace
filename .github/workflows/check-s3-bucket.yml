@@ -3,13 +3,13 @@ on:
     branches: [main, arg-pkg]
     
   schedule:
-    - cron: '* 7 * * *'
+    - cron: '0 7 * * *'
 
 name: S3-Bucket-Connection
 
 jobs:
 
-  liara_cloud_storage-check:
+  S3-Bucket-Connection-Check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

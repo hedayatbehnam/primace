@@ -1,10 +1,7 @@
 on:
-  workflow_call:
-  
-  workflow_run:
-    workflows: ["R-CMD-Check"]
-    types: [completed]
-
+  push: 
+    branches: [main, arg-pkg]
+    
 name: Docker-Build-Push
 
 jobs:
@@ -20,8 +17,6 @@ jobs:
       LIARA_ACCESS_KEY: ${{ secrets.LIARA_ACCESS_KEY }}
       LIARA_SECRET_KEY: ${{ secrets.LIARA_SECRET_KEY }}
     
-    
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       -
         name: Checkout
