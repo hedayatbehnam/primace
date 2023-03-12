@@ -11,6 +11,7 @@ jobs:
   
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       TEST_TAG: bhedayat/test-primace:test
@@ -72,6 +73,6 @@ jobs:
             
   rcmdcheck-failed:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_event.conclusion == 'failure' }}
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     steps:
       - run: "Failed due to R-CMD-Check failure"
