@@ -6,11 +6,9 @@ on:
 name: Continuous-Deployment
 
 jobs:
-
-  Continuous-Deployment:
+  successed-push:
     runs-on: ubuntu-latest
-    
-    if: ${{ github.event.workflow_run.conclusion == "success" }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}    
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -22,3 +20,9 @@ jobs:
         run : |
           npm i -g @liara/cli@3
           liara deploy --app="primace" --api-token="$LIARA_TOKEN" --image="bhedayat/test-primace" --port=3838  --detach 
+  failed-push:
+    runs-on: ubuntu-latest
+    if: ${{  github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - run: echo "Deployment failed due to build-push failure"
+  

@@ -1,13 +1,15 @@
 on:
-  push: 
-    branches: [main, arg-pkg]
+  workflow_run:
+    workflows: ['R-CMD-Check']
+    types: [completed]
     
 name: Docker-Build-Push
 
 jobs:
 
-  Docker-push-pull:
+  rcmdcheck-success:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       TEST_TAG: bhedayat/test-primace:test
@@ -54,7 +56,7 @@ jobs:
           echo "Docker run successfully..."
           sleep 5
           echo "Sleep terminated..."
-          if [[ $(curl --silent localhost:3838) ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
+          if [[ $(curl --silent 0.0.0.0:3838) ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
       -
         name: Build and push
         uses: docker/build-push-action@v3
@@ -67,3 +69,9 @@ jobs:
             LIARA_BUCKET_NAME=${{ secrets.LIARA_BUCKET_NAME }}
             LIARA_ACCESS_KEY=${{ secrets.LIARA_ACCESS_KEY }}
             LIARA_SECRET_KEY=${{ secrets.LIARA_SECRET_KEY }}
+            
+  rcmdcheck-failed:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_event.conclusion == 'failure' }}
+    steps:
+      run: echo "Failed due to R-CMD-Check failure"
