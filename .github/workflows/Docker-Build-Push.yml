@@ -8,6 +8,7 @@ name: Docker-Build-Push
 jobs:
 
   rcmdcheck-success:
+  
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     env:
@@ -20,23 +21,22 @@ jobs:
       LIARA_SECRET_KEY: ${{ secrets.LIARA_SECRET_KEY }}
     
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v3
-      -
-        name: Set up QEMU
+        
+      - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
-      -
-        name: Set up Docker Buildx
+        
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      -
-        name: Login to Docker Hub
+        
+      - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and export to Docker
+          
+      - name: Build and export to Docker
         uses: docker/build-push-action@v3
         with:
           context: .
@@ -48,8 +48,8 @@ jobs:
             LIARA_BUCKET_NAME=${{ secrets.LIARA_BUCKET_NAME }}
             LIARA_ACCESS_KEY=${{ secrets.LIARA_ACCESS_KEY }}
             LIARA_SECRET_KEY=${{ secrets.LIARA_SECRET_KEY }}
-      -
-        name: Test
+            
+      - name: Test
         run : |
           
           docker run -d -p 3838:3838 --rm ${{ env.TEST_TAG }}
@@ -57,8 +57,8 @@ jobs:
           sleep 5
           echo "Sleep terminated..."
           if [[ $(curl --silent 0.0.0.0:3838) ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
-      -
-        name: Build and push
+          
+      - name: Build and push
         uses: docker/build-push-action@v3
         with:
           push: true
@@ -74,4 +74,4 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_event.conclusion == 'failure' }}
     steps:
-      run: echo "Failed due to R-CMD-Check failure"
+      - run: "Failed due to R-CMD-Check failure"
