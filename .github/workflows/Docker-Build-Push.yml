@@ -52,10 +52,11 @@ jobs:
     
       - name: Test
         run : |
-          docker run -d -p 3838:3838 --rm ${{ env.TEST_TAG }}
-          echo "Docker run successfully..."
-          sleep 10
-          echo "Sleep terminated..."
+          echo "Starting docker..." &&
+          docker run -d -p 3838:3838 --rm ${{ env.TEST_TAG }} & 
+          echo "Docker run successfully..." &&
+          sleep 10 &&
+          echo "Sleep terminated..." &&
           if [[ $(curl --silent 0.0.0.0:3838) ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
           
       - name: Build and push
