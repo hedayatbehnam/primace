@@ -15,6 +15,6 @@ jobs:
       
       - name: curl PRIMACE
         run: |
-          PRIMACE=$(curl --silent https://primace.aikadeh.com)
+          PRIMACE=$(curl -I --silent https://primace.aikadeh.com | head -n 1 | awk -F' ' '{ print $2 }')
           echo $PRIMACE
-          if [[ $PRIMACE ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
+          if [[ $PRIMACE == 200 ]]; then echo Done; else echo "Error" 1>&2 && exit 50; fi
