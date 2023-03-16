@@ -23,10 +23,11 @@ jobs:
           
       - name: install-dependencies
         run: |
-          install.packages(c("rsconnect", "shiny"))
+          install.packages(c("rsconnect", "shiny"), type="binary")
         shell: Rscript {0}
         
       - name: Push to shiny.io
         run: |
-          Rscript -e "rsconnect::setAccountInfo(name='behnam-hedayat', token=${{secrets.SHINYAPPS_TOKEN}}, secret=${{secrets.SHINYAPPS_SECRET}})"
-          Rscript -e "rsconnect::deployApp(appDir = 'shinyapps/')" 
+          rsconnect::setAccountInfo(name='behnam-hedayat', token=${{secrets.SHINYAPPS_TOKEN}}, secret=${{secrets.SHINYAPPS_SECRET}})
+          rsconnect::deployApp(appDir = 'shinyapps/')
+        shell: Rscript {0}
