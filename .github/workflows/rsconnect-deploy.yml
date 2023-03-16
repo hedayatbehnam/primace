@@ -23,7 +23,7 @@ jobs:
           
       - name: install-dependencies
         run: |
-          install.packages(c("rsconnect", "shiny"), type="binary")
+          install.packages(c("rsconnect", "shiny"))
         shell: Rscript {0}
         
       - name: Push to shiny.io
