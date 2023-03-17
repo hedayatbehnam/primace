@@ -2,6 +2,7 @@ on:
   workflow_run:
     workflows: ['R-CMD-Check']
     types: [completed]
+    branches: 
     
 name: Docker-Build-Push
 
@@ -20,6 +21,12 @@ jobs:
       LIARA_BUCKET_NAME: ${{ secrets.LIARA_BUCKET_NAME }}
       LIARA_ACCESS_KEY: ${{ secrets.LIARA_ACCESS_KEY }}
       LIARA_SECRET_KEY: ${{ secrets.LIARA_SECRET_KEY }}
+      MARIADB_DB: ${{ secrets.MARIADB_DB }}
+      MARIADB_USR: ${{ secrets.MARIADB_USR }}
+      MARIADB_PW: ${{ secrets.MARIADB_PW }}
+      MARIADB_TBL: ${{ secrets.MARIADB_TBL }}
+      MARIADB_HOST: ${{ secrets.MARIADB_HOST }}
+      MARIADB_PORT: ${{ secrets.MARIADB_PORT }}
     
     steps:
       - name: Checkout
@@ -49,6 +56,12 @@ jobs:
             LIARA_BUCKET_NAME=${{ secrets.LIARA_BUCKET_NAME }}
             LIARA_ACCESS_KEY=${{ secrets.LIARA_ACCESS_KEY }}
             LIARA_SECRET_KEY=${{ secrets.LIARA_SECRET_KEY }}
+            MARIADB_DB=${{ MARIADB_DB }}
+            MARIADB_TBL=${{ MARIADB_TBL }}
+            MARIADB_USR=${{ MARIADB_USR }}
+            MARIADB_PW=${{ MARIADB_PW }}
+            MARIADB_HOST=${{ MARIADB_HOST }}
+            MARIADB_PORT=${{ MARIADB_PORT}}
     
       - name: Test
         run : |
@@ -60,6 +73,7 @@ jobs:
           if [[ $(curl --silent 0.0.0.0:3838) ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
           
       - name: Build and push
+        if: contains(github.ref, "main")
         uses: docker/build-push-action@v3
         with:
           push: true
@@ -70,6 +84,12 @@ jobs:
             LIARA_BUCKET_NAME=${{ secrets.LIARA_BUCKET_NAME }}
             LIARA_ACCESS_KEY=${{ secrets.LIARA_ACCESS_KEY }}
             LIARA_SECRET_KEY=${{ secrets.LIARA_SECRET_KEY }}
+            MARIADB_DB=${{ MARIADB_DB }}
+            MARIADB_TBL=${{ MARIADB_TBL }}
+            MARIADB_USR=${{ MARIADB_USR }}
+            MARIADB_PW=${{ MARIADB_PW }}
+            MARIADB_HOST=${{ MARIADB_HOST }}
+            MARIADB_PORT=${{ MARIADB_PORT}}
             
   rcmdcheck-failed:
     runs-on: ubuntu-latest
