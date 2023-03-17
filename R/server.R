@@ -22,6 +22,79 @@ server <- function(input, output, session) {
   reactiveVal_output(rv, 'perfMetrics', 'empty', output)
   reactiveVal_output(rv, 'predMetrics', 'empty', output)
   vars <- reactiveValues()
+  
+  login <- FALSE
+  USER <- reactiveValues(login = login)
+  
+  observe({ 
+    if (USER$login == FALSE) {
+      if (!is.null(input$login)) {
+        if (input$login > 0) {
+          Username <- isolate(input$userName)
+          Password <- isolate(input$passwd)
+          if(length(which(credentials$username_id==Username))==1) { 
+            pasmatch  <- credentials["passod"][which(credentials$username_id==Username),]
+            pasverify <- password_verify(pasmatch, Password)
+            if(pasverify) {
+              USER$login <- TRUE
+            } else {
+              shinyjs::toggle(id = "nomatch", anim = TRUE, time = 1, animType = "fade")
+              shinyjs::delay(3000, shinyjs::toggle(id = "nomatch", anim = TRUE, time = 1, animType = "fade"))
+            }
+          } else {
+            shinyjs::toggle(id = "nomatch", anim = TRUE, time = 1, animType = "fade")
+            shinyjs::delay(3000, shinyjs::toggle(id = "nomatch", anim = TRUE, time = 1, animType = "fade"))
+          }
+        } 
+      }
+    }    
+  })
+  
+  output$login_btn <- renderUI({
+      actionButton(inputId = 'login_action', label = "Login", icon = icon("user"))
+  })
+  
+  observeEvent(input$login_action, {showModal(modalDialog(
+    title = "Login",easyClose = T, footer = modalButton("Cancel"), size="m",
+      div(id = "loginpage", style = "width: 500px; max-width: 100%; margin: 0 auto; padding: 20px;",
+          wellPanel(
+            textInput("userName", placeholder="Username", label = tagList(icon("user"), "Username")),
+            passwordInput("passwd", placeholder="Password", label = tagList(icon("unlock-alt"), "Password")),
+            br(),
+            div(
+              style = "text-align: center;",
+              actionButton("login", "SIGN IN", style = "color: white; background-color:#3c8dbc;
+                                 padding: 10px 15px; width: 150px; cursor: pointer;
+                                 font-size: 18px; font-weight: 600;"),
+              shinyjs::hidden(
+                div(id = "nomatch",
+                    tags$p("Incorrect username or password!",
+                           style = "color: red; font-weight: 600; 
+                                            padding-top: 5px;font-size:16px;", 
+                           class = "text-center")))
+            ))
+      )
+
+  ))
+  })
+  
+  observeEvent(input$login,{
+    if (USER$login) removeModal()
+  })
+  
+  output$logbtn <- renderUI({
+    if (USER$login) {
+      tags$div(span(input$userName, class="log-btn-span"),actionButton(inputId = "logout", label="Logout", icon=icon("sign-out"), class="log-btn"))
+    } else {
+      tags$div(actionButton(inputId = 'login_action', label = "Login", icon = icon("user"),
+                            class="log-btn"))
+    }
+  })
+  
+  shinyjs::onclick("logout", {
+    shinyjs::runjs("javascript:window.location.reload(true)")
+  })
+  
   output$tableVarNames <- renderDataTable({ 
     primace::varnames
   }, options = list(pageLength=10, scrollX=TRUE) 

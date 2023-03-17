@@ -40,7 +40,11 @@ Imports:
     mlr3tuning,
     crosstable,
     rcmdcheck,
-    recipes
+    recipes,
+    RMariaDB,
+    sodium,
+    DBI,
+    shinyjs
 Depends: 
     R (>= 3.5.0)
 LazyData: true
@@ -54,6 +58,7 @@ Collate:
     'best_point.R'
     'contact.R'
     'final_predict.R'
+    'mariadb_connect.R'
     'global.R'
     'home.R'
     'load_model.R'

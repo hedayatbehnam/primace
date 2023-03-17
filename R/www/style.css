@@ -119,7 +119,20 @@ img {
     overflow-y: hidden;
   }
   
-  
+.log-btn {
+  background-color: #eee !important; 
+  border: 0;
+  font-weight: bold; 
+  margin-right:10px;
+  margin-top:10px;
+}
+.log-btn-span{
+  color: white;
+  font-size:16px;
+  margin-right: 10px;
+  margin-top: 15px;
+  font-weight: bold;
+}
 .custom-footer {
   bottom:0;
   height:50px;
