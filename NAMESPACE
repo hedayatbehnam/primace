@@ -2,6 +2,7 @@
 
 export(preprocessing)
 export(primace_init)
+import(RMariaDB)
 import(crosstable)
 import(dplyr)
 import(mlr3)

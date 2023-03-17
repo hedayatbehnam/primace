@@ -119,6 +119,11 @@
       ],
       "Hash": "45f0398006e83a5b10b72a90663d8d8c"
     },
+    "RMariaDB": {
+      "Package": "RMariaDB",
+      "Version": "1.2.2",
+      "Source": "Repository"
+    },
     "Rcpp": {
       "Package": "Rcpp",
       "Version": "1.0.10",

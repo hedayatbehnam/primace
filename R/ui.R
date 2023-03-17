@@ -20,6 +20,7 @@ sidebar <- dashboardSidebar(
 #' body of main user interface
 #' @noRd
 body <- dashboardBody(
+  shinyjs::useShinyjs(),
   # style_ref(tags, "style"),
   tags$head(includeScript(path = paste0(Sys.getenv("root_absPath"),"/R/static/google-analytics.js"))),
   shinybusy::add_busy_spinner(spin = "half-circle", position = "bottom-right", color="black",
@@ -352,14 +353,22 @@ body <- dashboardBody(
     ),
     contactsUI('contact'),
     aboutUI('about')
-  ),br(),
+  ),br()
 
 )
 #' header of main ui
 #' @noRd
-CustomHeader <- dashboardHeader(title ="PRIMACE", userOutput("user"))
+CustomHeader <- dashboardHeader(title ="PRIMACE",
+                                tags$li(uiOutput("logbtn"),
+                                        class = "dropdown"))
+
+
 # CustomHeader$children[[3]]$children <- list(
-#   div(class="login-box",icon("user"),"Login"))
+#   uiOutput("logbtn"))
+
+# shinyauthr::loginUI(id = "login")
+
+
 #' ui composite
 #' @noRd
 ui <- shinydashboardPlus::dashboardPage(
