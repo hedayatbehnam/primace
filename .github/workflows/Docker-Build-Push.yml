@@ -2,7 +2,6 @@ on:
   workflow_run:
     workflows: ['R-CMD-Check']
     types: [completed]
-    branches: 
     
 name: Docker-Build-Push
 
