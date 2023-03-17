@@ -2,6 +2,7 @@ on:
   workflow_run:
     workflows: ['R-CMD-Check']
     types: [completed]
+    branches: [main]
     
 name: Docker-Build-Push
 
@@ -72,7 +73,6 @@ jobs:
           if [[ $(curl --silent 0.0.0.0:3838) ]]; then echo Done; else echo "Error" 1>&2 && exit 64; fi
           
       - name: Build and push
-        if: contains(github.ref, "main")
         uses: docker/build-push-action@v3
         with:
           push: true
