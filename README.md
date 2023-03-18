@@ -2,8 +2,8 @@
 # PRIMACE Prediction Tool  
 
 <!-- badges: start -->
-[![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)  
 
+[![PRIMACE](man/figures/webapp.svg)](https://primace.aikadeh.com)  
 
 [![Continuous-Deployment](https://github.com/hedayatbehnam/primace/workflows/Continuous-Deployment/badge.svg)](https://github.com/hedayatbehnam/primace/actions)  
 [![Docker-Build-Push](https://github.com/hedayatbehnam/primace/workflows/Docker-Build-Push/badge.svg)](https://github.com/hedayatbehnam/primace/actions)        
