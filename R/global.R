@@ -22,6 +22,3 @@ sample_cred <- data.frame(
   permissions = c("admin", "standard"),
   stringsAsFactors = F
 )
-
-tryCatch({mariadb_connect()}, error = function(e) print(e))
-credentials <- tryCatch({mariadb_connect()}, error = function(e) return (sample_cred))

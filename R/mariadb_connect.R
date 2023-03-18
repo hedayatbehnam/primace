@@ -35,4 +35,5 @@ mariadb_connect <- function(...,
 }
 
 
-
+conn <- dbConnect(RMariaDB::MariaDB(), user="behnam", password="111111",
+                  dbname="test_db", host="localhost", port="3306")
