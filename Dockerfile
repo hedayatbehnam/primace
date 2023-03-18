@@ -1,5 +1,4 @@
 FROM rocker/shiny:latest
-FROM mariadb:latest
 ARG GIT_PAT
 ARG LIARA_ENDPOINT
 ARG LIARA_BUCKET_NAME
@@ -34,10 +33,13 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
   libtiff5-dev \
   libjpeg-dev \
   libsodium-dev
+  mariadb-server
+  
 
 WORKDIR primace
 COPY . .
 
+RUN service mariadb start
 RUN Rscript -e 'install.packages("renv", repos = "https://rstudio.r-universe.dev")'
 RUN Rscript -e 'library(renv)'
 RUN Rscript -e 'renv::activate()'
