@@ -32,7 +32,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
   libpng-dev \
   libtiff5-dev \
   libjpeg-dev \
-  libsodium-dev
+  libsodium-dev \
   mariadb-server
   
 
