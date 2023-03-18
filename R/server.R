@@ -32,10 +32,23 @@ server <- function(input, output, session) {
         if (input$login > 0) {
           Username <- isolate(input$userName)
           Password <- isolate(input$passwd)
+          db <- suppressWarnings(system("printenv MARIADB_DB", intern = T))
+          usr <- suppressWarnings(system("printenv MARIADB_USR", intern = T)) 
+          tbl <- suppressWarnings(system("printenv MARIADB_TBL", intern = T)) 
+          pass <- suppressWarnings(system("printenv MARIADB_PW", intern = T))
+          host <- suppressWarnings(system("printenv MARIADB_HOST", intern = T))
+          port <- suppressWarnings(system("printenv MARIADB_PORT", intern = T))
+          
+          tryCatch({conn <- dbConnect(RMariaDB::MariaDB(), user=usr, password=pass,
+                            dbname=db, host= host, port=port)}, error=function(e) print(e))
+          
+          credentials <- tryCatch({mariadb_connect()}, error = function(e) return (sample_cred))
+          
           if(length(which(credentials$username_id==Username))==1) { 
             pasmatch  <- credentials["passod"][which(credentials$username_id==Username),]
             pasverify <- password_verify(pasmatch, Password)
             if(pasverify) {
+              rm(credentials)
               USER$login <- TRUE
             } else {
               shinyjs::toggle(id = "nomatch", anim = TRUE, time = 1, animType = "fade")
