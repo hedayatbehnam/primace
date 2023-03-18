@@ -1,4 +1,5 @@
 FROM rocker/shiny:latest
+FROM mariadb:latest
 ARG GIT_PAT
 ARG LIARA_ENDPOINT
 ARG LIARA_BUCKET_NAME
